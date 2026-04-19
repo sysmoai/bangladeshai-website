@@ -1,0 +1,302 @@
+FIX ALL 7 BUGS IDENTIFIED IN THE LIVE AUDIT. Do them all in one pass, then run
+npm run build to confirm zero TypeScript errors.
+
+════════════════════════════════════════════════════
+FIX 1 — LOGO: Clean the header logo (MOST IMPORTANT)
+════════════════════════════════════════════════════
+The logo currently shows with wrong spacing: "Bangladesh AI .org"
+Fix the Logo component so it renders exactly like this:
+
+  Line 1: "BangladeshAI.org"  (bold, white, font-size 20px, no spaces)
+  Line 2: "Intelligence Builds Nations"  (gray-300, font-size 11px, font-normal)
+  In BN mode, Line 2 switches to: "দেশ গড়ি বুদ্ধিমত্তায়"
+
+The logo must be a Next.js <Link href="/"> wrapping both lines.
+No image — pure text logo. Do NOT use spaces inside "BangladeshAI.org".
+Make sure the dot between "BangladeshAI" and "org" is part of the text (a full stop/period).
+
+Exact JSX:
+<Link href="/" className="flex flex-col">
+  <span className="text-white font-bold text-xl tracking-tight">BangladeshAI.org</span>
+  <span className="text-gray-300 text-[11px] font-normal">Intelligence Builds Nations</span>
+</Link>
+
+In BN locale, render:
+<Link href="/" className="flex flex-col">
+  <span className="text-white font-bold text-xl tracking-tight">BangladeshAI.org</span>
+  <span className="text-gray-300 text-[11px] font-normal">দেশ গড়ি বুদ্ধিমত্তায়</span>
+</Link>
+
+════════════════════════════════════════════════════
+FIX 2 — /research PAGE: ResearchCards not rendering
+════════════════════════════════════════════════════
+The /research page loads but shows ZERO content. Fix it now.
+
+The research hub page MUST show 10 ResearchCards. Hardcode the research
+data directly in the page component (do NOT rely on MDX file loading for
+the hub index — that is what is failing). Use this static data:
+
+const researchPapers = [
+  {
+    slug: "ai-readiness",
+    title: "Bangladesh AI Readiness Assessment 2026",
+    description: "A comprehensive assessment of Bangladesh's AI readiness across 92 requirements in 15 domains. Score: 47.12/100, Rank 80/193.",
+    category: "Assessment",
+    readTime: "20 min read",
+    date: "2026-01-20"
+  },
+  {
+    slug: "global-benchmarks",
+    title: "Global AI Benchmarks — 65+ Countries",
+    description: "How Bangladesh compares to 65+ nations on AI readiness. Oxford Insights methodology, cluster analysis, and policy implications.",
+    category: "Global",
+    readTime: "15 min read",
+    date: "2026-01-15"
+  },
+  {
+    slug: "economic-impact",
+    title: "Economic Impact of AI Adoption in Bangladesh",
+    description: "Six economic multipliers: NBR tax AI, ghost beneficiary elimination, SME productivity, BPO 2.0 exports, land disputes, agricultural yield.",
+    category: "Economics",
+    readTime: "18 min read",
+    date: "2025-11-20"
+  },
+  {
+    slug: "ministry-use-cases",
+    title: "Ministry-by-Ministry AI Use Cases",
+    description: "Practical AI applications across all 20 ministries of Bangladesh — with realistic outcomes, implementation timelines, and ROI estimates.",
+    category: "Policy",
+    readTime: "25 min read",
+    date: "2025-10-15"
+  },
+  {
+    slug: "policy-regulation",
+    title: "AI Policy & Regulatory Framework",
+    description: "Bangladesh's current AI Policy V2.0, Data Protection Ordinance, and the 3 ordinances needed to complete the regulatory stack.",
+    category: "Policy",
+    readTime: "16 min read",
+    date: "2025-09-10"
+  },
+  {
+    slug: "national-strategy",
+    title: "National AI Strategy — 12 Pillars",
+    description: "A 7-year national AI strategy for Bangladesh built on 12 pillars, with funded mandates, measurable KPIs, and institutional ownership.",
+    category: "Strategy",
+    readTime: "22 min read",
+    date: "2025-08-20"
+  },
+  {
+    slug: "anti-corruption",
+    title: "Anti-Corruption AI — 4-Layer Framework",
+    description: "How AI can systematically detect and prevent corruption in Bangladesh's public procurement, land registry, tax collection, and social protection.",
+    category: "Governance",
+    readTime: "19 min read",
+    date: "2025-07-15"
+  },
+  {
+    slug: "bangla-nlp",
+    title: "Bangla AI & Sovereign NLP Stack",
+    description: "Building a sovereign Bangla language AI stack: LLM, OCR, STT, TTS, dialect adaptation. BLP-2025: 69 NLP papers, 8 at ACL 2025.",
+    category: "Technology",
+    readTime: "17 min read",
+    date: "2025-06-10"
+  },
+  {
+    slug: "workforce-education",
+    title: "Workforce & Education — AI Reskilling",
+    description: "Four-track reskilling model for Bangladesh's 65M young workforce. KOICA $96M program analysis. New job categories: data annotation, AI auditing.",
+    category: "Education",
+    readTime: "14 min read",
+    date: "2025-05-20"
+  },
+  {
+    slug: "risk-management",
+    title: "Risk Management & Non-Negotiables",
+    description: "10 AI failure modes specific to Bangladesh. 17 KPIs for national AI monitoring. Non-negotiable safeguards before any public deployment.",
+    category: "Risk",
+    readTime: "16 min read",
+    date: "2025-04-15"
+  }
+]
+
+Render each as a card with: category badge · title · description · date · readTime
+· [Read Research →] button linking to /research/[slug]
+Add category filter pills at top: All · Assessment · Policy · Economics · Technology · Education · Strategy · Governance · Global · Risk
+
+════════════════════════════════════════════════════
+FIX 3 — /blog PAGE: Posts not rendering
+════════════════════════════════════════════════════
+The /blog page loads but shows ZERO posts. Fix the getAllPosts() function
+or hardcode the blog index data directly in the page component.
+
+Hardcode this blog data as the fallback if MDX loading fails:
+
+const blogPosts = [
+  { slug: "bangladesh-ai-readiness-47", title: "Bangladesh's AI Readiness: 47.12/100", category: "policy", date: "2026-03-22", readTime: "8 min", description: "Oxford Insights 2024 ranked Bangladesh 80th of 193 nations. Here's what the score means and what must change." },
+  { slug: "why-ai-is-not-magic", title: "Why AI is Not Magic", category: "opinion", date: "2026-03-20", readTime: "6 min", description: "AI is a force multiplier, not a miracle. Bangladesh's 65M youth are the real asset." },
+  { slug: "ai-bangla-language-guide", title: "AI in Bangla: A Complete Beginner's Guide", category: "ai-explained", date: "2026-03-27", readTime: "7 min", description: "Step-by-step guide to using AI entirely in Bangla. No English required." },
+  { slug: "economic-impact-analysis", title: "The Economic Impact of AI on Bangladesh", category: "economy", date: "2026-03-25", readTime: "9 min", description: "Six economic multipliers that could transform Bangladesh's GDP if AI is deployed at scale." },
+  { slug: "what-singapore-teaches-us", title: "What Singapore Teaches Us About AI", category: "global", date: "2026-03-15", readTime: "7 min", description: "Singapore ranked #2 globally. What Bangladesh can replicate — with far fewer resources." },
+  { slug: "bangla-nlp-sovereign-stack", title: "Building a Sovereign Bangla AI Stack", category: "bangla-ai", date: "2026-03-10", readTime: "8 min", description: "BLP-2025 produced 69 NLP papers. Here's what Bangladesh needs to build next." },
+  { slug: "youth-and-ai-jobs", title: "Bangladesh's Youth and the AI Jobs Revolution", category: "economy", date: "2026-03-05", readTime: "7 min", description: "KOICA $13M AI workforce training. Four tracks. New job categories that don't exist yet." },
+  { slug: "population-asset-not-problem", title: "Population Is Our Asset, Not Our Problem", category: "opinion", date: "2026-03-26", readTime: "6 min", description: "170M people is Bangladesh's greatest AI advantage — if we train them." },
+  { slug: "sovereign-ai-infrastructure-why-it-matters", title: "Why Sovereign AI Infrastructure Matters", category: "policy", date: "2026-03-24", readTime: "8 min", description: "$40–80M annual foreign AI subscription outflow. Build once vs pay forever." }
+]
+
+Render each as a BlogCard with: category badge · title · description · date · readTime
+· [Read More →] linking to /blog/[slug]
+Add category filter pills: All · Policy · Opinion · AI Explained · Economy · Global · Bangla AI
+Add live search input (filter by title/description as user types)
+
+════════════════════════════════════════════════════
+FIX 4 — /faq PAGE: No questions showing
+════════════════════════════════════════════════════
+The FAQ page shows only the heading but ZERO questions. Add these 12 FAQ items:
+
+1. Q: What is BangladeshAI.org?
+   A: BangladeshAI.org is Bangladesh's independent, non-partisan AI policy research platform. We produce evidence-based research on AI readiness, policy, and the economic impact of AI for Bangladesh.
+
+2. Q: Who runs BangladeshAI.org?
+   A: Founded by Emon Hossain, an independent AI policy researcher. The platform is not affiliated with any government, political party, commercial company, or international organisation.
+
+3. Q: What is Bangladesh's AI readiness score?
+   A: Bangladesh scored 47.12/100 on the Oxford Insights Government AI Readiness Index 2024, ranking 80th of 193 nations. The three pillars: Government Readiness 58.52, Technology Sector 26.26 (the weakest), and Data & Infrastructure 56.59.
+
+4. Q: What is AI? (সহজ ভাষায়)
+   A: AI (Artificial Intelligence) is computer technology that can understand language, recognise images, make decisions, and learn from data — like a very fast, very knowledgeable assistant. ChatGPT, Gemini, and Claude are AI tools you can use today, in Bangla, for free.
+
+5. Q: Can AI work in Bangla?
+   A: Yes — fully. ChatGPT, Gemini, and Claude all handle Bangla fluently. You do not need to know English to use AI. Write your question in Bangla and receive a Bangla answer.
+
+6. Q: Is this a government website?
+   A: No. BangladeshAI.org is entirely independent. We receive no government funding and are affiliated with no political party or ministry. Our independence is our most valuable asset.
+
+7. Q: How is the research funded?
+   A: BangladeshAI.org is an independent research initiative. Our research is open-access and publicly available. We do not sell data, products, or consultancy services that could compromise our independence.
+
+8. Q: What is the biggest risk for Bangladesh's AI future?
+   A: The Technology Sector score of 26.26/100 is the single most critical risk. Bangladesh's government and data infrastructure scores are moderate, but without a private tech sector that can build and deploy AI, those scores cannot deliver outcomes.
+
+9. Q: What is sovereign AI infrastructure?
+   A: Sovereign AI means Bangladesh owns its AI compute, data, and models — rather than depending entirely on foreign cloud services. This reduces the estimated $40–80M annual subscription outflow and ensures Bangladeshi citizen data stays in Bangladesh.
+
+10. Q: Can I use AI research for free?
+    A: Yes. All research on BangladeshAI.org is free and open-access. You may cite it with attribution: "BangladeshAI.org, [Year]."
+
+11. Q: How can I contact BangladeshAI.org?
+    A: Email the founder directly at emon@emonhossain.pro. For media inquiries, use the contact form at bangladeshai.org/contact.
+
+12. Q: How do I stay updated?
+    A: Subscribe to the Bangladesh AI Briefing newsletter at bangladeshai.org/newsletter. We publish AI updates, research summaries, and policy news — in both English and Bangla.
+
+Render as accordion (expand/collapse on click). Group by category:
+Group 1: About BangladeshAI.org (Q1, Q2, Q6, Q7, Q10, Q11, Q12)
+Group 2: Bangladesh & AI (Q3, Q5, Q8, Q9)
+Group 3: AI Basics / নাগরিকদের জন্য (Q4, Q5)
+
+════════════════════════════════════════════════════
+FIX 5 — /contact PAGE: Remove wrong email
+════════════════════════════════════════════════════
+In the "Direct Contact" section:
+REMOVE the row: "General: contact@bangladeshai.org"
+KEEP ONLY:
+  Founder: emon@emonhossain.pro
+  Website: emonhossain.pro
+
+The form "Or email directly" line should also say: emon@emonhossain.pro
+
+════════════════════════════════════════════════════
+FIX 6 — FOOTER: Full rebuild with correct 4-column layout
+════════════════════════════════════════════════════
+REBUILD THE FOOTER COMPLETELY. The current footer has wrong links and
+missing sections. Replace it with this exact structure:
+
+Background: #1A2332 (navy) | Text: white | Padding: 48px top/bottom
+
+Top section — 4 columns:
+
+COL 1: RESEARCH
+  Heading: "Research" (white, font-semibold)
+  Links (gray-300, hover white):
+  · AI Readiness 2026          /research/ai-readiness
+  · Global Benchmarks          /research/global-benchmarks
+  · Economic Impact            /research/economic-impact
+  · Ministry Use Cases         /research/ministry-use-cases
+  · Policy & Regulation        /research/policy-regulation
+  · National Strategy          /research/national-strategy
+  · [View All Research →]      /research  (blue color, font-medium)
+
+COL 2: INSIGHTS
+  Heading: "Insights"
+  Links:
+  · Blog & Analysis            /blog
+  · Why Act Now                /why-now
+  · Reality Check 2026         /reality-check
+  · National Roadmap           /roadmap
+  · AI Glossary                /glossary
+  · FAQ                        /faq
+
+COL 3: FOR YOU
+  Heading: "For You"
+  Links:
+  · For Government             /for-government
+  · For Citizens               /for-citizens
+  · For Dev Partners           /for-partners
+  · About BangladeshAI         /about
+  · Founder — Emon Hossain     /about/emon-hossain
+  · Independence Statement     /about/independence
+  · Press Kit                  /press
+
+COL 4: CONNECT
+  Heading: "Connect"
+  Links:
+  · Contact Us                 /contact
+  · Newsletter                 /newsletter
+  · Downloads                  /resources
+  Then social icons (with text labels):
+  · Twitter/X: x.com/bangladeshai
+  · LinkedIn: linkedin.com/company/bangladeshai
+  · GitHub: github.com/bangladeshai
+
+Bottom bar (border-top: 1px solid rgba(255,255,255,0.1), padding 16px top):
+  Left:  "BangladeshAI.org" · "Intelligence Builds Nations"
+         "দেশ গড়ি বুদ্ধিমত্তায়"
+  Right: "© 2026 BangladeshAI.org · Independent AI Policy Research for Bangladesh"
+
+BN MODE: All footer column headings and link text must switch to Bangla translations.
+  Research → গবেষণা
+  Insights → বিশ্লেষণ
+  For You → আপনার জন্য
+  Connect → যোগাযোগ
+  View All Research → সব গবেষণা দেখুন
+  For Government → সরকারের জন্য
+  For Citizens → নাগরিকদের জন্য
+  Contact Us → যোগাযোগ করুন
+  Newsletter → নিউজলেটার
+
+════════════════════════════════════════════════════
+FIX 7 — VERIFY LOCALE ROUTES
+════════════════════════════════════════════════════
+Ensure these routes all return 200 OK and load correctly:
+  /en  → redirects to or renders English homepage
+  /bn  → redirects to or renders Bangla homepage
+  /en/reality-check  → English version
+  /bn/reality-check  → Bangla version
+  /en/for-citizens   → English version  
+  /bn/for-citizens   → Bangla version (Noto Sans Bengali font active)
+
+If /en or /bn return 404, fix the next-intl middleware configuration.
+Check middleware.ts — the matcher must include both locales.
+
+════════════════════════════════════════════════════
+FINAL STEP — BUILD + VERIFY
+════════════════════════════════════════════════════
+After all 7 fixes:
+1. Run: npm run build
+   Fix ALL TypeScript errors until ZERO remain.
+2. Verify these pages all show content (not blank):
+   / · /reality-check · /for-citizens · /why-now · /blog · /research
+   /faq · /contact · /about/emon-hossain
+3. Verify logo shows "BangladeshAI.org" (no spaces) in header
+4. Verify footer has 4 columns with correct links
+5. Report: list each fixed item and confirm status ✅

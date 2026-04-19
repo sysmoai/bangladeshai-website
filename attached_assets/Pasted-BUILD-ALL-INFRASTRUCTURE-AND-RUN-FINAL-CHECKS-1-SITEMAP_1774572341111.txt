@@ -1,0 +1,53 @@
+BUILD ALL INFRASTRUCTURE AND RUN FINAL CHECKS.
+
+1. SITEMAP: Create src/app/sitemap.ts
+   All routes × 2 locales (en + bn) · All 9 blog slugs × 2 · All 10 research slugs × 2
+   Priority: / → 1.0 · /research/* → 0.9 · /blog/* → 0.8 · other → 0.7
+
+2. ROBOTS: Create src/app/robots.ts
+   Allow all · Disallow /api/ · Sitemap: https://bangladeshai.org/sitemap.xml
+
+3. RSS FEED: Create src/app/feed.xml/route.ts
+   RSS 2.0 · All EN blog posts · Content-Type: application/xml
+
+4. OG IMAGE API: Create src/app/api/og/route.tsx
+   Next.js ImageResponse · 1200×630 · Navy #1A2332 background
+   Logo text "BangladeshAI.org" + dynamic title from ?title= param
+   BD flag green/red accent bar at bottom
+
+5. JSON-LD: Add to every page:
+   Homepage: Organization schema
+   Blog posts: Article schema (author, datePublished, headline)
+   Research: ScholarlyArticle schema
+   All sub-pages: BreadcrumbList schema
+
+6. VERIFY ENV VARS are set in Replit Secrets:
+   NEXT_PUBLIC_FORMSPREE_ID
+   NEXT_PUBLIC_NEWSLETTER_FORM_ID
+   NEXT_PUBLIC_PLAUSIBLE_DOMAIN=bangladeshai.org
+   NEXT_PUBLIC_SITE_URL=https://bangladeshai.org
+
+7. RUN: npm run build
+   Fix ALL TypeScript errors until build completes with ZERO errors.
+   Fix ALL missing image/font warnings.
+
+8. FINAL VERIFICATION CHECKLIST:
+   □ /en and /bn both load homepage
+   □ Language toggle switches locale on all pages
+   □ EN mode: zero Bangla text visible
+   □ BN mode: zero English text (except technical terms with Bangla explanation)
+   □ Dark mode works on all pages
+   □ Mobile at 375px: hamburger menu opens and closes
+   □ StatBar shows all 6 stats
+   □ Blog filter by category works
+   □ /sitemap.xml lists all routes × 2 locales
+   □ /robots.txt is correct
+   □ /feed.xml returns valid RSS
+   □ /api/og?title=Test returns 1200×630 image
+   □ ContactForm submits to Formspree
+   □ NewsletterForm submits to Formspree
+   □ All 9 blog posts accessible EN + BN
+   □ All 10 research pages accessible EN + BN
+   □ Lighthouse: Performance 90+ · SEO 95+ · Accessibility 90+
+
+Report: list every route tested and its HTTP status code.

@@ -1,0 +1,189 @@
+You are building [**BangladeshAI.org**](http://BangladeshAI.org) — the official independent AI policy research website for Bangladesh. The full Figma brand system has already been imported into this project. Your job is to build a production-ready bilingual (English + Bangla) website using **only the brand tokens needed for a website**. Do not use brand assets meant for print, social media, presentations, or other non-web formats.
+
+---
+
+## WHAT TO EXTRACT FROM THE BRAND SYSTEM (website only)
+
+From the imported Figma brand system, extract and use **only these**:
+
+**Colors** — use as CSS variables / Tailwind config:
+
+- Primary Navy: `#1A2332`
+- Primary Blue: `#2563EB`
+- Bangladesh Green: `#16A34A`
+- Bangladesh Red: `#DC2626`
+- Background Light: `#F8FAFC`
+- Background Dark: `#0F172A`
+- Text Primary: `#0F172A`
+- Text Secondary: `#64748B`
+- Border: `#E2E8F0`
+
+**Typography** — use these font families:
+
+- Headings (EN): `Inter` (weights: 400, 600, 700, 800)
+- Body (EN): `Inter` (weight: 400, 500)
+- Bangla text: `Hind Siliguri` (weights: 400, 500, 600)
+- Load both from Google Fonts
+
+**Spacing, border-radius, shadows** — extract from the brand tokens file if present, otherwise use this scale:
+
+- Border radius: `4px` (small), `8px` (default), `16px` (large), `24px` (card)
+- Shadow: `0 1px 3px rgba(0,0,0,0.1)` (sm), `0 4px 16px rgba(0,0,0,0.08)` (md)
+
+**Logo** — use the SVG/PNG logo file from the brand system. Website needs: horizontal lockup (header), icon-only (favicon, mobile). Do NOT use print versions, CMYK versions, or large-format variants.
+
+**Icons** — use only the web icon set (SVG). Do not import illustration files meant for other formats.
+
+---
+
+## TECH STACK
+
+- **Framework:** Next.js 14 (App Router)
+- **Styling:** Tailwind CSS v3 with custom brand tokens in `tailwind.config.ts`
+- **Language:** TypeScript
+- **Fonts:** Google Fonts (Inter + Hind Siliguri)
+- **Deployment target:** Vercel
+
+---
+
+## SITE ARCHITECTURE — BUILD THESE PAGES
+
+### Public Pages (English + Bangla toggle on every page)
+
+| Route | Page Name |
+| --- | --- |
+| `/` | Home |
+| `/about` | About BangladeshAI |
+| `/about/emon-hossain` | Founder — Emon Hossain |
+| `/mission` | Our Mission |
+| `/research` | Research Hub |
+| `/research/[slug]` | Individual Research Paper |
+| `/blog` | Blog / Insights |
+| `/blog/[slug]` | Individual Blog Post |
+| `/for-citizens` | AI for Citizens |
+| `/for-government` | AI for Government |
+| `/for-students` | AI for Students |
+| `/contact` | Contact |
+
+---
+
+## NAVIGATION
+
+**Desktop header:**
+
+- Logo (left) → Nav links → Language toggle EN/বাংলা → CTA button "Read Research"
+- Nav links: Home · Mission · Research · Blog · For Citizens · For Government · Contact
+
+**Mobile:** Hamburger menu, full-screen drawer, same links
+
+**Footer:**
+
+- Logo + tagline (EN + BN)
+- 4-column links: Research | Blog | About | Contact
+- Copyright: © 2026 [BangladeshAI.org](http://BangladeshAI.org) — Independent AI Policy Research
+- Social icons: Twitter/X, LinkedIn, GitHub
+
+---
+
+## HOME PAGE SECTIONS (in order)
+
+1. **Hero** — Full-width, dark navy bg. H1 in EN + BN subtitle. "Bangladesh's AI Readiness Score: 47.12/100 — Rank 80 of 193 nations." CTA: "Read the Report" + "Our Mission"
+2. **Mission Statement** — 3-column cards: Research · Educate · Advocate
+3. **Key Statistics** — animated counter cards: 47.12/100 score · Rank 80/193 · 67 missing requirements · 170M population · 65M internet users under 35
+4. **Latest Research** — 3 most recent research cards with tag, title, date
+5. **Latest Blog** — 3 most recent blog posts
+6. **For Who** — 4 cards: Citizens · Government · Students · SMEs
+7. **Founder's Quote** — Pull quote from Emon Hossain: *"Bangladesh's population is not our problem — it is our greatest untapped advantage. One skilled person, empowered by AI, can do the work of one thousand."*
+8. **Newsletter CTA** — email capture, Bangla + English
+
+---
+
+## CONTENT STRUCTURE
+
+### Blog posts
+
+Store as MDX files in `/content/blog/en/` and `/content/blog/bn/`.
+
+Each file has frontmatter:
+
+```
+---
+title: ""
+slug: ""
+date: ""
+category: ""
+excerpt: ""
+readTime: ""
+author: "Emon Hossain"
+---
+```
+
+### Research papers
+
+Store as MDX files in `/content/research/en/` and `/content/research/bn/`.
+
+### Create placeholder MDX files for these blog slugs (EN only for now):
+
+- `why-ai-is-not-magic`
+- `bangladesh-ai-readiness-47`
+- `economic-impact-analysis`
+- `what-singapore-teaches-us`
+- `bangla-nlp-sovereign-stack`
+- `youth-and-ai-jobs`
+- `ai-bangla-language-guide`
+- `population-asset-not-problem`
+- `sovereign-ai-infrastructure-why-it-matters`
+
+---
+
+## BILINGUAL SYSTEM
+
+- Use a simple `useLanguage()` context hook — toggles between `'en'` and `'bn'`
+- Store all UI strings in `/lib/translations/en.ts` and `/lib/translations/bn.ts`
+- The toggle button lives in the header, persists via `localStorage`
+- Page content (blog, research) switches by loading from `/en/` or `/bn/` content folders
+- Default language: English
+
+---
+
+## ENVIRONMENT VARIABLES
+
+Create a `.env.local` file with these (leave values empty for now, I will fill them in Replit Secrets):
+
+```
+NEXT_PUBLIC_FORMSPREE_ID=
+NEXT_PUBLIC_NEWSLETTER_FORM_ID=
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=bangladeshai.org
+NEXT_PUBLIC_SITE_URL=https://bangladeshai.org
+```
+
+---
+
+## SEO & PERFORMANCE
+
+- Add `<meta>` tags, Open Graph, and Twitter Card to every page via a reusable `<SEO>` component
+- Add `sitemap.xml` and `robots.txt` generation
+- All images must use `next/image` with `alt` text
+- No unused CSS — purge Tailwind properly
+- Lighthouse score target: 90+ on all metrics
+
+---
+
+## WHAT NOT TO BUILD NOW
+
+Do not build: user auth, dashboard, database, CMS backend, payment system, admin panel. This is a **static + MDX content website** only.
+
+---
+
+## FIRST STEPS
+
+1. Audit the existing files from the brand system import — keep only what's listed above, move everything else to `/brand-archive/` (do not delete, just move)
+2. Set up `tailwind.config.ts` with brand tokens
+3. Set up Google Fonts in `app/layout.tsx`
+4. Build the shared components: `<Header>`, `<Footer>`, `<SEO>`, `<LanguageToggle>`
+5. Build the Home page
+6. Build all remaining pages
+7. Add all 9 placeholder blog MDX files
+8. Run `npm run build` — fix all errors until it compiles clean
+
+Start now. Do not ask me questions — make sensible decisions and build.

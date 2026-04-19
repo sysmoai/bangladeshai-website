@@ -1,0 +1,104 @@
+You are fixing 3 specific bugs on the [BangladeshAI.org](http://BangladeshAI.org) Next.js site. Do all 3 in one session. Do not touch anything else.
+
+---
+
+**FIX 1 — "193 nations" → "188 countries" (homepage content error)**
+
+Search the entire codebase for every occurrence of `193` and every occurrence of `193 nations`. Replace all instances with `188` and `188 countries` respectively.
+
+Also search for any instance of the phrase `193 nations` and replace with `188 countries`.
+
+The correct stat is: Bangladesh ranks 80th out of **188 countries** in the Oxford Insights GGAI 2024 report (not 193).
+
+Verify the homepage hero text now reads: `"Rank 80 of 188 countries"`
+
+---
+
+**FIX 2 — `/insights` returns 404 (missing redirect)**
+
+Add a permanent redirect from `/insights` to `/en/blog` in `next.config.js`.
+
+Open `next.config.js` and add or append to the `redirects()` function:
+
+```jsx
+async redirects() {
+  return [
+    {
+      source: '/insights',
+      destination: '/en/blog',
+      permanent: true,
+    },
+  ]
+}
+```
+
+If a `redirects()` function already exists, just add the new object to the returned array — do not replace the whole function.
+
+After saving, verify that visiting `/insights` redirects to `/en/blog`.
+
+---
+
+**FIX 3 — `/sitemap.xml` returns HTTP 500**
+
+Open `src/app/sitemap.ts` (or `src/app/sitemap.js` if it exists).
+
+The file must export a default async function that returns a valid Next.js sitemap array. Replace the entire file content with this:
+
+```tsx
+import { MetadataRoute } from 'next'
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = 'https://bangladeshai.org'
+
+  const staticRoutes = [
+    '',
+    '/en',
+    '/bn',
+    '/en/about',
+    '/bn/about',
+    '/en/research',
+    '/bn/research',
+    '/en/blog',
+    '/bn/blog',
+    '/en/reality-check',
+    '/bn/reality-check',
+    '/en/roadmap',
+    '/bn/roadmap',
+    '/en/for-government',
+    '/bn/for-government',
+    '/en/for-citizens',
+    '/bn/for-citizens',
+    '/en/for-partners',
+    '/bn/for-partners',
+    '/en/newsletter',
+    '/bn/newsletter',
+    '/en/contact',
+    '/bn/contact',
+    '/en/resources',
+    '/bn/resources',
+  ]
+
+  return staticRoutes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: route === '' || route === '/en' || route === '/bn' ? 1.0 : 0.8,
+  }))
+}
+```
+
+After saving, run the dev server and verify `/sitemap.xml` returns a valid XML response (HTTP 200), not a 500 error.
+
+---
+
+**AFTER ALL 3 FIXES:**
+
+Run `npm run build` to confirm zero TypeScript errors and all pages generate successfully.
+
+Then confirm these 3 things are working:
+
+1. Homepage shows `"Rank 80 of 188 countries"` ✅
+2. `/insights` redirects to `/en/blog` ✅
+3. `/sitemap.xml` returns HTTP 200 with valid XML ✅
+
+Report the result of each check.

@@ -1,0 +1,35 @@
+CREATE ALL 9 BLOG POSTS AND 3 RESEARCH FILES NOW.
+
+Create these files in /content/en/blog/ with correct frontmatter:
+
+1. why-ai-is-not-magic.mdx  (category: opinion, date: 2026-03-20, ~1200w)
+   AI is a force multiplier, not magic. Bangladesh's 65M youth are the asset. Countries that treat AI as infrastructure win. Bangladesh must build capacity, not buy subscriptions.
+
+2. bangladesh-ai-readiness-47.mdx  (category: policy, date: 2026-03-22, ~1800w)
+   Oxford Insights 2024: 47.12/100, rank 80/193. Three pillars: Government 58.52, Tech 26.26, Data 56.59. Compare with Singapore 84.25, UAE 75.66, India 62.81, Vietnam 61.42. 7-year target: 65+.
+
+3. ai-bangla-language-guide.mdx  (category: ai-explained, date: 2026-03-27, ~1000w)
+   Step-by-step guide to using AI entirely in Bangla. No English required. Class 8 level. Real Bangla prompts. WhatsApp-shareable format.
+
+4. economic-impact-analysis.mdx  (category: economy, date: 2026-03-25, ~1500w)
+5. what-singapore-teaches-us.mdx  (category: global, date: 2026-03-15, ~1400w)
+6. bangla-nlp-sovereign-stack.mdx  (category: bangla-ai, date: 2026-03-10, ~1300w)
+7. youth-and-ai-jobs.mdx  (category: economy, date: 2026-03-05, ~1200w)
+8. population-asset-not-problem.mdx  (category: opinion, date: 2026-03-26, ~1200w)
+9. sovereign-ai-infrastructure-why-it-matters.mdx  (category: policy, date: 2026-03-24, ~1400w)
+
+For EACH post also create the Bangla version in /content/bn/blog/ (same slug, authentic Bangla — NOT translated, written natively for Bangladeshi readers).
+
+Also create these 3 research files in /content/en/research/ and /content/bn/research/:
+1. ai-readiness.mdx  (2500w+ — full Oxford Insights analysis, 15-domain breakdown, 92 requirements)
+2. economic-impact.mdx  (2500w+ — 6 economic multipliers, SME analysis, cost of delay)
+3. global-benchmarks.mdx  (2500w+ — 65+ country benchmarks, Oxford methodology, cluster analysis)
+
+Frontmatter for all MDX:
+---
+title: ""
+description: ""
+date: "YYYY-MM-DD"
+author: "Emon Hossain"
+category: ""
+---

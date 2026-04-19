@@ -1,0 +1,111 @@
+REBUILD THE ENTIRE NAVBAR NOW. The current navbar has too many top-level items and looks
+unprofessional. Replace it completely with this clean 5-item design.
+
+═══ HEADER LAYOUT ═══
+Left: Logo (BangladeshAI.org + tagline "Intelligence Builds Nations" in small text below)
+Center: 5 navigation items (see below)
+Right: [EN|বাংলা toggle] + [dark mode toggle] + [Read the Reality Check → button]
+
+Header style:
+  Background: #1A2332 (navy) in all modes
+  Text: white
+  Height: 64px desktop, 56px mobile
+  Position: sticky top-0 z-50
+  Bottom border: 1px solid rgba(255,255,255,0.1)
+
+CTA Button style:
+  Background: #2563EB (blue)
+  Text: white, font-medium
+  Padding: 8px 16px
+  Border radius: 8px
+  Hover: #1d4ed8
+  Links to: /reality-check
+
+═══ 5 NAV ITEMS + DROPDOWNS ═══
+
+NAV 1: "Research" — 2-column mega-dropdown (opens on hover desktop, tap mobile)
+Column 1 header: "Core Research"
+  Bangladesh AI Readiness 2026        → /research/ai-readiness
+  Global AI Benchmarks                → /research/global-benchmarks
+  Economic Impact of AI               → /research/economic-impact
+  Ministry-by-Ministry Use Cases      → /research/ministry-use-cases
+  Policy & Regulation                 → /research/policy-regulation
+Column 2 header: "Deep Research"
+  National AI Strategy                → /research/national-strategy
+  Anti-Corruption AI                  → /research/anti-corruption
+  Bangla AI & NLP                     → /research/bangla-nlp
+  Workforce & Education               → /research/workforce-education
+  Risk Management                     → /research/risk-management
+Footer row (full width, light bg separator):
+  [View All Research →]  /research        [National Roadmap →]  /roadmap
+
+NAV 2: "Insights" — single dropdown
+  Why Bangladesh Must Act Now         → /why-now
+  ── Blog by Category ── (section divider label, not a link)
+  Policy & Governance                 → /blog?category=policy
+  AI Explained (Bangla-First)         → /blog?category=ai-explained
+  Global Lessons                      → /blog?category=global
+  Economic Impact                     → /blog?category=economy
+  Opinion & Analysis                  → /blog?category=opinion
+  ───
+  [All Blog Posts →]                  → /blog
+
+NAV 3: "For You" — single dropdown
+  🏙️  For Government Officials          → /for-government
+      "Evidence-based policy recommendations"
+  👥  For Citizens (নাগরিকদের জন্য)           → /for-citizens
+      "AI explained in plain Bangla"
+  🤝  For Development Partners           → /for-partners
+      "Research partnerships & co-funding"
+
+NAV 4: "About" — single dropdown
+  About BangladeshAI.org              → /about
+  Founder — Emon Hossain             → /about/emon-hossain
+  Independence Statement              → /about/independence
+  Methodology Note                    → /about/methodology
+  Media & Press Kit                   → /press
+
+NAV 5: "Resources" — single dropdown
+  📊  Downloads & Reports               → /resources
+  ❓  FAQ                               → /faq
+  📖  AI Glossary                       → /glossary
+  📧  Newsletter                         → /newsletter
+  📞  Contact Us                         → /contact
+
+═══ DROPDOWN STYLE ═══
+Background: white (light mode) / #1e293b (dark mode)
+Border: 1px solid #E2E8F0
+Border radius: 12px
+Box shadow: 0 8px 32px rgba(0,0,0,0.12)
+Padding: 16px
+Animation: fade-in + slide-down (150ms ease)
+Section dividers: small gray label, font-size 11px, uppercase, letter-spacing 0.08em
+Each item: icon (optional) + bold title + small description text below (gray)
+Hover state: light blue bg (#EFF6FF) on each item
+
+═══ BILINGUAL TRANSLATIONS (in BN mode, all nav labels switch) ═══
+Research      →  গবেষণা
+Insights      →  বিশ্লেষণ
+For You       →  আপনার জন্য
+About         →  পরিচিতি
+Resources     →  সম্পদ
+Read the Reality Check  →  বাস্তবতা যাচাই পড়ুন
+
+═══ MOBILE NAV (hamburger ≤ 768px) ═══
+Hamburger icon: top right (3 lines, white)
+Full-screen drawer: slides from left
+Each nav group: accordion (tap to expand)
+All 5 groups listed vertically with expand/collapse arrow
+At drawer bottom (pinned):
+  [EN|বাংলা toggle]  [dark mode toggle]
+  [Read the Reality Check →] full-width blue button
+
+═══ ALSO FIX THESE IN THE SAME PASS ═══
+1. Logo: "BangladeshAI.org" in bold white + "Intelligence Builds Nations"
+   in small gray text below (font-size 11px)
+2. Active page: highlight current nav item with blue underline
+3. Scroll behaviour: header shrinks from 64px to 56px after 80px scroll
+   with subtle backdrop-blur: blur(12px) for glassmorphism effect
+4. Remove any duplicate nav items or empty dropdown items
+5. Ensure all dropdown links actually route to existing pages
+6. Run npm run build after completing — confirm ZERO TypeScript errors

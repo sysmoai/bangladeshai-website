@@ -1,0 +1,149 @@
+FIX THE LAST 2 BUGS AND UPDATE THE BANGLA TAGLINE.
+Do all 5 steps in order. Do not skip any step.
+
+STEP 1: DIAGNOSE
+Run this and show me the full output:
+  find . -name "page.tsx" | sort
+
+Then run:
+  cat src/app/blog/page.tsx 2>/dev/null || echo FILE_MISSING
+  cat src/app/[locale]/blog/page.tsx 2>/dev/null || echo FILE_MISSING
+  cat src/app/research/page.tsx 2>/dev/null || echo FILE_MISSING
+  cat src/app/[locale]/research/page.tsx 2>/dev/null || echo FILE_MISSING
+
+STEP 2: FIX /blog
+Create or overwrite src/app/blog/page.tsx with this content:
+
+import Link from 'next/link'
+
+const posts = [
+  { slug: 'bangladesh-ai-readiness-47', title: 'Bangladesh AI Readiness: 47.12 out of 100', category: 'Policy', date: '2026-03-22', readTime: '8 min read', desc: 'Oxford Insights 2024 ranked Bangladesh 80th of 193 nations. What the score means and what must change.' },
+  { slug: 'why-ai-is-not-magic', title: 'Why AI is Not Magic', category: 'Opinion', date: '2026-03-20', readTime: '6 min read', desc: 'AI is a force multiplier. Bangladesh 65M youth are the real asset.' },
+  { slug: 'ai-bangla-language-guide', title: 'AI in Bangla: A Complete Guide', category: 'AI Explained', date: '2026-03-27', readTime: '7 min read', desc: 'Step-by-step guide to using AI in Bangla. No English required.' },
+  { slug: 'economic-impact-analysis', title: 'The Economic Impact of AI on Bangladesh', category: 'Economy', date: '2026-03-25', readTime: '9 min read', desc: 'Six economic multipliers that could transform Bangladesh GDP.' },
+  { slug: 'what-singapore-teaches-us', title: 'What Singapore Teaches Us About AI', category: 'Global', date: '2026-03-15', readTime: '7 min read', desc: 'Singapore ranked number 2 globally. What Bangladesh can replicate.' },
+  { slug: 'bangla-nlp-sovereign-stack', title: 'Building a Sovereign Bangla AI Stack', category: 'Bangla AI', date: '2026-03-10', readTime: '8 min read', desc: 'BLP-2025 produced 69 NLP papers. Here is what Bangladesh needs to build next.' },
+  { slug: 'youth-and-ai-jobs', title: 'Bangladesh Youth and the AI Jobs Revolution', category: 'Economy', date: '2026-03-05', readTime: '7 min read', desc: 'KOICA 13M AI workforce training. Four tracks. New job categories.' },
+  { slug: 'population-asset-not-problem', title: 'Population Is Our Asset Not Our Problem', category: 'Opinion', date: '2026-03-26', readTime: '6 min read', desc: '170M people is Bangladesh greatest AI advantage.' },
+  { slug: 'sovereign-ai-infrastructure-why-it-matters', title: 'Why Sovereign AI Infrastructure Matters', category: 'Policy', date: '2026-03-24', readTime: '8 min read', desc: '40-80M annual foreign AI subscription outflow. Build once vs pay forever.' },
+]
+
+export default function BlogPage() {
+  return (
+    <main className="max-w-6xl mx-auto px-4 py-16">
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Blog and Analysis</h1>
+      <p className="text-xl text-gray-500 mb-12">Independent analysis on AI policy, technology, and society in Bangladesh.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <Link
+            key={post.slug}
+            href={'/blog/' + post.slug}
+            className="block bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-6 hover:shadow-lg transition-shadow no-underline"
+          >
+            <span className="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-2 py-1 rounded mb-3">
+              {post.category}
+            </span>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{post.title}</h2>
+            <p className="text-sm text-gray-500 mb-4">{post.desc}</p>
+            <div className="flex justify-between text-xs text-gray-400">
+              <span>{post.date}</span>
+              <span>{post.readTime}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </main>
+  )
+}
+
+Also create or overwrite src/app/[locale]/blog/page.tsx with the IDENTICAL content above.
+
+STEP 3: FIX /research
+Create or overwrite src/app/research/page.tsx with this content:
+
+import Link from 'next/link'
+
+const papers = [
+  { slug: 'ai-readiness', title: 'Bangladesh AI Readiness Assessment 2026', category: 'Assessment', readTime: '20 min read', desc: '92 requirements across 15 domains. Score 47.12 out of 100. Rank 80 of 193 nations.' },
+  { slug: 'global-benchmarks', title: 'Global AI Benchmarks 65 Plus Countries', category: 'Global', readTime: '15 min read', desc: 'How Bangladesh compares to 65+ nations. Oxford Insights methodology and cluster analysis.' },
+  { slug: 'economic-impact', title: 'Economic Impact of AI Adoption in Bangladesh', category: 'Economics', readTime: '18 min read', desc: 'Six economic multipliers: NBR tax AI, ghost beneficiaries, SME productivity.' },
+  { slug: 'ministry-use-cases', title: 'Ministry by Ministry AI Use Cases', category: 'Policy', readTime: '25 min read', desc: 'AI applications across all 20 ministries with realistic ROI estimates.' },
+  { slug: 'policy-regulation', title: 'AI Policy and Regulatory Framework', category: 'Policy', readTime: '16 min read', desc: 'AI Policy V2.0, Data Protection Ordinance, and 3 additional ordinances needed.' },
+  { slug: 'national-strategy', title: 'National AI Strategy 12 Pillars', category: 'Strategy', readTime: '22 min read', desc: '7-year strategy with funded mandates and measurable KPIs.' },
+  { slug: 'anti-corruption', title: 'Anti-Corruption AI 4-Layer Framework', category: 'Governance', readTime: '19 min read', desc: 'AI to detect corruption in procurement, land registry, tax, social protection.' },
+  { slug: 'bangla-nlp', title: 'Bangla AI and Sovereign NLP Stack', category: 'Technology', readTime: '17 min read', desc: 'Bangla LLM, OCR, STT, TTS. BLP-2025: 69 NLP papers, 8 at ACL 2025.' },
+  { slug: 'workforce-education', title: 'Workforce and Education AI Reskilling', category: 'Education', readTime: '14 min read', desc: 'Four-track reskilling for 65M young workforce. KOICA 96M program analysis.' },
+  { slug: 'risk-management', title: 'Risk Management and Non-Negotiables', category: 'Risk', readTime: '16 min read', desc: '10 AI failure modes. 17 KPIs for national monitoring. Non-negotiable safeguards.' },
+]
+
+export default function ResearchPage() {
+  return (
+    <main className="max-w-6xl mx-auto px-4 py-16">
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Research Hub</h1>
+      <p className="text-xl text-gray-500 mb-12">Independent AI policy research for Bangladesh. 10 papers. All open-access.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {papers.map((paper) => (
+          <Link
+            key={paper.slug}
+            href={'/research/' + paper.slug}
+            className="block bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-7 hover:shadow-lg transition-shadow no-underline"
+          >
+            <span className="inline-block bg-green-50 text-green-700 text-xs font-semibold px-2 py-1 rounded mb-3">
+              {paper.category}
+            </span>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{paper.title}</h2>
+            <p className="text-sm text-gray-500 mb-4">{paper.desc}</p>
+            <div className="flex justify-between items-center">
+              <span className="text-xs text-gray-400">{paper.readTime}</span>
+              <span className="text-sm text-blue-600 font-medium">Read Research</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </main>
+  )
+}
+
+Also create or overwrite src/app/[locale]/research/page.tsx with the IDENTICAL content above.
+
+STEP 4: UPDATE BANGLA TAGLINE EVERYWHERE
+
+Old tagline BN: দেশ গড়ি বুদ্ধিমত্তায়
+New tagline BN: মেধায় জাতি গড়
+
+Run this grep to find all occurrences:
+  grep -rn "বুদ্ধিমত্তায়" . --include="*.tsx" --include="*.ts" --include="*.json"
+
+Replace in every file found. Pay special attention to:
+  src/components/layout/Navbar.tsx
+  src/components/layout/Footer.tsx
+  messages/bn.json
+  src/app/[locale]/page.tsx (homepage)
+  Any constants or config files
+
+STEP 5: BUILD AND VERIFY
+
+npm run build
+Fix ALL TypeScript errors until ZERO remain.
+
+Verify:
+  /blog        shows 9 post cards
+  /research    shows 10 research cards
+  /blog/why-ai-is-not-magic still works
+  /research/ai-readiness still works
+  Footer tagline BN: মেধায় জাতি গড়
+  Header logo BN subtitle: মেধায় জাতি গড়
+
+Confirmation check:
+  grep -rn "বুদ্ধিমত্তায়" . --include="*.tsx" --include="*.json"
+  This must return ZERO results.
+
+FINAL REPORT:
+  STEP 1 — files found: [list page.tsx files]
+  STEP 2 — /blog files written: YES
+  STEP 3 — /research files written: YES
+  STEP 4 — tagline updated in: [list files changed]
+  STEP 5 — build: ZERO errors YES/NO
+  /blog shows 9 cards: YES/NO
+  /research shows 10 cards: YES/NO
+  Old tagline eliminated: YES/NO

@@ -1,0 +1,276 @@
+---
+title: "Bangla AI & Sovereign NLP Stack — The Case for Bangladesh"
+slug: "bangla-nlp"
+date: "2025-12-15"
+category: "Technology"
+excerpt: "Bangla is the 7th most spoken language on Earth with 230 million speakers, yet it is catastrophically underrepresented in global AI systems. This paper makes the case for a sovereign Bangla NLP stack and provides a technical roadmap for building it."
+readTime: "19"
+author: "Emon Hossain"
+---
+
+# Bangla AI & Sovereign NLP Stack — The Case for Bangladesh
+
+**Publication Date:** December 2025
+**Classification:** Technology Strategy Paper
+**Technical level:** Accessible to policymakers; detailed enough for researchers
+
+---
+
+## Executive Summary
+
+Bangla (Bengali) is the 7th most spoken language on Earth, with approximately 230 million native speakers across Bangladesh and West Bengal. It is older than English as a written language. Yet in terms of AI representation, Bangla is treated as a "low-resource" language — less AI-capable infrastructure exists for 230 million Bangla speakers than for 0.5 million speakers of Icelandic.
+
+This paper documents the Bangla NLP gap, its consequences for Bangladesh, and proposes a technical and institutional roadmap for building a **Sovereign Bangla AI Stack** — the foundational language technology infrastructure that Bangladesh needs to own, maintain, and freely deploy.
+
+---
+
+## The Bangla NLP Gap
+
+### The Numbers
+
+**Training data disparity:**
+- English: ~70% of global internet text; trillions of tokens
+- Mandarin Chinese: ~10% of internet text
+- Bangla: ~0.08% of internet text
+- Practical implication: GPT-4 has seen approximately 1,000× more English training data than Bangla data
+
+**Research output:**
+- Papers on English NLP at major AI venues (2024): ~8,000
+- Papers specifically on Bangla NLP (2024): ~180
+- Ratio: 44:1 — and English NLP researchers have 10,000× the funding
+
+**Benchmark performance:**
+- English text classification (state of art): 97%+ accuracy
+- Bangla text classification (state of art): ~88% accuracy
+- English question answering: 95%+ on SQuAD benchmark
+- Bangla question answering: ~76% on available benchmarks
+
+**Accessible tools:**
+- English: GPT-4, Claude, Gemini, Llama, Mistral — all excellent
+- Bangla: Partial support in GPT-4; limited in others; frequently wrong, mixing dialects, hallucinating Bengali cultural context
+
+### Consequences for Bangladesh
+
+This is not a technical curiosity — it has immediate real-world consequences:
+
+**Government services:** AI chatbots deployed for citizen services produce inferior outcomes for Bangla queries. Citizens without English proficiency receive worse service.
+
+**Education:** AI tutoring tools (Duolingo, Khan Academy AI, etc.) are orders of magnitude more effective in English than Bangla.
+
+**Healthcare:** AI symptom checking and health advisory tools perform poorly in Bangla, contributing to worse health outcomes for those without English.
+
+**Legal system:** AI document review and case summarisation — increasingly standard in developed markets — is unavailable in Bangla.
+
+**Economic exclusion:** Bangladesh's 50 million+ rural citizens who are not English-literate are effectively excluded from the AI economy.
+
+---
+
+## Why "Sovereign" Matters
+
+A sovereign Bangla NLP stack means infrastructure that Bangladesh owns, controls, can modify, and can freely deploy — as opposed to relying on foreign commercial services.
+
+**The dependency problem:**
+If Bangladesh relies on OpenAI, Google, or Meta for all Bangla language AI:
+- Bangladesh has no control when pricing changes (GPT-4 API costs have changed 3× in 2 years)
+- Bangladesh has no recourse when services are unavailable
+- Bangladesh's language data trains foreign models without Bangladesh's consent or benefit
+- Capabilities can be restricted for political or commercial reasons
+- Bangladesh has no technical understanding of how the tools work or fail
+
+**The data sovereignty problem:**
+When Bangladeshi citizens use foreign AI services in Bangla, their text data — including health queries, legal questions, and private communications — trains foreign models. Bangladesh has not consented to this data extraction.
+
+**The capability ownership problem:**
+A Bangladesh that cannot build its own language tools cannot build AI systems that understand Bangladesh's context, culture, idioms, and needs. Every Bangla AI product will be a foreign product adapted imperfectly to Bangladesh.
+
+---
+
+## What Needs to Be Built: The Sovereign Bangla Stack
+
+The following components form a complete Bangla language AI infrastructure:
+
+### Component 1: BanglaBERT 2.0 (Language Model Foundation)
+
+**Current state:** BanglaBERT (2021) — an existing BERT-based model — exists but is outdated, trained on limited data, and underperforms modern English models.
+
+**What's needed:** A Bangla language model trained on:
+- 50+ billion Bangla tokens (10× more than current BanglaBERT)
+- High-quality, deduped, curated corpus including: government documents, literature (Tagore to contemporary), news (Prothom Alo, Daily Star, Kaler Kantho archives), academic papers, legal documents, religious texts (Quran, Hadith in Bangla), Wikipedia Bangla (currently 120K articles — needs significant expansion)
+- Dialect coverage: Dhaka standard, Chittagong, Sylheti, Rajshahi, Noakhali — currently most models train only on Dhaka standard
+- Architecture: Llama 3.1/Mistral-style decoder, 7B-70B parameters, instruction-tuned
+
+**Who builds it:** BAIRI (Bangladesh AI Research Institute) — core model; open-source release under Apache 2.0.
+**Timeline:** 24 months from BAIRI establishment.
+**Compute requirement:** ~2,000 GPU-hours at H100 level.
+
+---
+
+### Component 2: BanglaSTT — Speech-to-Text
+
+**Current state:** Google and Meta have Bangla speech recognition but perform poorly on regional dialects, code-switching (Bangla-English mix common in urban speech), and phone-quality audio.
+
+**Bangladesh-specific challenges:**
+- Code-switching: "Ami API টা integrate করলাম" (mixing English technical terms)
+- Dialect variation: Chittagong Bangla is intelligible to trained speakers but distinct enough to cause 30%+ error rate in Dhaka-trained models
+- Acoustic conditions: Bangladesh has high ambient noise; models trained on studio audio fail in real environments
+- Domain vocabulary: Medical, legal, government, agriculture — each has specialist vocabulary requiring domain-adapted models
+
+**Target specifications:**
+- Word Error Rate (WER) < 8% for standard Dhaka Bangla
+- WER < 15% for major dialects (Chittagong, Sylheti)
+- WER < 10% for code-switched speech
+- Works on 8kHz phone audio (not just 16kHz studio audio)
+
+**Data requirement:** 10,000+ hours of transcribed Bangla speech across dialects. Current public datasets: ~500 hours. Gap: 9,500 hours needed.
+
+**Data collection strategy:**
+- Partner with BTV, Radio Bangladesh for broadcast archives
+- Community contribution platform (similar to Mozilla Common Voice)
+- Structured recording projects at universities in 8 divisions
+
+**Timeline:** 36 months (limited by data collection); interim 18-month model targeting standard Dhaka Bangla.
+
+---
+
+### Component 3: BanglaOCR — Document Recognition
+
+**Why this is urgent:** Bangladesh has estimated 500+ million pages of government records, court documents, and land records in paper or non-searchable PDF form. Making these AI-processable requires high-accuracy Bangla OCR.
+
+**Current state:** Google Vision and Tesseract handle printed modern Bangla reasonably (~85% character accuracy). Critical gaps:
+- Handwritten Bangla: Most court records, land documents, and pre-2000 government records are handwritten. No usable handwritten Bangla OCR exists.
+- Old Bangla typefaces (pre-Unicode): Government documents from 1971–1995 use non-Unicode Bijoy encoding; existing tools fail on these.
+- Mixed scripts: Documents mixing Bangla and English/Arabic numbers and text.
+- Degraded documents: Low-quality scans, water-damaged, aged paper.
+
+**Target:** 98%+ character accuracy on printed modern Bangla; 90%+ on clear handwritten Bangla; 85%+ on degraded documents.
+
+**Application priority:**
+1. Land record digitisation (MoL) — immediate value for anti-corruption and administration
+2. Court record digitisation — access to justice
+3. NBR historical tax records
+4. Archive digitisation (National Archives, Bangladesh National Museum)
+
+**Timeline:** Printed Bangla OCR 2.0: 12 months. Handwritten Bangla OCR: 36 months.
+
+---
+
+### Component 4: BanglaTTS — Text-to-Speech
+
+**Target:** Natural, expressive Bangla text-to-speech for:
+- Government service announcements
+- AI-assisted reading for visually impaired
+- Navigation apps
+- Educational audio content
+
+**Specification:**
+- Mean Opinion Score (MOS) > 4.0 (human-like naturalness, scale 1–5)
+- Multiple voice options: male, female, elderly, child
+- Regional accent options (Dhaka, Chittagong, Sylheti)
+- Reading styles: news, conversation, narrative
+
+**Technical approach:** Neural TTS (VITS or XTTS architecture); 100+ hours of high-quality studio recordings as seed data.
+
+**Timeline:** 18 months.
+
+---
+
+### Component 5: BanglaGPT — Instruction-Following Model
+
+**What:** A BanglaBERT 2.0-based model fine-tuned on instruction-following data — capable of answering questions, writing, summarising, and completing tasks in Bangla.
+
+**Priority applications:**
+- Government citizen service chatbot (replace English-biased systems)
+- Legal aid tool for rural citizens
+- Agricultural advisory (combining crop knowledge with Bangla communication)
+- Healthcare symptom guidance
+- Education tutoring
+
+**Key requirement:** Culturally calibrated. Must understand Bangladesh-specific context: Islamic calendar, Bengali holidays, Bangladesh legal system, Bangladeshi cultural references.
+
+**Safety requirements:** BanglaGPT must be evaluated for:
+- Factual accuracy about Bangladesh (models commonly hallucinate Bangladesh-specific facts)
+- Avoidance of harmful health advice
+- Culturally sensitive content handling
+
+**Timeline:** 30 months from BanglaBERT 2.0 completion.
+
+---
+
+### Component 6: Bangla Dataset Commons
+
+All the above depend on high-quality training data. The **Bangla Dataset Commons** is a permanent, curated, open repository of:
+
+- Text corpora (50B+ tokens)
+- Speech recordings (10,000+ hours)
+- Handwriting samples (1M+ pages)
+- Image-text pairs with Bangla captions
+- Parallel corpora (Bangla + English + Hindi + Arabic)
+- Evaluation benchmarks (standardised test sets for all above components)
+
+**Governance:** BAIRI maintains the commons; all data must be rights-cleared; community contributions accepted under CC0.
+
+---
+
+## The Corpus Challenge
+
+The single biggest bottleneck for all Bangla AI components is high-quality training data. Bangladesh must invest in corpus creation the way it invests in physical infrastructure — because it *is* infrastructure.
+
+**Priority corpus creation projects:**
+
+| Corpus | Current Size | Target | Method |
+|--------|-------------|--------|--------|
+| Web text (cleaned) | ~5B tokens | 50B tokens | CommonCrawl filtering + crawl |
+| Books and literature | ~200M tokens | 5B tokens | Digitisation + OCR |
+| Government documents | ~100M tokens | 10B tokens | MoU with ministries |
+| News archives | ~2B tokens | 15B tokens | Publisher partnerships |
+| Speech recordings | ~500 hours | 10,000 hours | Community + broadcast |
+| Handwriting samples | ~50K pages | 1M pages | University projects |
+
+**Cost:** Tk 80 crore over 5 years (corpus creation, rights clearance, quality annotation, storage).
+
+---
+
+## International Collaboration Opportunities
+
+Bangladesh should not build this alone:
+
+**West Bengal (India):** Shared language; significant NLP research at IIT Kharagpur and Jadavpur University. Joint corpus creation would benefit both nations.
+
+**Google Research India:** Active in Indic language NLP; partnership for data contribution and benchmark development is feasible.
+
+**Meta AI:** AI4Bharat initiative (Indian languages) has Bangla components; Bangladesh can contribute data and receive model access.
+
+**Mozilla Foundation:** Common Voice program can host Bangla speech contribution.
+
+**Wikimedia Foundation:** Bangladesh Wikipedia expansion (from 120K to 500K articles) provides natural training data.
+
+---
+
+## Governance of the Sovereign Stack
+
+The Bangla NLP sovereign stack must be institutionally protected:
+
+1. **Open-source mandate:** All BAIRI-funded Bangla AI tools are released open-source. No proprietary lock-in.
+2. **Permanent funding:** National AI Fund provides core funding; supplemented by compute access fees from commercial users.
+3. **International accessibility:** Tools are available to West Bengal, Bangladesh diaspora, and any Bangla-speaking community globally — this is a gift to 230 million people, not a commercial product.
+4. **Governance board:** Includes West Bengal academic representation; Bangladeshi diaspora; civil society; industry.
+
+---
+
+## Urgency: The Next 24 Months Are Critical
+
+Global AI companies are investing in multilingual AI now. If Bangladesh does not build sovereign Bangla AI foundations in the next 24 months, the window narrows significantly:
+
+- Foreign models trained on Bangladesh's Bangla data without consent will become entrenched
+- Calibrating those models to Bangladesh's specific needs becomes more expensive, not less
+- The technical talent to build this in Bangladesh (currently available) will disperse if not engaged
+
+The Bangla NLP sovereign stack is not a nice-to-have — it is the foundation of Bangladesh's digital sovereignty in the AI era.
+
+**First steps (2026):**
+1. Establish BAIRI — the institution that builds everything else
+2. Launch Bangla Dataset Commons — begin corpus collection immediately
+3. Fund BanglaOCR for printed text — highest near-term value
+4. Partner with Mozilla Common Voice for speech data collection
+
+*Technical collaboration inquiries: research@bangladeshai.org*

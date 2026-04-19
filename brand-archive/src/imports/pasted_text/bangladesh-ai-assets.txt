@@ -1,0 +1,160 @@
+=== EXPORT ALL SOCIAL MEDIA & BRAND ASSETS — BANGLADESH AI ===
+
+Export every asset listed below as HIGH QUALITY PNG (2x resolution for retina clarity).
+Organize exports into clearly named folders.
+All assets must show "Bangladesh AI" (WITH space) — verify before exporting.
+
+=== FOLDER 1: LOGOS (for upload everywhere) ===
+
+Export these:
+
+1. logo-horizontal-color.png (transparent bg) — Primary logo with "Bangladesh AI" + "Intelligence Builds Nations"
+2. logo-horizontal-bangla.png (transparent bg) — "বাংলাদেশ এআই" + "দেশ গড়ি বুদ্ধিমত্তায়"
+3. logo-horizontal-bilingual.png (transparent bg) — Both languages
+4. logo-stacked-color.png (transparent bg) — Vertical/stacked version
+5. logo-icon-color.png (transparent bg) — Map icon only, no text
+6. logo-icon-on-green.png (Deep Green #006A4E circle bg) — Icon on green circle
+7. logo-white.png (transparent bg) — All white version
+8. logo-seal.png (transparent bg) — Formal circular seal version
+9. logo-horizontal-color.svg — Vector version for website
+
+=== FOLDER 2: FAVICONS & APP ICONS ===
+
+Export the map icon at these EXACT sizes:
+
+10. favicon-16x16.png (16x16)
+11. favicon-32x32.png (32x32)
+12. favicon-48x48.png (48x48)
+13. apple-touch-icon.png (180x180)
+14. icon-192x192.png (192x192)
+15. icon-512x512.png (512x512)
+
+All with transparent background.
+Also create:
+16. favicon.ico (containing 16x16 and 32x32)
+
+=== FOLDER 3: FACEBOOK ===
+
+17. fb-profile-picture.png (170x170) — Map icon on Deep Green circle bg
+18. fb-cover-photo.png (820x312) — "Bangladesh AI" + "Intelligence Builds Nations | দেশ গড়ি বুদ্ধিমত্তায়" + key stats
+19. fb-post-square.png (1080x1080) — Default branded post template
+20. fb-post-landscape.png (1200x630) — Default branded landscape post
+21. fb-event-cover.png (1920x1005) — For future events
+
+=== FOLDER 4: INSTAGRAM ===
+
+22. ig-profile-picture.png (320x320) — Map icon on Deep Green circle bg
+23. ig-post-square.png (1080x1080) — Branded post template with both taglines
+24. ig-post-portrait.png (1080x1350) — Vertical post template
+25. ig-story.png (1080x1920) — Story template with branding
+26. ig-highlight-cover-research.png (1080x1080) — Green bg, research icon, "Research" / "গবেষণা"
+27. ig-highlight-cover-blog.png (1080x1080) — Green bg, blog icon, "Blog" / "ব্লগ"
+28. ig-highlight-cover-bangla.png (1080x1080) — Green bg, language icon, "বাংলা"
+29. ig-highlight-cover-about.png (1080x1080) — Green bg, info icon, "About" / "সম্পর্কে"
+30. ig-highlight-cover-data.png (1080x1080) — Green bg, chart icon, "Data" / "তথ্য"
+
+=== FOLDER 5: LINKEDIN ===
+
+31. li-profile-picture.png (400x400) — Map icon on Deep Green circle bg
+32. li-cover-photo.png (1584x396) — "Bangladesh AI — Intelligence Builds Nations | দেশ গড়ি বুদ্ধিমত্তায়" + stats: "47.12/100 AI Readiness | 170M Population | 92 Requirements Assessed" + "Research · Advocacy · Education"
+33. li-post-landscape.png (1200x627) — Default branded post template
+34. li-post-square.png (1080x1080) — Square post template
+35. li-article-cover.png (1280x720) — For LinkedIn articles
+
+=== FOLDER 6: X / TWITTER ===
+
+36. x-profile-picture.png (400x400) — Map icon on Deep Green circle bg
+37. x-header.png (1500x500) — "Bangladesh AI" + both taglines + "bangladeshai.org" + key stat
+38. x-post-landscape.png (1600x900) — Post image template
+39. x-post-square.png (1080x1080) — Square post template
+
+=== FOLDER 7: YOUTUBE ===
+
+40. yt-profile-picture.png (800x800) — Map icon on Deep Green circle bg
+41. yt-banner.png (2560x1440) — "Bangladesh AI" bilingual + taglines + stats (safe area: 1546x423 center)
+42. yt-thumbnail-template.png (1280x720) — Video thumbnail template with branding
+43. yt-watermark.png (150x150) — Transparent bg, white map icon (for video corner watermark)
+
+=== FOLDER 8: WHATSAPP (Critical for Bangladesh) ===
+
+44. wa-profile-picture.png (500x500) — Map icon on Deep Green circle bg
+45. wa-share-image.png (1200x630) — Default image when links are shared on WhatsApp
+
+=== FOLDER 9: TIKTOK ===
+
+46. tt-profile-picture.png (200x200) — Map icon on Deep Green circle bg
+
+=== FOLDER 10: GITHUB ===
+
+47. gh-profile-picture.png (500x500) — Map icon on Deep Green circle bg
+48. gh-social-preview.png (1280x640) — Repo social preview with "Bangladesh AI" branding
+
+=== FOLDER 11: OG / SHARING IMAGES ===
+
+49. og-default.png (1200x630) — Default social share image:
+    Deep Green bg, "Bangladesh AI" large white text, "Intelligence Builds Nations" below, "দেশ গড়ি বুদ্ধিমত্তায়" below that, "bangladeshai.org" bottom, map icon watermark
+
+50. og-blog-template-green.png (1200x630) — Green bg, title area, category, author
+51. og-blog-template-white.png (1200x630) — White bg version
+52. og-blog-template-blue.png (1200x630) — Intelligence Blue bg version
+
+=== FOLDER 12: EMAIL ===
+
+53. email-header.png (600x150) — Newsletter header: logo + "Bangladesh AI Briefing" + "দেশ গড়ি বুদ্ধিমত্তায়"
+54. email-footer.png (600x100) — Social icons + "Intelligence Builds Nations" + bangladeshai.org
+55. email-signature-banner.png (600x100) — "EMON HOSSAIN | Bangladesh AI | Intelligence Builds Nations"
+
+=== FOLDER 13: SOCIAL POST TEMPLATES ===
+
+Create 6 reusable post templates in both square (1080x1080) and landscape (1200x627):
+
+56-57. stat-highlight — Large number centered + context + "Bangladesh AI" branding + both taglines
+58-59. quote-card — Pull quote in Source Serif italic + attribution + green left accent bar + branding
+60-61. blog-teaser — Blog title + category pill + "Read at bangladeshai.org" + author
+62-63. comparison — "Bangladesh vs [Country]" split layout + key metrics + branding
+64-65. did-you-know — "Did You Know? / আপনি কি জানেন?" + fact + source citation + branding
+66-67. bangla-education — Bangla-first layout, simple language, "দেশ গড়ি বুদ্ধিমত্তায়" prominent
+
+=== FOLDER 14: PRINT-READY ===
+
+68. business-card-front.png (1050x600, 300dpi) — Logo + "Bangladesh AI" + "Intelligence Builds Nations"
+69. business-card-back.png (1050x600, 300dpi) — "EMON HOSSAIN" + title + contact + "দেশ গড়ি বুদ্ধিমত্তায়"
+70. letterhead-header.png (2480x400, 300dpi) — For A4 documents
+71. presentation-title-slide.png (1920x1080) — 16:9 title slide
+
+=== QUALITY CHECKLIST BEFORE EXPORT ===
+
+Before exporting ANY file, verify:
+
+☐ "Bangladesh AI" (WITH space) — not "BangladeshAI"
+☐ "বাংলাদেশ এআই" (WITH space) — not "বাংলাদেশএআই"
+☐ "Intelligence Builds Nations" — exact spelling
+☐ "দেশ গড়ি বুদ্ধিমত্তায়" — every Bangla character correct
+☐ Colors are exact: Green #006A4E, Blue #0F4C81, Red #E8432A, Slate #1A2332
+☐ Fonts correct: Plus Jakarta Sans, Inter, Noto Sans Bengali
+☐ No pixelation — all exports crisp
+☐ Profile pictures are centered and look good in circular crop (all platforms crop to circle)
+☐ Cover photos have text in safe zones (not cut off on any device)
+☐ Transparent backgrounds where specified
+☐ No government emblems or seals that resemble the Shapla
+
+=== NAMING CONVENTION ===
+
+All files must be named in lowercase with hyphens:
+✅ bangladesh-ai-logo-horizontal.png
+✅ bangladesh-ai-fb-cover.png
+✅ bangladesh-ai-og-default.png
+❌ BangladeshAI_Logo.png
+❌ Logo Final v2 FINAL.png
+
+=== EXPORT SUMMARY ===
+
+Total assets to export: 71 files across 14 folders
+
+After exporting, create a README page in Figma listing:
+- Every exported file name
+- Its dimensions
+- Its purpose
+- Which platform it's for
+
+=== END ===

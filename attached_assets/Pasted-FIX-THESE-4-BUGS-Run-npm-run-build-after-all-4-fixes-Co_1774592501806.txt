@@ -1,0 +1,90 @@
+FIX THESE 4 BUGS. Run npm run build after all 4 fixes. Confirm zero errors.
+
+FIX 1 — FOOTER LOGO: Search and replace globally
+Open EVERY file in the codebase.
+Search for the string: "Bangladesh AI .org"
+Replace ALL occurrences with: "BangladeshAI.org"
+Also search for "Bangladesh AI.org" (no space before dot) and fix those too.
+After this the footer bottom bar must read:
+  "BangladeshAI.org · Intelligence Builds Nations"
+NOT "Bangladesh AI .org · Intelligence Builds Nations"
+
+FIX 2 — /blog INDEX: Rewrite page.tsx completely from scratch
+Delete the existing src/app/[locale]/blog/page.tsx content entirely.
+Replace with a minimal server component that hardcodes ALL data inline in the return statement.
+Do NOT import any external data functions. Do NOT use getAllPosts().
+Do NOT use 'use client'. Just a plain async server component.
+The page must render 9 blog post cards. Each card links to /blog/[slug].
+Cards must show: category badge, title, description, date, read time, Read More link.
+
+Blog posts to render:
+1. slug=bangladesh-ai-readiness-47 | title=Bangladesh AI Readiness: 47.12/100 | category=Policy | date=2026-03-22 | readTime=8 min read | desc=Oxford Insights 2024 ranked Bangladesh 80th of 193 nations. What the score means and what must change.
+2. slug=why-ai-is-not-magic | title=Why AI is Not Magic | category=Opinion | date=2026-03-20 | readTime=6 min read | desc=AI is a force multiplier, not a miracle. Bangladesh 65M youth are the real asset.
+3. slug=ai-bangla-language-guide | title=AI in Bangla: A Complete Beginner Guide | category=AI Explained | date=2026-03-27 | readTime=7 min read | desc=Step-by-step guide to using AI entirely in Bangla. No English required.
+4. slug=economic-impact-analysis | title=The Economic Impact of AI on Bangladesh | category=Economy | date=2026-03-25 | readTime=9 min read | desc=Six economic multipliers that could transform Bangladesh GDP if AI is deployed at scale.
+5. slug=what-singapore-teaches-us | title=What Singapore Teaches Us About AI | category=Global | date=2026-03-15 | readTime=7 min read | desc=Singapore ranked number 2 globally. What Bangladesh can replicate with fewer resources.
+6. slug=bangla-nlp-sovereign-stack | title=Building a Sovereign Bangla AI Stack | category=Bangla AI | date=2026-03-10 | readTime=8 min read | desc=BLP-2025 produced 69 NLP papers. Here is what Bangladesh needs to build next.
+7. slug=youth-and-ai-jobs | title=Bangladesh Youth and the AI Jobs Revolution | category=Economy | date=2026-03-05 | readTime=7 min read | desc=KOICA 13M AI workforce training. Four tracks. New job categories emerging.
+8. slug=population-asset-not-problem | title=Population Is Our Asset Not Our Problem | category=Opinion | date=2026-03-26 | readTime=6 min read | desc=170M people is Bangladesh greatest AI advantage if we train them.
+9. slug=sovereign-ai-infrastructure-why-it-matters | title=Why Sovereign AI Infrastructure Matters | category=Policy | date=2026-03-24 | readTime=8 min read | desc=40-80M annual foreign AI subscription outflow. Build once vs pay forever.
+
+FIX 3 — /research HUB: Rewrite page.tsx completely from scratch
+Same approach as Fix 2. Delete existing content. Replace with minimal server component.
+Hardcode all 10 research papers inline in the JSX return statement.
+Each card links to /research/[slug].
+Cards show: category badge, title, description, read time, Read More link.
+
+Research papers to render:
+1. slug=ai-readiness | title=Bangladesh AI Readiness Assessment 2026 | category=Assessment | readTime=20 min read | desc=92 requirements across 15 domains. Score 47.12/100. Rank 80 of 193 nations.
+2. slug=global-benchmarks | title=Global AI Benchmarks 65+ Countries | category=Global | readTime=15 min read | desc=How Bangladesh compares to 65+ nations. Oxford Insights methodology and cluster analysis.
+3. slug=economic-impact | title=Economic Impact of AI Adoption in Bangladesh | category=Economics | readTime=18 min read | desc=Six economic multipliers: NBR tax AI, ghost beneficiary elimination, SME productivity, BPO 2.0.
+4. slug=ministry-use-cases | title=Ministry by Ministry AI Use Cases | category=Policy | readTime=25 min read | desc=AI applications across all 20 ministries with realistic outcomes and ROI estimates.
+5. slug=policy-regulation | title=AI Policy and Regulatory Framework | category=Policy | readTime=16 min read | desc=AI Policy V2.0, Data Protection Ordinance, and 3 additional ordinances needed.
+6. slug=national-strategy | title=National AI Strategy 12 Pillars | category=Strategy | readTime=22 min read | desc=7-year national AI strategy with funded mandates and measurable KPIs.
+7. slug=anti-corruption | title=Anti-Corruption AI 4-Layer Framework | category=Governance | readTime=19 min read | desc=AI to detect corruption in procurement, land registry, tax collection, and social protection.
+8. slug=bangla-nlp | title=Bangla AI and Sovereign NLP Stack | category=Technology | readTime=17 min read | desc=Sovereign Bangla LLM, OCR, STT, TTS. BLP-2025: 69 NLP papers, 8 at ACL 2025.
+9. slug=workforce-education | title=Workforce and Education AI Reskilling | category=Education | readTime=14 min read | desc=Four-track reskilling for 65M young workforce. KOICA 96M program analysis.
+10. slug=risk-management | title=Risk Management and Non-Negotiables | category=Risk | readTime=16 min read | desc=10 AI failure modes. 17 KPIs for national monitoring. Non-negotiable safeguards.
+
+FIX 4 — BUILD /for-partners PAGE (currently 404)
+Create src/app/[locale]/for-partners/page.tsx
+Page title: For Development Partners
+Subtitle: Rigorous AI policy research and strategic advisory for organizations working on Bangladesh digital future.
+
+Section 1 - WHO WE WORK WITH:
+  UNDP, World Bank, ADB, FCDO, USAID, GIZ, KOICA, international NGOs, academic institutions, bilateral agencies, philanthropic foundations
+
+Section 2 - WHAT WE OFFER (4 cards):
+  Research Partnership: Co-authorship on AI policy papers with full citation rights
+  Data Access: Early access to BangladeshAI.org datasets and 92-requirement assessment
+  Policy Advisory: Background briefings for country teams and programme design
+  Capacity Building: AI literacy training materials in English and Bangla
+
+Section 3 - INDEPENDENCE GUARANTEE:
+  All partnerships include an editorial independence clause.
+  Partners cannot influence or suppress research findings.
+  Our independence is what makes our research valuable.
+
+Section 4 - EVIDENCE GAPS WE WANT TO FILL WITH PARTNERS:
+  Household-level AI access survey (170M population)
+  Ministry-level AI readiness assessment with primary data
+  Private sector AI adoption baseline study
+  National Bangla corpus for AI training (50B tokens)
+  Youth AI literacy baseline assessment
+
+Section 5 - CTA:
+  Button: Send a Partnership Enquiry linking to /contact
+  Button: Download Research Overview linking to /resources
+  Direct contact: emon@emonhossain.pro
+
+Add generateMetadata() and breadcrumb.
+
+FINAL STEP:
+1. Run npm run build
+2. Fix ALL TypeScript errors until ZERO remain
+3. Verify these pages all show content:
+   /blog         should show 9 post cards
+   /research     should show 10 research cards
+   /for-partners should show page content, not 404
+4. Verify ALL page footers show BangladeshAI.org with no spaces
+5. Report each fix status

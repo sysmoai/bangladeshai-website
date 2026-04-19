@@ -1,0 +1,108 @@
+## [BangladeshAI.org](http://BangladeshAI.org) — Live Site Context & Continuous Build Plan
+
+The site is now being published to **`https://bangladeshai.org`** (official domain). This is a real, live institutional AI policy research site for Bangladesh. Here is everything you need to know to continue building it correctly.
+
+---
+
+### What the site is
+
+[**BangladeshAI.org**](http://BangladeshAI.org) is a bilingual (English + Bangla), independent, non-partisan AI policy research platform for Bangladesh. It is NOT a startup landing page. It is an institutional research site — the tone is serious, evidence-based, and credible.
+
+**Founder:** Emon Hossain ([emon@emonhossain.pro](mailto:emon@emonhossain.pro))
+
+**Live domain:** `https://bangladeshai.org`
+
+**Stack:** Next.js 14 (App Router), TypeScript, Tailwind CSS, i18n (EN + BN)
+
+---
+
+### What was completed today (March 28, 2026)
+
+✅ Full Prompt L audit applied — 37 gaps fixed across 5 sections (A–E)
+
+✅ Language toggle (EN ↔ BN) working
+
+✅ Dark/light mode toggle working
+
+✅ `/sitemap.xml` fixed and returning valid XML
+
+✅ `/en/research/ai-readiness` route working
+
+✅ `/insights` → redirect to `/en/blog` added
+
+✅ Homepage stats: `"Rank 80 of 188 countries"` corrected in `lib/translations/en.ts` and `lib/translations/bn.ts`
+
+✅ Bangla translations updated (`১৮৮টি দেশ`)
+
+✅ Blog page: 9 articles live
+
+✅ Research page: 3 research papers live
+
+✅ FAQ, breadcrumbs, ShareButtons, mobile overflow, OG image route, JSON-LD all confirmed working
+
+✅ Build: 47 pages, zero TypeScript errors
+
+---
+
+### Sprint Plan — what to build next (Days 1–14, Mar 28 – Apr 10, 2026)
+
+Work through these in order. Do not skip ahead.
+
+**SPRINT DAYS 1–2 (Mar 28–29) — NOW ACTIVE**
+
+- [ ]  Confirm `/insights` redirect is live on production domain
+- [ ]  Add 3 more blog posts (drafts exist in content files)
+- [ ]  Add Google Analytics / Plausible tracking script
+- [ ]  Test all routes on production domain `bangladeshai.org`
+- [ ]  Test language toggle on mobile
+
+**SPRINT DAYS 3–4 (Mar 30–31) — Content depth**
+
+- [ ]  Expand Reality Check page with full 37-gap audit table
+- [ ]  Add "Last updated: March 28, 2026" line to all key pages
+- [ ]  Add Oxford Insights citation with hyperlink on every page that cites the 47.12 score
+- [ ]  Improve For-Government page: add ministry pilot section
+- [ ]  Add contact form functionality (currently static)
+
+**SPRINT DAYS 5–7 (Apr 1–3) — SEO & distribution**
+
+- [ ]  Submit sitemap to Google Search Console
+- [ ]  Add canonical URLs to all pages
+- [ ]  Add structured data (Article schema) to all blog + research posts
+- [ ]  Add Open Graph images for all key pages (not just homepage)
+- [ ]  Add Twitter/X card meta tags
+
+**SPRINT DAYS 8–10 (Apr 4–6) — Bangla depth**
+
+- [ ]  Translate all blog post content into Bangla
+- [ ]  Translate Reality Check page into Bangla
+- [ ]  Test full Bangla mode end-to-end on mobile
+- [ ]  Add Bangla font loading optimization (avoid FOUT)
+
+**SPRINT DAYS 11–14 (Apr 7–10) — Polish & launch push**
+
+- [ ]  Add newsletter signup backend (connect to email service)
+- [ ]  Add Resources page content (currently placeholder)
+- [ ]  Add Partner logos section
+- [ ]  Add media/press page with downloadable assets
+- [ ]  Performance audit (Lighthouse score target: 90+)
+- [ ]  Accessibility audit (WCAG 2.1 AA)
+
+---
+
+### Rules for all future work
+
+1. **Never break EN/BN parity** — every change to English content must have a Bangla equivalent in `lib/translations/bn.ts`
+2. **Never use government logos or emblems** — legal risk, brand policy
+3. **188 countries, not 193 nations** — Oxford Insights GGAI 2024 covers 188 countries
+4. **Bangladesh score: 47.12/100, Rank 80** — do not change these without new data
+5. **Always run `npm run build` before reporting a fix complete** — zero TypeScript errors required
+6. **Institutional tone always** — no hype, no startup language, evidence-first
+
+---
+
+### My workflow going forward
+
+When I say "work on the sprint" or "do the next tasks" — pick up from wherever we left off in the sprint plan above, do the work, run the build, confirm it's working, and report back with exactly what was changed and what file it was in.
+
+When I share a new dev link — do a full audit against the sprint plan and report pass/fail for each item.

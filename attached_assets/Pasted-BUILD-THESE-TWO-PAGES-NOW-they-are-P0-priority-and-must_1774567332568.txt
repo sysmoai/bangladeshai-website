@@ -1,0 +1,33 @@
+BUILD THESE TWO PAGES NOW — they are P0 priority and must exist at launch.
+
+PAGE 1: /reality-check — BANGLADESH AI REALITY CHECK 2026
+Sections:
+1. Hero: "Bangladesh AI Reality Check 2026" · Score 47.12/100 · Oxford Insights GGAI Index 2024
+2. Three Pillars scorecard: Government Readiness 58.52 | Technology Sector 26.26 (CRITICAL — red callout) | Data & Infrastructure 56.59
+3. 8-Country Comparison Table (full, with sources):
+   Singapore 84.25 · UAE 75.66 · S.Korea 75.24 · India 62.81 · Vietnam 61.42 · Indonesia 55.96 · Rwanda 57.07 · Bangladesh 47.12
+4. 92-Requirements Assessment: 15 domains · 67 gaps identified · visual breakdown
+5. AI Consumer vs AI Producer analysis
+6. 5 preconditions before AI can scale nationally in Bangladesh
+7. Recent positive signals: NDC GPU Cloud · Kagoj.ai · KOICA $96M · BLP-2025 (69 NLP papers)
+8. Critical warning callout: Tech Sector 26.26 is the weakest pillar — without fixing this, the other two pillars cannot deliver
+9. 7-year target: Reach 65+ (India-level today) by 2033
+10. CTA: [Read Full Research → /research/ai-readiness]
+
+PAGE 2: /for-citizens — FOR CITIZENS (BANGLA-FIRST — NON-NEGOTIABLE)
+All content must be in simple Bangla (Class 10 level). English only for technical terms with Bangla explanation.
+Sections:
+1. Hero: "AI কী — সহজ ভাষায়" (What is AI — in simple language)
+2. AI speaks Bangla today — you do not need English
+3. AI by Life Stage table: Student · Job seeker · Teacher · Farmer · Govt officer · Doctor · Small business · Parent · Journalist
+4. Time Multiplier: ১,০০০ দিনের কাজ ৫ মিনিটে (1,000 days of work in 5 minutes) — with real Bangla examples
+5. Your rights as a citizen in the age of AI
+6. How to start in 3 steps (with actual tool names — ChatGPT, Gemini, Claude — all work in Bangla)
+7. 5 common fears — answered honestly in Bangla
+8. Newsletter CTA in Bangla
+
+Both pages must have:
+- generateMetadata() with title, description, OG tags
+- Breadcrumb
+- Bilingual support (/en/reality-check and /bn/reality-check)
+- Link in navbar working

@@ -1,0 +1,61 @@
+BUILD ALL REMAINING STATIC PAGES NOW. Each needs generateMetadata(), breadcrumb, and bilingual support.
+
+/mission — THE MISSION
+  What BangladeshAI.org is: independent · non-partisan · evidence-based · research-first
+  What it is NOT: not commercial · not govt · not vendor · not political
+  Why it exists: 5 philosophical pillars
+  Independence pledge
+
+/why-now — WHY BANGLADESH MUST ACT NOW
+  Cost of inaction: every year of delay widens the gap with India/Vietnam
+  AI as time multiplier: 1,000 days of work in 5 minutes
+  $40-80M annual foreign subscription outflow
+  Brain drain → Brain gain: 3-5 year opportunity window
+  Bangladesh missed the first software wave — cannot miss this one
+
+/for-government — FOR GOVERNMENT OFFICIALS
+  Smart Bangladesh 5 pillars
+  20-ministry AI use case table: Ministry | Top Use Case | Impact
+  Procurement guidance: how to buy AI safely
+  Policy framework: AI Policy V2.0 · Data Protection Ordinance
+  Anti-corruption AI overview
+  CTA: [Download Executive Brief PDF] [Request a Briefing]
+
+/about — ABOUT BANGLADESH AI
+  What it is · Values · Independence statement · How research is produced
+
+/about/emon-hossain — FOUNDER
+  Professional bio · Founder's Statement EN + BN
+  5 Philosophical Pillars:
+    1. Resilience is our superpower
+    2. From Digital Bangladesh to Smartest Bangladesh
+    3. Population is an asset, not a burden
+    4. AI works in Bangla today
+    5. Collective action is the only path
+  Contact: emon@emonhossain.pro
+
+/about/independence — INDEPENDENCE STATEMENT
+  No government funding · No commercial products · No political affiliation
+
+/faq — FAQ
+  15 common questions about AI + BangladeshAI.org · EN + BN both required
+
+/contact — CONTACT
+  3 pathways: Institutional · Development partner · Media/press
+  ContactForm → NEXT_PUBLIC_FORMSPREE_ID
+  Fallback: emon@emonhossain.pro
+
+/newsletter — NEWSLETTER
+  "Bangladesh AI Briefing" description · how often · what you get
+  NewsletterForm → NEXT_PUBLIC_NEWSLETTER_FORM_ID
+
+/resources — DOWNLOADS HUB
+  Placeholder PDF cards with download CTA:
+    AI Readiness Brief 2026 · Executive Brief EN · Executive Brief BN · Cost of Inaction Memo
+
+/press — PRESS KIT
+  Downloadable brand assets · Founder bio for press · Contact for media
+
+/about/methodology — METHODOLOGY NOTE
+  How claims are classified: Conservative / Moderate / Planning Hypothesis
+  Primary sources list

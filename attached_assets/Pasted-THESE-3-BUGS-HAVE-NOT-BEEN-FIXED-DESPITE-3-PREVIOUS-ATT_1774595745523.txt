@@ -1,0 +1,204 @@
+THESE 3 BUGS HAVE NOT BEEN FIXED DESPITE 3 PREVIOUS ATTEMPTS. USE A DIFFERENT APPROACH.
+
+═══════════════════════════════════════════════════════════════
+FIX 1 — FOOTER LOGO: "Bangladesh AI .org" must become "BangladeshAI.org"
+═══════════════════════════════════════════════════════════════
+
+This string has survived 3 fix attempts. The problem is it is NOT in the
+component you keep editing. Do a comprehensive search:
+
+Step 1: Run this command to find EVERY occurrence in the codebase:
+  grep -rn "Bangladesh AI" . --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" --include="*.json" --include="*.md" --include="*.mdx"
+
+Step 2: Show me the FULL output of that grep command.
+
+Step 3: Fix EVERY file listed in the output. Replace:
+  "Bangladesh AI .org"  →  "BangladeshAI.org"
+  "Bangladesh AI.org"   →  "BangladeshAI.org"
+  "Bangladesh AI"       →  "BangladeshAI" (only where it is part of the site name/logo)
+
+Step 4: Pay special attention to these files that are commonly missed:
+  - messages/en.json   (translation strings)
+  - messages/bn.json   (translation strings)
+  - Any constants.ts or config.ts file
+  - The actual Footer.tsx component (check it exists and check the exact string)
+  - Any layout.tsx files that might render the footer branding
+
+Step 5: After fixing ALL occurrences, run npm run build.
+  The build must succeed with ZERO errors.
+  Verify: grep -rn "Bangladesh AI .org" . should return ZERO results.
+
+═══════════════════════════════════════════════════════════════
+FIX 2 — /blog PAGE BLANK: Diagnostic approach
+═══════════════════════════════════════════════════════════════
+
+The /blog page has been rewritten twice and still shows blank.
+The page title "Blog & Insights — BangladeshAI.org" IS loading — so the
+page.tsx IS being found. But the content section is not rendering.
+
+Step 1: FIND THE ACTUAL FILE being served for /blog.
+Run: find . -name "page.tsx" | grep -i blog
+This will show ALL page.tsx files related to blog.
+
+Step 2: If there are TWO files:
+  - src/app/blog/page.tsx    (without locale)
+  - src/app/[locale]/blog/page.tsx  (with locale)
+Then the wrong one is being served. DELETE src/app/blog/page.tsx
+and keep only src/app/[locale]/blog/page.tsx
+
+Step 3: Open the file that IS being served. Show me its COMPLETE content.
+Then rewrite it with this ABSOLUTE MINIMUM implementation (zero dependencies):
+
+--- PASTE THIS EXACT CODE INTO src/app/[locale]/blog/page.tsx ---
+
+export default function BlogPage() {
+  const posts = [
+    { slug: "bangladesh-ai-readiness-47", title: "Bangladesh AI Readiness: 47.12/100", category: "Policy", date: "2026-03-22", readTime: "8 min read", desc: "Oxford Insights 2024 ranked Bangladesh 80th of 193 nations." },
+    { slug: "why-ai-is-not-magic", title: "Why AI is Not Magic", category: "Opinion", date: "2026-03-20", readTime: "6 min read", desc: "AI is a force multiplier, not a miracle." },
+    { slug: "ai-bangla-language-guide", title: "AI in Bangla: A Complete Guide", category: "AI Explained", date: "2026-03-27", readTime: "7 min read", desc: "Step-by-step guide to using AI in Bangla. No English needed." },
+    { slug: "economic-impact-analysis", title: "Economic Impact of AI on Bangladesh", category: "Economy", date: "2026-03-25", readTime: "9 min read", desc: "Six economic multipliers that could transform Bangladesh GDP." },
+    { slug: "what-singapore-teaches-us", title: "What Singapore Teaches Us About AI", category: "Global", date: "2026-03-15", readTime: "7 min read", desc: "Singapore ranked number 2 globally. What Bangladesh can learn." },
+    { slug: "bangla-nlp-sovereign-stack", title: "Building a Sovereign Bangla AI Stack", category: "Bangla AI", date: "2026-03-10", readTime: "8 min read", desc: "BLP-2025: 69 NLP papers. What Bangladesh needs to build next." },
+    { slug: "youth-and-ai-jobs", title: "Bangladesh Youth and the AI Jobs Revolution", category: "Economy", date: "2026-03-05", readTime: "7 min read", desc: "KOICA 13M AI workforce training. Four tracks. New job categories." },
+    { slug: "population-asset-not-problem", title: "Population Is Our Asset Not Our Problem", category: "Opinion", date: "2026-03-26", readTime: "6 min read", desc: "170M people is Bangladesh greatest AI advantage." },
+    { slug: "sovereign-ai-infrastructure-why-it-matters", title: "Why Sovereign AI Infrastructure Matters", category: "Policy", date: "2026-03-24", readTime: "8 min read", desc: "40-80M annual foreign AI subscription outflow. Build vs subscribe." }
+  ]
+
+  return (
+    <div style=maxWidth: '1200px', margin: '0 auto', padding: '64px 16px'>
+      <h1 style=fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '16px'>Blog & Analysis</h1>
+      <p style=fontSize: '1.25rem', color: '#64748B', marginBottom: '48px'>
+        Independent analysis on AI policy, technology, and society in Bangladesh.
+      </p>
+      <div style=display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px'>
+        {posts.map((post) => (
+          <a
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            style=
+              display: 'block',
+              background: 'white',
+              border: '1px solid #E2E8F0',
+              borderRadius: '12px',
+              padding: '24px',
+              textDecoration: 'none',
+              color: 'inherit'
+            
+          >
+            <span style=
+              display: 'inline-block',
+              background: '#EFF6FF',
+              color: '#2563EB',
+              fontSize: '12px',
+              fontWeight: '600',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              marginBottom: '12px'
+            >
+              {post.category}
+            </span>
+            <h2 style=fontSize: '1.1rem', fontWeight: '600', marginBottom: '8px', color: '#0F172A'>
+              {post.title}
+            </h2>
+            <p style=fontSize: '0.9rem', color: '#64748B', marginBottom: '16px'>
+              {post.desc}
+            </p>
+            <div style=display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#94A3B8'>
+              <span>{post.date}</span>
+              <span>{post.readTime}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+--- END OF CODE ---
+
+This uses ZERO Tailwind classes. ZERO external imports (except the built-in href).
+If THIS does not render, the problem is in the layout.tsx or routing, not the page component.
+
+═══════════════════════════════════════════════════════════════
+FIX 3 — /research PAGE BLANK: Same diagnostic approach
+═══════════════════════════════════════════════════════════════
+
+Step 1: Run: find . -name "page.tsx" | grep -i research
+Step 2: If there are TWO conflicting files, delete the non-locale one.
+Step 3: Rewrite src/app/[locale]/research/page.tsx with this exact code:
+
+export default function ResearchPage() {
+  const papers = [
+    { slug: "ai-readiness", title: "Bangladesh AI Readiness Assessment 2026", category: "Assessment", readTime: "20 min read", desc: "92 requirements across 15 domains. Score 47.12/100. Rank 80 of 193 nations." },
+    { slug: "global-benchmarks", title: "Global AI Benchmarks 65+ Countries", category: "Global", readTime: "15 min read", desc: "How Bangladesh compares to 65+ nations. Oxford Insights methodology." },
+    { slug: "economic-impact", title: "Economic Impact of AI Adoption in Bangladesh", category: "Economics", readTime: "18 min read", desc: "Six economic multipliers: NBR tax AI, ghost beneficiaries, SME productivity." },
+    { slug: "ministry-use-cases", title: "Ministry by Ministry AI Use Cases", category: "Policy", readTime: "25 min read", desc: "AI applications across all 20 ministries with realistic ROI estimates." },
+    { slug: "policy-regulation", title: "AI Policy and Regulatory Framework", category: "Policy", readTime: "16 min read", desc: "AI Policy V2.0, Data Protection Ordinance, and 3 ordinances needed." },
+    { slug: "national-strategy", title: "National AI Strategy 12 Pillars", category: "Strategy", readTime: "22 min read", desc: "7-year strategy with funded mandates and measurable KPIs." },
+    { slug: "anti-corruption", title: "Anti-Corruption AI 4-Layer Framework", category: "Governance", readTime: "19 min read", desc: "AI to detect corruption in procurement, land registry, tax, social protection." },
+    { slug: "bangla-nlp", title: "Bangla AI and Sovereign NLP Stack", category: "Technology", readTime: "17 min read", desc: "Bangla LLM, OCR, STT, TTS. BLP-2025: 69 NLP papers, 8 at ACL 2025." },
+    { slug: "workforce-education", title: "Workforce and Education AI Reskilling", category: "Education", readTime: "14 min read", desc: "Four-track reskilling for 65M young workforce. KOICA 96M program." },
+    { slug: "risk-management", title: "Risk Management and Non-Negotiables", category: "Risk", readTime: "16 min read", desc: "10 AI failure modes. 17 KPIs for monitoring. Non-negotiable safeguards." }
+  ]
+
+  return (
+    <div style=maxWidth: '1200px', margin: '0 auto', padding: '64px 16px'>
+      <h1 style=fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '16px'>Research Hub</h1>
+      <p style=fontSize: '1.25rem', color: '#64748B', marginBottom: '48px'>
+        Independent AI policy research for Bangladesh. 10 papers. All open-access.
+      </p>
+      <div style=display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '24px'>
+        {papers.map((paper) => (
+          <a
+            key={paper.slug}
+            href={`/research/${paper.slug}`}
+            style=
+              display: 'block',
+              background: 'white',
+              border: '1px solid #E2E8F0',
+              borderRadius: '12px',
+              padding: '28px',
+              textDecoration: 'none',
+              color: 'inherit'
+            
+          >
+            <span style=
+              display: 'inline-block',
+              background: '#F0FDF4',
+              color: '#16A34A',
+              fontSize: '12px',
+              fontWeight: '600',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              marginBottom: '12px'
+            >
+              {paper.category}
+            </span>
+            <h2 style=fontSize: '1.2rem', fontWeight: '600', marginBottom: '10px', color: '#0F172A'>
+              {paper.title}
+            </h2>
+            <p style=fontSize: '0.9rem', color: '#64748B', marginBottom: '16px'>
+              {paper.desc}
+            </p>
+            <div style=display: 'flex', justifyContent: 'space-between', alignItems: 'center'>
+              <span style=fontSize: '0.8rem', color: '#94A3B8'>{paper.readTime}</span>
+              <span style=fontSize: '0.9rem', color: '#2563EB', fontWeight: '500'>Read Research →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+--- END OF CODE ---
+
+═══════════════════════════════════════════════════════════════
+FINAL: BUILD + REPORT
+═══════════════════════════════════════════════════════════════
+1. Run npm run build — confirm ZERO TypeScript errors
+2. Verify:
+   /blog       → shows 9 post cards ✅
+   /research   → shows 10 research cards ✅
+   Footer on ALL pages → shows "BangladeshAI.org" with NO spaces ✅
+3. Run: grep -rn "Bangladesh AI .org" . --include="*.tsx" --include="*.ts" --include="*.json"
+   This must return ZERO results.
+4. Report status of each fix.

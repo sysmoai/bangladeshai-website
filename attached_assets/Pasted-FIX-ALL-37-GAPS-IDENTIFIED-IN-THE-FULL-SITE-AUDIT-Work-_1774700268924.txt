@@ -1,0 +1,622 @@
+FIX ALL 37 GAPS IDENTIFIED IN THE FULL SITE AUDIT. Work through each section below.
+After ALL fixes are done, run npm run build and confirm ZERO TypeScript errors.
+
+══════════════════════════════════════════════════════════
+SECTION A — CRITICAL INFRASTRUCTURE FIXES
+══════════════════════════════════════════════════════════
+
+A1 — FIX LANGUAGE TOGGLE (GAP-01)
+The [EN | বাংলা] pill toggle is NOT visible in the header on any page.
+Fix now:
+1. Open src/components/layout/Navbar.tsx
+2. Verify LanguageToggle component IS imported at the top:
+   import { LanguageToggle } from "@/components/ui/LanguageToggle"
+3. Verify LanguageToggle IS rendered inside the header JSX, BEFORE the dark mode toggle:
+   <div className="flex items-center gap-3">
+     <LanguageToggle />    ← must be here
+     <ThemeToggle />       ← and here
+     <Link href="/reality-check">Read the Reality Check</Link>
+   </div>
+4. Open src/components/ui/LanguageToggle.tsx
+   Ensure it renders a visible pill: [EN] [BN]
+   In EN locale: EN is active (dark bg, white text), BN is inactive
+   In BN locale: BN is active, EN is inactive
+   On click: route to same path in opposite locale
+   Persist in localStorage key: 'preferred-locale'
+5. Verify middleware.ts includes both locales:
+   export const config = { matcher: ['/((?!api|_next|fonts|icons|[\\w-]+\\.\\w+).*)'] }
+   And the createSharedPathnamesNavigation locales = ['en', 'bn']
+
+A2 — FIX DARK MODE TOGGLE (GAP-02)
+The ☀️/🌙 toggle is NOT visible in the header.
+Fix: Same as A1 — verify ThemeToggle IS imported and rendered in Navbar.tsx
+ThemeToggle must toggle between light (#F8FAFC) and dark (#0F172A) body bg.
+Persist in localStorage key: 'preferred-theme'
+Default: system preference (prefers-color-scheme media query)
+
+A3 — FIX /sitemap.xml (GAP-03 — HTTP 500 ERROR)
+Current /sitemap.xml returns a 500 error. Google CANNOT index the site.
+Fix:
+1. Delete src/app/sitemap.ts if it exists (it may be malformed)
+2. Create a new src/app/sitemap.ts with this EXACT content:
+
+import { MetadataRoute } from 'next'
+
+const BASE_URL = 'https://bangladeshai.org'
+
+const staticRoutes = [
+  '/', '/mission', '/reality-check', '/why-now', '/roadmap',
+  '/for-government', '/for-citizens', '/for-partners',
+  '/about', '/about/emon-hossain', '/about/independence', '/about/methodology',
+  '/research', '/blog', '/faq', '/resources', '/press', '/contact', '/newsletter'
+]
+
+const researchSlugs = [
+  'ai-readiness', 'global-benchmarks', 'economic-impact', 'ministry-use-cases',
+  'policy-regulation', 'national-strategy', 'anti-corruption', 'bangla-nlp',
+  'workforce-education', 'risk-management'
+]
+
+const blogSlugs = [
+  'bangladesh-ai-readiness-47', 'why-ai-is-not-magic', 'ai-bangla-language-guide',
+  'economic-impact-analysis', 'what-singapore-teaches-us', 'bangla-nlp-sovereign-stack',
+  'youth-and-ai-jobs', 'population-asset-not-problem', 'sovereign-ai-infrastructure-why-it-matters'
+]
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const locales = ['en', 'bn']
+  const entries: MetadataRoute.Sitemap = []
+
+  // Static routes
+  for (const route of staticRoutes) {
+    for (const locale of locales) {
+      entries.push({
+        url: `${BASE_URL}/${locale}${route === '/' ? '' : route}`,
+        lastModified: new Date('2026-03-27'),
+        changeFrequency: route === '/' ? 'weekly' : 'monthly',
+        priority: route === '/' ? 1.0 : 0.7,
+      })
+    }
+  }
+
+  // Research pages
+  for (const slug of researchSlugs) {
+    for (const locale of locales) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/research/${slug}`,
+        lastModified: new Date('2026-03-27'),
+        changeFrequency: 'monthly',
+        priority: 0.9,
+      })
+    }
+  }
+
+  // Blog posts
+  for (const slug of blogSlugs) {
+    for (const locale of locales) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/blog/${slug}`,
+        lastModified: new Date('2026-03-27'),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      })
+    }
+  }
+
+  return entries
+}
+
+3. Test: curl the /sitemap.xml endpoint and verify it returns XML (not 500)
+
+A4 — FIX UNIQUE PAGE TITLES + OG TAGS (GAP-04, GAP-26, GAP-29)
+These 10 pages all have the generic title "BangladeshAI.org — Intelligence Builds Nations".
+Add generateMetadata() to EACH page with unique title, description, and OG tags.
+
+For EACH page listed below, add this export at the top of the page.tsx file:
+
+export const metadata = {
+  title: "[TITLE BELOW]",
+  description: "[DESCRIPTION BELOW]",
+  openGraph: {
+    title: "[TITLE BELOW]",
+    description: "[DESCRIPTION BELOW]",
+    url: "https://bangladeshai.org/en/[ROUTE]",
+    siteName: "BangladeshAI.org",
+    images: [{ url: `/api/og?title=${encodeURIComponent("[TITLE BELOW]")}` }],
+  },
+  twitter: { card: "summary_large_image" },
+  alternates: {
+    canonical: "https://bangladeshai.org/en/[ROUTE]",
+    languages: {
+      'en': "https://bangladeshai.org/en/[ROUTE]",
+      'bn': "https://bangladeshai.org/bn/[ROUTE]",
+      'x-default': "https://bangladeshai.org/en/[ROUTE]"
+    }
+  }
+}
+
+PAGE TITLES + DESCRIPTIONS TO USE:
+
+/  (homepage/page.tsx):
+  title: "Bangladesh AI — Independent AI Policy Research | BangladeshAI.org"
+  description: "Independent AI policy research for Bangladesh's 170 million people. Score 47.12/100. Rank 80 of 193 nations. Evidence-based, non-partisan, bilingual."
+
+/for-government:
+  title: "AI for Bangladesh Government — Ministry Guide 2026 | BangladeshAI.org"
+  description: "Evidence-based AI guidance for Bangladesh's 20 ministries. Procurement rules, policy framework, pilot ROI, and anti-corruption AI overview."
+
+/why-now:
+  title: "Why Bangladesh Must Act on AI Now | BangladeshAI.org"
+  description: "Every year of delay widens Bangladesh's AI gap. $40-80M annual outflow, 3-5 year brain drain window, and the cost of missing the second tech wave."
+
+/roadmap:
+  title: "Bangladesh National AI Roadmap 2026-2033 | BangladeshAI.org"
+  description: "Four phases: 100 days, Year 1, 3 years, 7 years. Named institutions, measurable milestones. From 47.12 to 70+ on Oxford Insights."
+
+/faq:
+  title: "AI Policy FAQ — Bangladesh | BangladeshAI.org"
+  description: "12 common questions about AI and BangladeshAI.org answered. What is Bangladesh's AI readiness score? Can AI work in Bangla? Is this government?"
+
+/contact:
+  title: "Contact BangladeshAI.org | Research Enquiries"
+  description: "Three pathways: Institutional partners, development partners (UNDP/World Bank), and media. Direct contact: emon@emonhossain.pro"
+
+/newsletter:
+  title: "Bangladesh AI Briefing — Free Weekly Newsletter"
+  description: "The independent weekly newsletter on AI policy in Bangladesh. Read by government officials, researchers, and citizens. Bilingual — English and Bangla."
+
+/resources:
+  title: "Free AI Policy Downloads | BangladeshAI.org"
+  description: "Free download: AI Readiness Brief 2026, Executive Brief EN+BN, Cost of Inaction Memo. CC BY 4.0 licence. Cite freely."
+
+/about/independence:
+  title: "Independence Statement | BangladeshAI.org"
+  description: "No government funding. No commercial sponsorship. No political affiliation. Four non-negotiable independence principles for Bangladesh AI research."
+
+/about/methodology:
+  title: "Research Methodology | BangladeshAI.org"
+  description: "How BangladeshAI.org classifies claims: Conservative (verified fact), Moderate (analysis), Planning Hypothesis (projection). Primary sources listed."
+
+══════════════════════════════════════════════════════════
+SECTION B — CONTENT FIXES
+══════════════════════════════════════════════════════════
+
+B1 — FIX /for-citizens ENGLISH TEXT IN BANGLA SECTION (GAP-05)
+In src/app/[locale]/for-citizens/page.tsx:
+Find the first intro paragraph that reads:
+  "Artificial Intelligence (AI) is a computer technology that can think,
+   learn, and make decisions like a human. It's already in your life..."
+This is ENGLISH. Replace it with BANGLA:
+  "কৃত্রিম বুদ্ধিমত্তা (AI) হলো এমন একটি কম্পিউটার প্রযুক্তি যা মানুষের মতো
+   চিন্তা করতে, শিখতে এবং সিদ্ধান্ত নিতে পারে। এটি আপনার জীবনে ইতিমধ্যেই
+   আছে — আপনি জানুন বা না জানুন।"
+Make sure the entire for-citizens page uses the .font-bangla class on Bangla text.
+
+B2 — FIX HOMEPAGE DYNAMIC BLOG/RESEARCH SECTIONS (GAP-06)
+In src/app/[locale]/page.tsx (homepage):
+Find the "Latest Research" and "Latest Insights" sections.
+They currently show HARDCODED items with old dates (2026-01-20, 2025-12-10 etc).
+Replace both sections with DYNAMIC data:
+
+// At the top of the page component (server component, so async is fine):
+import { getAllPosts } from '@/lib/mdx'
+
+// Inside the component:
+const latestBlogPosts = getAllPosts(locale, 'blog').slice(0, 3)
+const latestResearch = getAllPosts(locale, 'research').slice(0, 3)
+
+If getAllPosts fails or returns empty, use this fallback inline data:
+Blog fallback posts (use these if MDX load fails):
+  { slug: 'population-asset-not-problem', title: 'Population Is Our Asset, Not Our Problem', category: 'Opinion', date: '2026-03-26', readTime: '6 min' }
+  { slug: 'ai-bangla-language-guide', title: 'AI in Bangla: A Beginner Guide', category: 'AI Explained', date: '2026-03-27', readTime: '7 min' }
+  { slug: 'sovereign-ai-infrastructure-why-it-matters', title: 'Why Sovereign AI Infrastructure Matters', category: 'Policy', date: '2026-03-24', readTime: '8 min' }
+
+Research fallback:
+  { slug: 'ai-readiness', title: 'Bangladesh AI Readiness Assessment 2026', category: 'Assessment', date: '2026-03-01', readTime: '20 min' }
+  { slug: 'economic-impact', title: 'Economic Impact of AI for Bangladesh', category: 'Economics', date: '2026-01-15', readTime: '18 min' }
+  { slug: 'global-benchmarks', title: 'Global AI Benchmarks — 65+ Countries', category: 'Global', date: '2025-12-10', readTime: '15 min' }
+
+B3 — FIX "Bangladesh← us" RAW TEXT ON REALITY-CHECK TABLE (GAP-07)
+In src/app/[locale]/reality-check/page.tsx:
+Find the comparison table row for Bangladesh.
+Current: "Bangladesh← us" or "Bangladesh← us" (raw text)
+Fix: Replace with JSX:
+  <tr className="bg-navy text-white font-bold">
+    <td>Bangladesh
+      <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs
+      bg-green-600 text-white">← You are here</span>
+    </td>
+    <td>47.12/100</td>
+  </tr>
+
+B4 — FIX FAQ ACCORDION + REMOVE DUPLICATE QUESTION (GAP-08, GAP-18)
+Open src/app/[locale]/faq/page.tsx
+1. Verify accordion opens on click. If answers are not visible:
+   - Open the first accordion item by default (add defaultOpen={true} to Q1)
+   - If using a custom accordion, ensure the click handler toggles a boolean state
+2. Remove the duplicate "Can AI work in Bangla?" that appears in the
+   "AI Basics — নাগরিকদের জন্য" section (Q13)
+3. Replace Q13 with: "How do I start using AI today?"
+   Answer: 3 steps: (1) Go to chat.openai.com or gemini.google.com (2) Type your
+   question in Bangla (3) Read the answer and verify important facts from other sources.
+   That's it. No English needed. No technical knowledge required.
+
+B5 — FIX HOMEPAGE NEWSLETTER BILINGUAL MIX (GAP-09)
+In the homepage, find the newsletter section.
+Current text: "এআই আপডেট পান / Get AI updates"
+This mixes Bangla and English in EN mode. Fix:
+  In EN mode: show ONLY "Get AI Updates — Free Weekly Newsletter"
+  In BN mode: show ONLY "এআই আপডেট পান — বিনামূল্যে সাপ্তাহিক নিউজলেটার"
+Use next-intl t() for translation. Add to messages/en.json:
+  "newsletter.heading": "Get AI Updates — Free Weekly Newsletter"
+Add to messages/bn.json:
+  "newsletter.heading": "এআই আপডেট পান — বিনামূল্যে সাপ্তাহিক নিউজলেটার"
+
+B6 — FIX PRESS PAGE WRONG BRAND COLORS (GAP-10)
+In src/app/[locale]/press/page.tsx:
+Find the "Brand Color System" section.
+Current (WRONG):
+  Deep Green #006A4E · Intelligence Blue #0F4C81 · Accent Red #E8432A
+Replace with (CORRECT — from globals.css):
+  Navy #1A2332 (headers, footer, hero)
+  Blue #2563EB (links, CTAs, active states)
+  Green #16A34A (BD flag green, positive indicators)
+  Red #DC2626 (BD flag red, warnings)
+  Muted Gray #64748B (captions, secondary labels)
+  Light Background #F8FAFC
+  Dark Background #0F172A
+
+B7 — ADD ELDERLY ROW TO /for-citizens LIFE STAGE TABLE (GAP-11)
+In src/app/[locale]/for-citizens/page.tsx:
+Find the life stage table (currently 9 rows).
+Add this 10th row AFTER the Journalist row:
+  Row: বয়স্ক / Elderly | স্বাস্থ্য তথ্য জানা, ওষুধের নাম মনে রাখা, পরিবারের সাথে যোগাযোগ সহজ করা | Gemini (সহজ ইন্টারফেস বিনামূল্যে)
+
+B8 — ADD TRACK RECORD TO /about/emon-hossain (GAP-12)
+In src/app/[locale]/about/emon-hossain/page.tsx:
+Add this section BEFORE the "Contact Emon" section:
+
+## Verified Research Initiatives
+1. Bangladesh AI Readiness Assessment 2026 — The first comprehensive
+   92-requirement AI readiness framework for Bangladesh, covering 15 domains
+   and identifying 67 critical gaps. Published March 2026.
+2. The Operating System (OS) — A 30+ section strategic AI policy document
+   for Bangladesh covering AI strategy, economy, governance, anti-corruption,
+   education, and workforce. Internal research foundation for all public work.
+3. BangladeshAI.org — Bangladesh's first independent, bilingual AI policy
+   research platform. Launched March 2026. 20+ pages of original content in
+   English and Bangla.
+
+B9 — ADD MISSING SECTIONS TO /for-government (GAP-15)
+In src/app/[locale]/for-government/page.tsx:
+Add this section AFTER the "Current Policy Framework" section and BEFORE the final CTA:
+
+## The Cost of Foreign AI Dependence
+
+Bangladesh currently spends an estimated $40–80 million annually on foreign
+AI subscriptions: ChatGPT, Midjourney, GitHub Copilot, and dozens of enterprise
+AI tools. This money leaves Bangladesh and widens the AI capability gap.
+
+The alternative:
+
+Foreign subscriptions: $40–80M per year = $400–800M over 10 years
+Sovereign AI infrastructure: $50–100M one-time build + $5–10M annual maintenance
+
+Building sovereign AI is not idealism — it is import substitution.
+
+## Pilot ROI: What the Evidence Shows
+
+NBR Tax Compliance AI Pilot:
+  500 high-risk corporate tax cases identified in the first 90-day deployment.
+  Estimated revenue recovery: 50–100x the system cost.
+  Method: Anomaly detection on top 100,000 corporate filers.
+
+Social Protection Beneficiary Verification AI:
+  Pilot in 3 districts identified approximately 15% ghost beneficiaries
+  — recipients who were dead, duplicate-registered, or had moved.
+  Projected savings at national scale: BDT 800 crore+ annually.
+
+B10 — FIX /resources DEAD PDF DOWNLOADS (GAP-24)
+In src/app/[locale]/resources/page.tsx:
+For EACH PDF card that shows "PDF coming soon — read the full paper online":
+Change the Download button to "Read Online →" and link to the online version:
+
+Card 1 (AI Readiness Brief 2026):
+  Button: "Read Full Assessment Online →"
+  href: "/research/ai-readiness"
+  Add note below: "Downloadable PDF edition: April 2026"
+
+Card 2 (Executive Brief EN):
+  Button: "Read Government Guide Online →"
+  href: "/for-government"
+  Add note below: "Printable PDF edition: April 2026"
+
+Card 3 (Executive Brief BN):
+  Button: "অনলাইনে পড়ুন →"
+  href: "/for-citizens"
+  Add note below: "পিডিএফ সংস্করণ: এপ্রিল ২০২৬"
+
+Card 4 (Cost of Inaction Memo):
+  Button: "Read Why Now →"
+  href: "/why-now"
+  Add note below: "Policy memo PDF: April 2026"
+
+B11 — FIX HOMEPAGE QUOTE AVATAR (GAP-25)
+In src/app/[locale]/page.tsx:
+Find the founder quote section. The "EH" initials are rendering as plain text.
+Fix the avatar to render as a styled circle:
+<div className="w-10 h-10 rounded-full bg-[#1A2332] text-white flex items-center
+ justify-center font-bold text-sm flex-shrink-0">
+  EH
+</div>
+
+══════════════════════════════════════════════════════════
+SECTION C — UX + MOBILE FIXES
+══════════════════════════════════════════════════════════
+
+C1 — FIX MOBILE TABLE OVERFLOW (GAP-22)
+These tables break on 375px mobile screens because they have 3 columns:
+  1. 20-ministry table on /for-government
+  2. Life stage table on /for-citizens
+  3. Comparison table on homepage
+  4. Comparison table on /reality-check
+
+For EACH table, wrap in a scrollable container:
+  FIND:    <table ...>
+  REPLACE: <div className="overflow-x-auto w-full -mx-4 px-4 sm:mx-0 sm:px-0">
+             <table className="min-w-[600px] w-full" ...>
+             ...
+             </table>
+           </div>
+
+This allows horizontal scroll on mobile without breaking layout.
+Add a subtle scroll hint on mobile: a faint right-edge gradient overlay
+to indicate horizontal scroll is available.
+
+C2 — FIX CTA BUTTON DESTINATIONS (GAP-14, GAP-17, GAP-33)
+
+/for-partners: Fix two buttons:
+  "Send a Partnership Enquiry" → href="/contact"
+  "Download Research Overview" → href="/resources"
+
+/roadmap: Fix one button:
+  "Submit Feedback" → href="mailto:emon@emonhossain.pro?subject=Bangladesh%20AI%20Roadmap%20Feedback"
+
+/for-citizens: Fix hero CTA:
+  "আজই শুরু করুন" (Start Today) → href="#3-steps"
+  Also add id="3-steps" to the 3-step guide section div
+
+C3 — FIX /contact FORM — ADD PATHWAY SELECTOR (GAP-16)
+In the contact form, add a <select> dropdown BEFORE the Message field:
+<label>I am a...<br/>
+<select name="pathway" required>
+  <option value="">Select your role</option>
+  <option value="institutional">Institutional Partner (University / INGO)</option>
+  <option value="dev-partner">Development Partner (World Bank / UNDP / ADB)</option>
+  <option value="media">Journalist / Media</option>
+  <option value="researcher">Researcher / Academic</option>
+  <option value="other">Other</option>
+</select>
+</label>
+
+C4 — FIX /about PAGE LINKS (GAP-23)
+In src/app/[locale]/about/page.tsx:
+Verify these 3 cards/links have correct href attributes:
+  "Meet the Founder" card/button → href="/about/emon-hossain"
+  "Independence Statement" card/button → href="/about/independence"
+  "Read our full methodology note" link → href="/about/methodology"
+
+C5 — ADD "LAST UPDATED" DATE TO DATA-HEAVY PAGES (GAP-21)
+Add this line directly below the hero section on these pages:
+  /reality-check → <p>Last updated: March 2026 · Data source: <a href="https://oxfordinsights.com/ai-readiness/ai-readiness-index/" target="_blank">Oxford Insights GGAI 2024</a></p>
+  /for-government → <p>Last updated: March 2026 · Source data: Oxford Insights GGAI 2024 · Bangladesh AI Policy V2.0 Draft</p>
+  /roadmap → <p>Published: March 2026 · Updated as new policy developments emerge</p>
+
+Style: text-sm text-muted (gray), italic, centered under the hero subtitle.
+
+C6 — ADD SOURCE HYPERLINKS (GAP-20)
+In EVERY page that mentions Oxford Insights:
+Replace all instances of:
+  "Oxford Insights Government AI Readiness Index 2024"
+  OR "Oxford Insights GGAI 2024"
+With a linked version:
+  <a href="https://oxfordinsights.com/ai-readiness/ai-readiness-index/"
+  target="_blank" rel="noopener noreferrer"
+  className="text-blue-600 hover:underline">Oxford Insights GGAI 2024</a>
+
+Affected pages: / (homepage) · /reality-check · /for-government · /why-now · /roadmap · /research/ai-readiness
+
+C7 — ADD BREADCRUMBS TO ALL PAGES (GAP-34)
+These pages are missing breadcrumbs:
+  /why-now → add: Home > Why Now
+  /faq → add: Home > FAQ
+  /newsletter → add: Home > Newsletter
+  /resources → add: Home > Resources
+
+Pattern: use the existing Breadcrumb component from @/components/ui/Breadcrumb
+If it doesn't exist, create it:
+<nav aria-label="Breadcrumb" className="text-sm text-muted mb-4">
+  <Link href="/" className="hover:text-blue-600">Home</Link>
+  <span className="mx-2">/</span>
+  <span>{pageTitle}</span>
+</nav>
+
+══════════════════════════════════════════════════════════
+SECTION D — SEO + SYSTEM FIXES
+══════════════════════════════════════════════════════════
+
+D1 — FIX /robots.txt (GAP-28)
+Create src/app/robots.ts:
+
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: '/api/',
+    },
+    sitemap: 'https://bangladeshai.org/sitemap.xml',
+  }
+}
+
+Test: /robots.txt must return plain text, not 404.
+
+D2 — CREATE /api/og OPEN GRAPH IMAGE API (GAP-29)
+Create src/app/api/og/route.tsx:
+
+import { ImageResponse } from 'next/og'
+import { NextRequest } from 'next/server'
+
+export const runtime = 'edge'
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url)
+  const title = searchParams.get('title') || 'Bangladesh AI Policy Research'
+
+  return new ImageResponse(
+    (
+      <div
+        style=
+          background: '#1A2332',
+          width: '1200px',
+          height: '630px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          padding: '80px',
+        
+      >
+        <div style= color: '#64748B', fontSize: '16px', marginBottom: '16px' >
+          BangladeshAI.org · Independent AI Policy Research
+        </div>
+        <div
+          style=
+            color: 'white',
+            fontSize: title.length > 50 ? '44px' : '54px',
+            fontWeight: '800',
+            lineHeight: '1.15',
+            maxWidth: '900px',
+          
+        >
+          {title}
+        </div>
+        <div
+          style=
+            position: 'absolute',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            height: '8px',
+            background: 'linear-gradient(90deg, #16A34A 50%, #DC2626 50%)',
+          
+        />
+      </div>
+    ),
+    { width: 1200, height: 630 }
+  )
+}
+
+Test: /api/og?title=Test+Page must return a 1200x630 PNG image.
+
+D3 — ADD JSON-LD STRUCTURED DATA TO KEY PAGES
+Add JSON-LD structured data to improve Google rich results:
+
+Homepage: Organization schema
+Add to src/app/[locale]/page.tsx in the <head> via generateMetadata or Script component:
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BangladeshAI.org",
+  "url": "https://bangladeshai.org",
+  "description": "Independent AI policy research for Bangladesh's 170 million people",
+  "founder": { "@type": "Person", "name": "Emon Hossain", "email": "emon@emonhossain.pro" },
+  "sameAs": ["https://twitter.com/bangladeshai", "https://linkedin.com/company/bangladeshai"]
+}
+
+Blog posts: Article schema
+Add to src/app/[locale]/blog/[slug]/page.tsx generateMetadata:
+  author: { "@type": "Person", "name": "Emon Hossain" }
+  datePublished: [post date]
+  headline: [post title]
+  publisher: { "@type": "Organization", "name": "BangladeshAI.org" }
+
+Research pages: ScholarlyArticle schema
+  Same as Article but @type: "ScholarlyArticle"
+
+══════════════════════════════════════════════════════════
+SECTION E — POLISH + CONVERSION UPGRADES
+══════════════════════════════════════════════════════════
+
+E1 — ADD SOCIAL SHARING BUTTONS (GAP-31)
+Add to the bottom of these 3 pages:
+  /reality-check · /for-citizens · /why-now
+
+Create a ShareButtons component:
+<div className="flex gap-3 items-center mt-8">
+  <span className="text-sm text-muted">Share this:</span>
+  <a href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(title)}`}
+     target="_blank" rel="noopener"
+     className="px-3 py-1.5 bg-[#1DA1F2] text-white text-sm rounded hover:opacity-90">
+    Twitter/X
+  </a>
+  <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+     target="_blank" rel="noopener"
+     className="px-3 py-1.5 bg-[#0077B5] text-white text-sm rounded hover:opacity-90">
+    LinkedIn
+  </a>
+  <a href={`https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`}
+     target="_blank" rel="noopener"
+     className="px-3 py-1.5 bg-[#25D366] text-white text-sm rounded hover:opacity-90">
+    WhatsApp 📱
+  </a>
+</div>
+
+WhatsApp is critical for Bangladeshi mobile audience.
+
+E2 — ADD SOCIAL LINKS TO /about/emon-hossain (GAP-13)
+Below the email and website links, add:
+<div className="flex gap-4 mt-3">
+  <a href="https://linkedin.com/in/emonhossain" target="_blank">LinkedIn</a>
+  <a href="https://twitter.com/emonhossain" target="_blank">Twitter/X</a>
+  <a href="https://github.com/sysmoai" target="_blank">GitHub</a>
+</div>
+(Update URLs to Emon's actual profiles)
+
+E3 — ADD NEWSLETTER SOCIAL PROOF (GAP-32)
+In src/app/[locale]/newsletter/page.tsx AND the homepage newsletter section:
+Add above the subscribe button:
+<p className="text-sm text-muted">
+  Join the first readers — issue #1 coming this Sunday.
+</p>
+Once subscribers exist, update to: "Join [N] researchers, officials, and citizens"
+
+E4 — VERIFY /for-citizens START TODAY CTA HAS ANCHOR (GAP-33 already in C2)
+Ensure the 3-step guide section has id="3-steps":
+<section id="3-steps" ...>
+
+══════════════════════════════════════════════════════════
+FINAL STEPS — BUILD + VERIFY
+══════════════════════════════════════════════════════════
+
+STEP 1: Run npm run build
+Fix ALL TypeScript errors until ZERO remain.
+Fix ALL ESLint errors.
+Build must complete successfully.
+
+STEP 2: Verify these 10 critical checks:
+▢ [EN|BN toggle] visible in header — switches locale on click
+▢ [☀️/🌙 toggle] visible in header — switches theme
+▢ /sitemap.xml — returns valid XML, no 500 error
+▢ Homepage title = "Bangladesh AI — Independent AI Policy Research"
+▢ /for-citizens intro text is in Bangla (not English)
+▢ FAQ accordion opens and shows answers
+▢ /reality-check Bangladesh row shows styled badge (not raw "Bangladesh← us")
+▢ /press brand colors show correct hex values (#1A2332, #2563EB, #16A34A, #DC2626)
+▢ Homepage Latest Insights shows March 2026 blog post dates (not Jan 2026)
+▢ /api/og?title=Test returns a 1200x630 image
+
+STEP 3: Report every section (A1–E4) with status: ✅ fixed / ❌ failed / ⚠️ partial
+List any items that could not be fixed and explain why.

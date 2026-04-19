@@ -1,0 +1,260 @@
+---
+title: "Anti-Corruption AI — A 4-Layer Framework for Bangladesh"
+slug: "anti-corruption"
+date: "2026-01-05"
+category: "Policy"
+excerpt: "How AI can systematically reduce corruption across Bangladesh's public institutions through a 4-layer framework: transaction monitoring, procurement transparency, whistleblower protection, and predictive integrity risk scoring."
+readTime: "16"
+author: "Emon Hossain"
+---
+
+# Anti-Corruption AI — A 4-Layer Framework for Bangladesh
+
+**Publication Date:** January 2026
+**Classification:** Policy Research Paper
+**Note:** This paper focuses on AI as a structural anti-corruption tool, not surveillance of individuals.
+
+---
+
+## Executive Summary
+
+Corruption is estimated to cost Bangladesh 2–3% of GDP annually — Tk 35,000–50,000 crore — through procurement fraud, tax evasion, bribery in service delivery, and regulatory capture. Traditional anti-corruption measures (transparency requirements, audit institutions, prosecution) have had limited impact because they are reactive, slow, and subject to political interference.
+
+AI offers a structural alternative: systems that detect corruption patterns automatically, in real time, at scale — reducing the dependence on any individual's integrity and making corruption harder to conceal.
+
+This paper proposes a **4-Layer Anti-Corruption AI Framework** for Bangladesh, with specific use cases, implementation requirements, and safeguards.
+
+---
+
+## Why AI for Anti-Corruption
+
+**The problem with current approaches:**
+
+Bangladesh's Anti-Corruption Commission (ACC) has 750 staff to monitor 1.5 million government employees and 25 million registered businesses. The Bangladesh Supreme Court has a 4-million-case backlog. The National Board of Revenue loses an estimated Tk 80,000 crore annually to evasion and corruption.
+
+No human organisation can monitor this at sufficient scale and speed.
+
+**What AI changes:**
+
+AI systems can monitor every government transaction, every procurement tender, and every tax declaration simultaneously — flagging anomalies for human review. They don't get tired, don't accept bribes, and don't have political connections.
+
+**The key distinction:** AI should flag; humans should decide. Anti-corruption AI does not replace due process, presumption of innocence, or human judgment. It makes human oversight effective at scale.
+
+---
+
+## The 4-Layer Framework
+
+### Layer 1: Transaction Monitoring AI
+
+**Target:** Financial flows in government accounts, procurement payments, tax collections, customs revenue.
+
+**Mechanism:** Real-time anomaly detection on the IBAS++ government financial management system and NBR databases, identifying:
+
+- Payments to newly registered companies immediately after contract award
+- Round-number transactions (common in bribery schemes)
+- Payments to vendors with addresses matching government officials
+- Split purchasing (breaking large contracts into small ones to avoid approval thresholds)
+- Late-quarter spending spikes inconsistent with project progress
+- Payments to offshore entities from ministries without international procurement mandates
+
+**Technical requirements:**
+- IBAS++ API access for real-time transaction feeds
+- NBR vendor registration database integration
+- Company registration data (RJSC) linkage
+- Rules engine + ML anomaly detection model
+
+**Safeguards:**
+- No automatic action — all flags require human review by ACC or Finance Ministry
+- Audit trail of all flags and dispositions
+- Monthly false-positive rate reporting
+- No individual financial monitoring without judicial authorisation
+
+**Estimated implementation:** 18 months; Tk 50 crore
+
+**Expected impact:** Identify 500+ suspicious transactions per year for investigation; estimated Tk 500+ crore in prevented fraud annually.
+
+---
+
+### Layer 2: Procurement Transparency AI (PTAI)
+
+**Target:** Bangladesh's government procurement process — approximately Tk 2,00,000 crore annually.
+
+**The corruption problem:** Tender manipulation (rigged specifications, bid coordination, winning vendor pre-selection), phantom work (payments for work not done), inflated valuations.
+
+**PTAI components:**
+
+**2A — Specification Analysis Engine:**
+Analyses tender specifications for language patterns that are common in rigged tenders: unusually narrow specifications matching a single vendor's product catalogue, copied text from vendor brochures, unusual technical requirements excluding otherwise qualified suppliers.
+
+**2B — Bid Pattern Detector:**
+Monitors bid submissions across all government tenders for:
+- Bid rotation (same set of companies wins in sequence, as if coordinated)
+- Complementary bidding (firms bidding high to let a pre-agreed winner win)
+- Bid suppression (qualified firms not bidding in specific tenders)
+- Price clustering (bids suspiciously close together)
+
+**2C — Vendor Network Mapper:**
+Maintains a relationship graph of vendors, directors, and government officials. Flags when:
+- Winning vendors share directors with government officials
+- Multiple bidders share registered addresses (phantom competition)
+- Vendor ownership chains lead to offshore entities with no disclosed Bangladesh presence
+
+**2D — Work Completion Verifier:**
+Uses satellite imagery and field photos (submitted via mobile app by field engineers) to verify that infrastructure projects have actually progressed as claimed before stage payments are released.
+
+**Platform:** Integrated with CPTU (Central Procurement Technical Unit) eProcurement system — already operational; needs AI module addition.
+
+**Estimated implementation:** 24 months; Tk 80 crore
+**Expected impact:** Reduce procurement corruption losses by 20–30%; estimated Tk 5,000–15,000 crore saved annually.
+
+---
+
+### Layer 3: Whistleblower Protection and Intake AI
+
+**Target:** Make it safe and effective for citizens and officials to report corruption.
+
+**The problem:** Bangladesh has a Whistleblower Protection Act (2011) but it is rarely used — reporters fear retaliation, and the ACC's intake process is slow, non-anonymous, and perceived as politically influenced.
+
+**AI-enhanced system:**
+
+**3A — Secure Anonymous Intake Platform:**
+End-to-end encrypted digital platform for corruption reports. AI pre-screens submissions:
+- Removes identifying metadata from uploads (photos, documents)
+- Classifies reports by type (procurement, tax, land, service delivery)
+- Routes to appropriate investigating unit
+- Sends encrypted status updates to anonymous reporter
+
+**3B — Report Corroboration Engine:**
+When a report is received, AI automatically checks:
+- Transaction records for patterns matching the allegation
+- Procurement records for the named tender
+- Land records for described property transfers
+- Cross-references with prior reports about the same entity
+
+Provides investigating officer with corroborating data within 24 hours of report receipt — dramatically reducing investigation initiation time.
+
+**3C — Retaliation Detection:**
+Monitors employment records, procurement awards, and land transactions involving named whistleblowers (with their consent) for patterns of retaliation — sudden dismissal, contract cancellations, regulatory actions — that may indicate suppression.
+
+**Safeguards:**
+- Platform operated by ACC with external audit by civil society
+- No AI-generated conclusions used in prosecution; AI evidence is corroborating only
+- Reporter consent required for all monitoring
+- Data retention limit: 5 years
+
+**Estimated implementation:** 12 months; Tk 20 crore
+
+---
+
+### Layer 4: Integrity Risk Prediction (IRP)
+
+**Target:** Proactively identify high-risk environments for corruption before it occurs, enabling preventive action.
+
+**Mechanism:** IRP scores government functions (not individuals) on corruption risk using:
+
+- Budget size and discretionary authority
+- Absence of digital transaction records
+- Historical complaint rates from citizens
+- Audit finding patterns
+- Staff rotation frequency
+
+**Output:** A quarterly Corruption Risk Map identifying the 100 highest-risk government functions — procurement offices, tax collection posts, land registration offices, customs checkpoints — for priority ACC audit and oversight.
+
+**Important distinction:** IRP scores environments and processes, not individuals. A high IRP score means "this function needs more oversight," not "this person is corrupt."
+
+**Application:**
+- ACC uses IRP to direct scarce audit resources
+- Finance Ministry uses IRP to prioritise digitisation (moving transactions online)
+- Anti-corruption reforms are targeted at highest-risk functions first
+
+**Estimated implementation:** 24 months; Tk 30 crore
+**Expected impact:** 40% improvement in ACC audit targeting efficiency (finding actionable cases in audited entities).
+
+---
+
+## Cross-Layer Requirements
+
+### Data Infrastructure
+All 4 layers require interconnected data access. Priority integrations:
+- IBAS++ (government financial management)
+- CPTU eProcurement
+- NBR tax and customs
+- RJSC company registration
+- Land records database
+- ACC case management system
+
+A **Government Anti-Corruption Data Hub (GADH)** — a secure, access-controlled data integration platform — is the foundational requirement for all 4 layers.
+
+### Governance and Oversight
+An **AI Anti-Corruption Oversight Board** should govern the framework:
+- Chair: Comptroller and Auditor General of Bangladesh
+- Members: ACC, NBR, Finance Division, TIB, civil society, BUET
+- Functions: Approve use cases, review false positive rates, investigate AI system misuse, publish annual transparency report
+
+### Legal Framework
+Bangladesh needs a **Fraud Detection Data Sharing Act** authorising the data integrations described above under strict access controls — currently these integrations would require individual ministry consent for each use.
+
+---
+
+## Bangladesh-Specific Calibrations
+
+**Challenge 1 — Political independence:** Anti-corruption AI must be protected from direction by political authority. The oversight board must include civil society and judiciary representation with dismissal protection.
+
+**Challenge 2 — Capacity:** ACC and Finance Ministry need 200+ AI-trained staff to manage and act on AI outputs. Training investment: Tk 15 crore over 3 years.
+
+**Challenge 3 — False positives:** An AI system that flags 1,000 suspicious transactions per month but only 50 are real requires enormous human review capacity. Threshold calibration is critical — start conservative (high specificity) even at cost of lower sensitivity.
+
+**Challenge 4 — Counter-adaptation:** Corrupt actors will adapt to avoid AI detection patterns. System must be continuously updated; this is not a one-time deployment.
+
+---
+
+## International Precedents
+
+**Georgia:** AI-assisted procurement transparency platform (e-Procurement) introduced 2010; estimated 20% savings in government procurement costs.
+
+**South Korea:** Anti-corruption data integration system (ACRC) operational since 2002; credited with Korea's rise from 40th to 32nd in Transparency International CPI.
+
+**Kenya:** IFMIS financial management AI introduced 2011; significant reduction in ghost worker payments (discovered 12,000 ghost workers in first year).
+
+**Ukraine:** ProZorro procurement transparency platform (open data + AI monitoring); estimated €5B in savings since 2016.
+
+**Key lesson:** Technology alone is insufficient. ProZorro succeeded because civil society had real-time access to procurement data. Georgia's system worked because political leadership genuinely supported it. Bangladesh's anti-corruption AI will fail if deployed as theatre while political protection for corruption continues.
+
+---
+
+## Cost-Benefit Summary
+
+| Layer | Implementation Cost | Annual Running Cost | Estimated Annual Benefit |
+|-------|-------------------|--------------------|-----------------------|
+| 1. Transaction Monitoring | Tk 50 crore | Tk 5 crore | Tk 500+ crore prevented fraud |
+| 2. Procurement PTAI | Tk 80 crore | Tk 8 crore | Tk 5,000–15,000 crore |
+| 3. Whistleblower AI | Tk 20 crore | Tk 2 crore | Qualitative (justice, deterrence) |
+| 4. Integrity Risk IRP | Tk 30 crore | Tk 3 crore | 40% audit efficiency gain |
+| **Total** | **Tk 180 crore** | **Tk 18 crore** | **Tk 5,500–15,500+ crore** |
+
+**Return on investment:** Even at the conservative estimate, every taka invested returns 30–85 taka in recovered or prevented losses.
+
+---
+
+## What AI Cannot Do
+
+Anti-corruption AI is not a substitute for political will. It cannot:
+- Prosecute cases — that requires judiciary independence
+- Protect whistleblowers from political harassment — that requires legal reform
+- Work when deployed systems are intentionally under-resourced
+- Function if the officials who receive AI alerts choose to ignore them
+- Prevent corruption enabled by legal means (regulatory capture, favourable legislation)
+
+Bangladesh's corruption problem is not merely technical. AI addresses the detection gap; political and judicial reform must address the accountability gap.
+
+---
+
+## Recommendations
+
+1. **Establish GADH by 2027** — the data foundation all layers require
+2. **Deploy Layer 1 (Transaction Monitoring) first** — highest ROI, lowest political sensitivity, 18-month implementation
+3. **Integrate AI with eProcurement immediately** — Layer 2 components 2A and 2B can begin in 2026
+4. **Pass Fraud Detection Data Sharing Act by 2026** — without legal authorisation, integrations cannot proceed
+5. **Ensure ACC independence** before deploying any AI — AI anti-corruption tools in politically compromised institutions become tools for selective enforcement, not genuine anti-corruption
+
+*Research contact: research@bangladeshai.org | TIB collaboration on methodology: ongoing*
