@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Source_Serif_4, Noto_Sans_Bengali } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 import { LanguageProvider } from '@/lib/language-context'
 import { ThemeProvider } from '@/lib/theme-context'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import CookieConsentBanner from '@/components/CookieConsentBanner'
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -103,19 +103,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
-          <Script
-            defer
-            data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
-            src="https://plausible.io/js/script.js"
-            strategy="afterInteractive"
-          />
-        )}
+        {/* Analytics loaded by CookieConsentBanner after user consent */}
         <ThemeProvider>
           <LanguageProvider>
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <CookieConsentBanner />
           </LanguageProvider>
         </ThemeProvider>
       </body>
