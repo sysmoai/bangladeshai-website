@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://bangladeshai.org/sitemap.xml
+
+# Disallow admin and internal paths
+Disallow: /api/

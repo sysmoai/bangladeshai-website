@@ -37,7 +37,10 @@ export default function ResearchPostClient({ post }: { post: Post }) {
                 {post.author}
               </Link>
             </div>
-            <button className="inline-flex items-center gap-2 text-sm text-blue-300 hover:text-white transition-colors">
+            <button
+              onClick={() => window.print()}
+              className="inline-flex items-center gap-2 text-sm text-blue-300 hover:text-white transition-colors"
+            >
               <Download size={14} /> {t.research.downloadPdf}
             </button>
           </div>

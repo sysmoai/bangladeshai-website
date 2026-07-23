@@ -1,1 +1,8 @@
-/*    /index.html   200
+# Redirects for BangladeshAI.org
+# Old broken paths → correct pages
+/independence          /about/independence    301
+/downloads             /resources             301
+/why-act-now           /why-now               301
+/insights/reality-check-2026 /reality-check   301
+/insights              /blog                  301
+/reports/ai-readiness-2024 /research/ai-readiness 301
