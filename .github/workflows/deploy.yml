@@ -1,21 +1,18 @@
-name: Deploy to GitHub Pages
+name: Deploy BangladeshAI (CF Pages)
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+    paths: ['apps/bangladeshai-website/**']
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
       - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: out
-          cname: bangladeshai.org
+        with: { node-version: 22, cache: 'pnpm', cache-dependency-path: apps/bangladeshai-website/pnpm-lock.yaml }
+      - run: cd apps/bangladeshai-website && pnpm install --frozen-lockfile && pnpm build
+      - uses: cloudflare/wrangler-action@v3
+        with: { apiToken: '${{ secrets.CF_API_TOKEN }}', accountId: '${{ secrets.CF_ACCOUNT_ID }}', command: 'pages deploy apps/bangladeshai-website/.next --project-name=bangladeshai-website --branch=main' }
