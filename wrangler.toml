@@ -1,26 +1,2 @@
 name = "bangladeshai-website"
-type = "javascript"
-account_id = "4ca6269edabb6ad2906d70ec6845de22"
-workers_dev = true
-route = ""
-zone_id = ""
-
-env.production.name = "bangladeshai-org"
-env.production.routes = [
-  { pattern = "bangladeshai.org", zone_name = "bangladeshai.org" },
-  { pattern = "www.bangladeshai.org", zone_name = "bangladeshai.org" }
-]
-
-[env.production.vars]
-ENVIRONMENT = "production"
-
-[build]
-command = "npm run build"
-cwd = "."
-watch_paths = ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js"]
-
-[build.upload]
-format = "service-worker"
-main = ".next/static/chunks/main.js"
-
-# [triggers.crons]
+pages_build_output_dir = ".next/static"
