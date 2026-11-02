@@ -28,6 +28,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
+  // Keep the document language in sync for screen readers and browser accessibility.
+  useEffect(() => {
+    document.documentElement.lang = language
+  }, [language])
+
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
     localStorage.setItem('bangladeshai-lang', lang)
