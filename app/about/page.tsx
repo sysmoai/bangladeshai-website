@@ -7,18 +7,18 @@ import { useLanguage } from '@/lib/language-context'
 const values = [
   {
     icon: Shield,
-    en: { title: 'Independence', desc: 'No government funding. No commercial sponsorship. No political affiliation. Our analysis is free from every form of institutional pressure.' },
-    bn: { title: 'স্বাধীনতা', desc: 'কোনো সরকারি অর্থায়ন নেই। কোনো বাণিজ্যিক স্পনসরশিপ নেই। কোনো রাজনৈতিক সংযোগ নেই। আমাদের বিশ্লেষণ প্রতিটি প্রাতিষ্ঠানিক চাপ থেকে মুক্ত।' },
+    en: { title: 'Independence', desc: 'We operate independently and claim no government endorsement or formal institutional partnerships. Any verified funding or affiliations should be transparently disclosed.' },
+    bn: { title: 'স্বাধীনতা', desc: 'আমরা স্বাধীনভাবে কাজ করি; কোনো সরকারি অনুমোদন বা আনুষ্ঠানিক প্রাতিষ্ঠানিক অংশীদারত্ব দাবি করছি না। যাচাইকৃত অর্থায়ন বা সংশ্লিষ্টতা প্রকাশ করা হবে।' },
   },
   {
     icon: Search,
-    en: { title: 'Evidence First', desc: 'Every claim we make is grounded in primary data, peer-reviewed methodology, and independently verifiable sources. We cite everything.' },
-    bn: { title: 'প্রমাণ প্রথম', desc: 'আমাদের প্রতিটি দাবি প্রাথমিক ডেটা, পিয়ার-রিভিউড পদ্ধতি এবং স্বাধীনভাবে যাচাইযোগ্য উৎসের উপর ভিত্তি করে।' },
+    en: { title: 'Evidence First', desc: 'We aim to cite traceable sources and distinguish verified facts from analysis and projections. Evidence gaps remain explicitly open for review.' },
+    bn: { title: 'প্রমাণ প্রথম', desc: 'আমরা যাচাইযোগ্য উৎস ব্যবহারের চেষ্টা করি এবং তথ্য, বিশ্লেষণ ও অনুমানের পার্থক্য স্পষ্ট করি। প্রমাণের ঘাটতি থাকলে তা সংশোধনাধীন হিসেবে দেখাই।' },
   },
   {
     icon: BookOpen,
-    en: { title: 'Radical Accessibility', desc: 'All research is free. All content is bilingual (English + Bangla). We write for a 15-year-old student and a ministry secretary equally.' },
-    bn: { title: 'আমূল প্রবেশযোগ্যতা', desc: 'সমস্ত গবেষণা বিনামূল্যে। সমস্ত বিষয়বস্তু দ্বিভাষিক (ইংরেজি + বাংলা)। আমরা একটি ১৫ বছর বয়সী শিক্ষার্থী এবং একজন মন্ত্রণালয় সচিব উভয়ের জন্য সমানভাবে লিখি।' },
+    en: { title: 'Radical Accessibility', desc: 'The current website materials are free to read. Bangla and English coverage is expanding; some research drafts are currently English-only.' },
+    bn: { title: 'আমূল প্রবেশযোগ্যতা', desc: 'ওয়েবসাইটের বর্তমান উপকরণ বিনামূল্যে পড়া যায়। বাংলা ও ইংরেজি কনটেন্ট বাড়ছে; কিছু গবেষণা খসড়া এখনো শুধু ইংরেজিতে আছে।' },
   },
   {
     icon: Users,
@@ -73,8 +73,8 @@ export default function AboutPage() {
           <div className={`text-text-secondary leading-relaxed text-lg space-y-4 ${font}`}>
             <p>
               {b(
-                'BangladeshAI.org is an independent research and advocacy platform dedicated to ensuring Bangladesh is prepared for the artificial intelligence revolution. Founded in 2024 by Emon Hossain, it produces rigorous policy research, educational content, and strategic recommendations — all freely available to the public in both English and Bangla.',
-                'BangladeshAI.org একটি স্বাধীন গবেষণা ও পক্ষসমর্থন প্ল্যাটফর্ম যা বাংলাদেশকে কৃত্রিম বুদ্ধিমত্তা বিপ্লবের জন্য প্রস্তুত করতে নিবেদিত। ২০২৪ সালে ইমন হোসেন প্রতিষ্ঠিত, এটি কঠোর নীতি গবেষণা, শিক্ষামূলক বিষয়বস্তু এবং কৌশলগত সুপারিশ তৈরি করে।'
+                'BangladeshAI.org is an independent research and advocacy platform dedicated to ensuring Bangladesh is prepared for the artificial intelligence revolution. Led by Emon Hossain, it develops research drafts, educational content and policy recommendations. Language availability and evidence maturity differ by item.',
+                'BangladeshAI.org একটি স্বাধীন গবেষণা ও পক্ষসমর্থন প্ল্যাটফর্ম যা বাংলাদেশকে কৃত্রিম বুদ্ধিমত্তা বিপ্লবের জন্য প্রস্তুত করতে নিবেদিত। ইমন হোসেনের নেতৃত্বে উদ্যোগটি গবেষণা খসড়া, শিক্ষামূলক বিষয়বস্তু ও নীতিগত সুপারিশ তৈরি করছে; প্রতিটি উপকরণের প্রমাণ ও ভাষার পরিসর এক নয়।'
               )}
             </p>
             <p>
@@ -128,13 +128,13 @@ export default function AboutPage() {
               },
               {
                 step: '02',
-                en: { title: 'Confidence Labeling', desc: 'Every claim is labeled: Conservative (verified fact), Moderate (supported analysis), or Planning Hypothesis (projection).' },
-                bn: { title: 'আস্থা লেবেলিং', desc: 'প্রতিটি দাবিতে লেবেল আছে: রক্ষণশীল (যাচাইকৃত তথ্য), মধ্যপন্থী (সমর্থিত বিশ্লেষণ), বা পরিকল্পনা অনুমান।' },
+                en: { title: 'Confidence Labeling', desc: 'Our editorial framework distinguishes sourced facts, supported analysis, and planning projections; labels and citations are being audited.' },
+                bn: { title: 'আস্থা লেবেলিং', desc: 'তথ্য, বিশ্লেষণ ও পরিকল্পনাগত অনুমান আলাদা করার ব্যবস্থা উন্নয়নাধীন; উৎস ও লেবেল যাচাই চলছে।' },
               },
               {
                 step: '03',
-                en: { title: 'Bilingual Publication', desc: 'Every research paper is published natively in both English and Bangla — not machine-translated.' },
-                bn: { title: 'দ্বিভাষিক প্রকাশনা', desc: 'প্রতিটি গবেষণা পত্র ইংরেজি এবং বাংলা উভয়েই স্থানীয়ভাবে প্রকাশিত হয় — মেশিন-অনুবাদ নয়।' },
+                en: { title: 'Bilingual Publication', desc: 'Our goal is to provide reviewed Bangla and English editions where practical; current drafts are not all available in both languages.' },
+                bn: { title: 'দ্বিভাষিক প্রকাশনা', desc: 'আমাদের লক্ষ্য বাংলা ও ইংরেজিতে যাচাইকৃত সংস্করণ দেওয়া; বর্তমানে সব গবেষণা খসড়ার দুই ভাষার সংস্করণ নেই।' },
               },
             ].map((item) => {
               const content = isBn ? item.bn : item.en
