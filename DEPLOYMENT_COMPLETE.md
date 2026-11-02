@@ -1,3 +1,12 @@
+> **ARCHIVED DEPLOYMENT NOTES — NOT CURRENT STATUS (checked 2026-11-03).**
+> This file records an August 2026 claim, not a verified current website deployment.
+> Public `https://bangladeshai.org` presently returns HTTP 402; `bangladeshai-website.pages.dev` has NXDOMAIN.
+> The current code, QA evidence, Cloudflare access blockers, and actual production NO-GO status are tracked in
+> [the release checkpoint](docs/LAUNCH_CHECKPOINT_2026-11-03.md).
+> **Do not rely on any “LIVE”, “deployment complete”, or “automatic deployment” statements below without new independent proof.**
+
+---
+
 # 🎉 BangladeshAI.Org - DEPLOYMENT COMPLETE
 
 **Status: ✅ LIVE ON CLOUDFLARE PAGES**

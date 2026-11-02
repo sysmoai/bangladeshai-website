@@ -2,6 +2,18 @@
 
 **State: STATIC BUILD PASS / PRODUCTION NO-GO.** Do not equate a green GitHub Actions run with a live domain.
 
+## Verified QA and security update — 2026-11-03
+
+- Review branch now includes the validated Next.js **15.5.28** migration, frozen `pnpm-lock.yaml`, and root `pnpm-workspace.yaml` patched transitive dependency overrides (merged via review PR #2, **not** production).
+- Isolated pilot evidence: https://github.com/sysmoai/bangladeshai-website/actions/runs/41503142435 — complete Next 15 build, 44 exported HTML files, 2,791 anchor references, 0 broken internal URLs and **`pnpm audit --prod --audit-level high`: no known vulnerabilities**.
+- Prior recovery browser QA: https://github.com/sysmoai/bangladeshai-website/actions/runs/41501490426 — eight local critical routes loaded in headless Chrome; desktop/mobile screenshots archived. This does **not** establish WCAG compliance or successful production deployment.
+- The GitHub Actions release pipeline now refuses high-severity production dependency advisories and requires static build/link audit. A latest-current-head QA run must still pass after the Next 15 merge.
+- Auth check: GitHub's `CLOUDFLARE_API_TOKEN` secret is absent; conditional staging deployment **skipped**. **No accessible Cloudflare session or domain registrar admin.**
+- RDAP registrar confirms **Squarespace Domains LLC** (public WHOIS), DNS hosted on Google Domains nameservers; Zoho MX/SPF exist, **`_dmarc.bangladeshai.org` TXT not found** at the latest public check. DNS change authority and DKIM health are unverified. Never touch email records before backup.
+- Contact and newsletter forms now refuse to claim delivery/subscription when backend configuration is absent; editorial disclosures updated. Availability of email and endpoints remains unverified.
+
+**Production remains NO-GO.** Missing Cloudflare identity/session and domain registrar control are authorization boundaries, not solvable by GitHub repository permissions alone.
+
 ## Evidence: current public infrastructure
 
 | Check | Observed |

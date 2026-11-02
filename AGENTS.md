@@ -5,7 +5,7 @@
 ## Source and isolation
 - Official site: `https://bangladeshai.org`
 - Canonical source: `sysmoai/bangladeshai-website`
-- Stack: Next.js 14 App Router, React 18, Tailwind, Bangla/English client-side language toggle.
+- Stack: Next.js 15.5.28 App Router, React 18, Tailwind, Bangla/English client-side language toggle.
 - Use only BangladeshAI.Org accounts and assets; do not cross business-unit credentials, DNS, documents, analytics or financial data.
 - Owner-approved launch goal does not authorize exposing passwords/tokens, fabricating credentials/claims, unsafe domain edits or purchases.
 
@@ -15,6 +15,7 @@ corepack enable
 corepack prepare pnpm@10.33.2 --activate
 pnpm install --frozen-lockfile
 node --test tests/*.test.mjs
+pnpm audit --prod --audit-level high
 pnpm build
 node scripts/verify-static-output.mjs out
 node scripts/audit-static-links.mjs out

@@ -6,7 +6,7 @@ Independent, public-interest initiative focused on evidence-based AI research an
 
 ## Repository
 - Canonical code: [sysmoai/bangladeshai-website](https://github.com/sysmoai/bangladeshai-website)
-- Framework: Next.js 14 App Router; React 18, Tailwind 3, TS
+- Framework: Next.js 15.5.28 App Router; React 18, Tailwind 3, TS
 - Website: English and Bangla client-side selection; static articles and research drafts in `content/`
 - Cloudflare Pages static output: `out/` from `pnpm build`
 
@@ -21,6 +21,7 @@ pnpm dev
 ## Release QA
 ```bash
 node --test tests/*.test.mjs
+pnpm audit --prod --audit-level high
 pnpm build
 node scripts/verify-static-output.mjs out
 node scripts/audit-static-links.mjs out
