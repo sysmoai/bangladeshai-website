@@ -515,7 +515,7 @@ export default function RealityCheckClient() {
             )}
           </p>
           <Link
-            href="/research/ai-readiness-2026"
+            href="/research/ai-readiness"
             className="inline-flex items-center gap-2 bg-bd-green text-white px-8 py-3.5 rounded-lg font-semibold text-base hover:opacity-90 transition-opacity"
           >
             {bn('Read Full Research', 'পূর্ণ গবেষণা পড়ুন')} <ArrowRight size={18} />
