@@ -19,10 +19,10 @@ const placeholderResearch = [
 const comparisonData = [
   { country: 'Singapore', score: 84.25, highlight: false },
   { country: 'UAE', score: 75.66, highlight: false },
-  { country: 'South Korea', score: 75.24, highlight: false },
+  { country: 'South Korea', score: 79.98, highlight: false },
   { country: 'India', score: 62.81, highlight: false },
-  { country: 'Rwanda', score: 57.07, highlight: false },
-  { country: 'Indonesia', score: 55.96, highlight: false },
+  { country: 'Rwanda', score: 51.25, highlight: false },
+  { country: 'Indonesia', score: 65.85, highlight: false },
   { country: 'Vietnam', score: 61.42, highlight: false },
   { country: 'Bangladesh', score: 47.12, highlight: true },
 ]
@@ -90,6 +90,11 @@ export default function Home() {
               <StatCard key={stat.label} value={stat.value} label={stat.label} suffix={stat.suffix} />
             ))}
           </div>
+          <p role="note" className="mt-6 text-center text-xs text-text-secondary max-w-4xl mx-auto leading-relaxed">
+            {language === 'bn'
+              ? 'উৎসের সীমা: ৪৭.১২ স্কোর ও ১৮৮ দেশের মধ্যে ৮০তম অবস্থান Oxford Insights ২০২৪ সূচকের। ৯২টি সূচক ও ৬৭টি সম্ভাব্য ঘাটতি BangladeshAI.org-এর যাচাই-চলমান অভ্যন্তরীণ মূল্যায়নের অংশ, Oxford Insights-এর ফল নয়।'
+              : 'Source distinction: 47.12/100 and rank 80/188 are Oxford Insights (2024) results. The 92-item framework and 67 estimated gaps are BangladeshAI.org internal working claims, not findings from Oxford Insights.'}
+          </p>
         </div>
       </section>
 
@@ -145,7 +150,7 @@ export default function Home() {
           </div>
           <p className={`text-xs text-text-secondary mt-3 text-center ${language === 'bn' ? 'font-bangla' : ''}`}>
             {language === 'bn' ? 'উৎস: ' : 'Source: '}
-            <a href="https://oxfordinsights.com/ai-readiness/ai-readiness-index/" target="_blank" rel="noopener noreferrer" className="text-primary-blue hover:underline">Oxford Insights GGAI 2024</a>
+            <a href="https://oxfordinsights.com/wp-content/uploads/2024/12/2024-Government-AI-Readiness-Index-2.pdf" target="_blank" rel="noopener noreferrer" className="text-primary-blue hover:underline">Oxford Insights GGAI 2024</a>
           </p>
         </div>
       </section>
