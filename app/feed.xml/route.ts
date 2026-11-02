@@ -1,6 +1,9 @@
 import { getAllPosts, getPostBySlug } from '@/lib/content'
 import { NextResponse } from 'next/server'
 
+// Next.js 15 static export requires a fixed render mode for route handlers.
+export const dynamic = 'force-static'
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bangladeshai.org'
 
 const FALLBACK_POSTS = [

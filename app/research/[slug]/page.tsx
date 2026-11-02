@@ -107,9 +107,10 @@ This assessment uses the Oxford Insights Government AI Readiness Index framework
 
 *Full research paper with data and citations available upon request via research@bangladeshai.org*`
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getPostBySlug('research', params.slug, 'en')
-  const fb = ALL_PAPERS[params.slug]
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = getPostBySlug('research', slug, 'en')
+  const fb = ALL_PAPERS[slug]
   const data = post || fb
 
   if (!data) return { title: 'Research Not Found — BangladeshAI.org' }
@@ -133,7 +134,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: data.excerpt,
       images: [ogUrl],
     },
-    alternates: { canonical: `${siteUrl}/research/${params.slug}/` },
+    alternates: { canonical: `${siteUrl}/research/${slug}/` },
   }
 }
 
@@ -143,10 +144,11 @@ export function generateStaticParams() {
   return allSlugs.map((slug) => ({ slug }))
 }
 
-export default function ResearchPostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug('research', params.slug, 'en')
-  const fb = ALL_PAPERS[params.slug]
-  const data = post || (fb ? { ...fb, slug: params.slug, author: 'Emon Hossain', content: FALLBACK_CONTENT } : null)
+export default async function ResearchPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getPostBySlug('research', slug, 'en')
+  const fb = ALL_PAPERS[slug]
+  const data = post || (fb ? { ...fb, slug: slug, author: 'Emon Hossain', content: FALLBACK_CONTENT } : null)
 
   if (!data) notFound()
 
@@ -167,7 +169,7 @@ export default function ResearchPostPage({ params }: { params: { slug: string } 
       name: 'BangladeshAI.org',
       url: siteUrl,
     },
-    url: `${siteUrl}/research/${params.slug}/`,
+    url: `${siteUrl}/research/${slug}/`,
     inLanguage: 'en-US',
     about: 'Artificial Intelligence Policy, Bangladesh',
     keywords: `AI, Bangladesh, ${data.category}, AI Policy, AI Readiness`,
@@ -179,7 +181,7 @@ export default function ResearchPostPage({ params }: { params: { slug: string } 
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
       { '@type': 'ListItem', position: 2, name: 'Research', item: `${siteUrl}/research` },
-      { '@type': 'ListItem', position: 3, name: data.title, item: `${siteUrl}/research/${params.slug}/` },
+      { '@type': 'ListItem', position: 3, name: data.title, item: `${siteUrl}/research/${slug}/` },
     ],
   }
 

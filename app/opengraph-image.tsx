@@ -2,6 +2,8 @@ import { ImageResponse } from 'next/og'
 
 // Static Open Graph artwork for Cloudflare Pages. No runtime query parameters.
 // This is a single generic project image, not proof of research publication.
+export const dynamic = 'force-static'
+
 export const alt = 'BangladeshAI.org — Research, Education & Impact';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';

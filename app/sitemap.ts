@@ -3,6 +3,9 @@ import { getAllPosts } from '@/lib/content';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bangladeshai.org';
 
+// Required for Next.js 15 static export of metadata routes.
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // Publish only real, canonical URLs. Locale toggle is client-side;
   // /en/* and /bn/* do not have independently localized server-rendered pages.
