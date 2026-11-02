@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: data.excerpt,
       images: [ogUrl],
     },
-    alternates: { canonical: `${siteUrl}/blog/${params.slug}` },
+    alternates: { canonical: `${siteUrl}/blog/${params.slug}/` },
   }
 }
 
@@ -150,7 +150,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       name: 'BangladeshAI.org',
       url: siteUrl,
     },
-    url: `${siteUrl}/blog/${params.slug}`,
+    url: `${siteUrl}/blog/${params.slug}/`,
     articleSection: data.category,
     inLanguage: 'en-US',
   }
@@ -161,7 +161,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
       { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
-      { '@type': 'ListItem', position: 3, name: data.title, item: `${siteUrl}/blog/${params.slug}` },
+      { '@type': 'ListItem', position: 3, name: data.title, item: `${siteUrl}/blog/${params.slug}/` },
     ],
   }
 
