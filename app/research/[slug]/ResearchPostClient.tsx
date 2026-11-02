@@ -28,6 +28,9 @@ export default function ResearchPostClient({ post }: { post: Post }) {
               {post.excerpt}
             </p>
           )}
+          <p role="note" className="mt-5 rounded-lg border border-amber-400/40 bg-amber-900/20 px-4 py-3 text-sm text-amber-100">
+            Working research draft. Sources and claims require independent validation; this page is not evidence of peer review, DOI or journal publication.
+          </p>
           <div className="flex items-center gap-4 mt-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-bd-green flex items-center justify-center text-white font-bold text-xs">
@@ -41,7 +44,7 @@ export default function ResearchPostClient({ post }: { post: Post }) {
               onClick={() => window.print()}
               className="inline-flex items-center gap-2 text-sm text-blue-300 hover:text-white transition-colors"
             >
-              <Download size={14} /> {t.research.downloadPdf}
+              <Download size={14} /> {language === 'bn' ? 'প্রিন্ট / PDF হিসেবে সংরক্ষণ' : 'Print / Save as PDF'}
             </button>
           </div>
         </div>
