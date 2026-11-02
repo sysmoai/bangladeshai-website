@@ -114,7 +114,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   if (!data) return { title: 'Research Not Found — BangladeshAI.org' }
 
-  const ogUrl = `${siteUrl}/api/og?title=${encodeURIComponent(data.title)}&category=${encodeURIComponent(data.category)}&readTime=${encodeURIComponent(data.readTime)}`
+  const ogUrl = `${siteUrl}/opengraph-image`
 
   return {
     title: `${data.title} — BangladeshAI.org`,
