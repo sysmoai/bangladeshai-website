@@ -1,40 +1,32 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
+import { getAllPosts } from '@/lib/content';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://bangladeshai.org'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bangladeshai.org';
 
+export default function sitemap(): MetadataRoute.Sitemap {
+  // Publish only real, canonical URLs. Locale toggle is client-side;
+  // /en/* and /bn/* do not have independently localized server-rendered pages.
   const staticRoutes = [
-    '',
-    '/en',
-    '/bn',
-    '/en/about',
-    '/bn/about',
-    '/en/research',
-    '/bn/research',
-    '/en/blog',
-    '/bn/blog',
-    '/en/reality-check',
-    '/bn/reality-check',
-    '/en/roadmap',
-    '/bn/roadmap',
-    '/en/for-government',
-    '/bn/for-government',
-    '/en/for-citizens',
-    '/bn/for-citizens',
-    '/en/for-partners',
-    '/bn/for-partners',
-    '/en/newsletter',
-    '/bn/newsletter',
-    '/en/contact',
-    '/bn/contact',
-    '/en/resources',
-    '/bn/resources',
-  ]
-
-  return staticRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' || route === '/en' || route === '/bn' ? 1.0 : 0.8,
-  }))
+    '', '/about', '/about/emon-hossain', '/about/independence',
+    '/about/methodology', '/blog', '/contact', '/faq', '/for-citizens',
+    '/for-government', '/for-partners', '/for-students', '/glossary',
+    '/mission', '/newsletter', '/press', '/reality-check', '/research',
+    '/resources', '/roadmap', '/why-now'
+  ];
+  const now = new Date();
+  const staticItems = staticRoutes.map((route) => ({
+    url: `${siteUrl}${route}/`.replace(`${siteUrl}//`, `${siteUrl}/`),
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: route === '' ? 1 : 0.7,
+  }));
+  const datedItems = (['blog','research'] as const).flatMap((type) =>
+    getAllPosts(type, 'en').map((item) => ({
+      url: `${siteUrl}/${type}/${item.slug}/`,
+      lastModified: Number.isNaN(Date.parse(item.date)) ? now : new Date(item.date),
+      changeFrequency: 'monthly' as const,
+      priority: type === 'research' ? 0.8 : 0.6,
+    }))
+  );
+  return [...staticItems, ...datedItems];
 }
