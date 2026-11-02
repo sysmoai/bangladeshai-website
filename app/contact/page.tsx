@@ -36,35 +36,32 @@ export default function ContactPage() {
   const [selectedPathway, setSelectedPathway] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!FORMSPREE_ID?.trim()) {
+      setError('Online contact form is not configured. Please use the direct contact link.')
+      return
+    }
     setSubmitting(true)
+    setError('')
     const form = e.currentTarget
     const data = new FormData(form)
-
-    if (FORMSPREE_ID) {
-      try {
-        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-          method: 'POST',
-          body: data,
-          headers: { Accept: 'application/json' },
-        })
-        if (res.ok) {
-          setSubmitted(true)
-          form.reset()
-        }
-      } catch {
-        // fall through to mailto
-      }
-    } else {
-      // No Formspree ID — open mailto as fallback
-      const name = data.get('name') as string
-      const email = data.get('email') as string
-      const message = data.get('message') as string
-      window.location.href = `mailto:emon@emonhossain.pro?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      })
+      if (!res.ok) throw new Error('Submission rejected by provider')
+      setSubmitted(true)
+      form.reset()
+    } catch {
+      setError('The message was not confirmed as sent. Please use the direct email contact instead.')
+    } finally {
+      setSubmitting(false)
     }
-    setSubmitting(false)
   }
 
   return (
@@ -124,16 +121,27 @@ export default function ContactPage() {
         <div className="max-w-2xl mx-auto">
           <h2 className={`text-xl font-bold text-text-primary mb-8 ${font}`}>{b('Send a Message', 'একটি বার্তা পাঠান')}</h2>
 
-          {submitted ? (
+          {!FORMSPREE_ID?.trim() ? (
+            <div role="status" className="bg-bg-light p-8 rounded-2xl border border-border-color text-center">
+              <h3 className={`font-bold text-text-primary mb-3 ${font}`}>
+                {b('Online form not available yet', 'অনলাইন ফর্ম এখনো চালু হয়নি')}
+              </h3>
+              <p className={`text-sm text-text-secondary mb-5 ${font}`}>
+                {b('Messages are not collected on this page until a verified backend is available. You can contact us using email.', 'যাচাইকৃত সেবা চালু না হওয়া পর্যন্ত এখানে বার্তা জমা নেওয়া হচ্ছে না। ইমেইলে যোগাযোগ করতে পারেন।')}
+              </p>
+              <a href="mailto:emon@emonhossain.pro" className="font-semibold text-primary-blue underline">emon@emonhossain.pro</a>
+            </div>
+          ) : submitted ? (
             <div className="bg-bd-green/10 border border-bd-green/30 rounded-xl p-8 text-center">
               <div className="text-4xl mb-4">✓</div>
               <h3 className={`text-lg font-bold text-bd-green mb-2 ${font}`}>{b('Message Sent!', 'বার্তা পাঠানো হয়েছে!')}</h3>
               <p className={`text-text-secondary text-sm ${font}`}>
-                {b('We\'ll respond within 48 hours. For urgent matters, email emon@emonhossain.pro directly.', 'আমরা ৪৮ ঘণ্টার মধ্যে সাড়া দেব। জরুরি বিষয়ে সরাসরি emon@emonhossain.pro ইমেইল করুন।')}
+                {b('The form provider accepted your message. No response-time guarantee is implied; you can also email emon@emonhossain.pro.', 'ফর্ম সেবাদাতা বার্তাটি গ্রহণ করেছে। উত্তর দেওয়ার সময় নিশ্চিত নয়; সরাসরি emon@emonhossain.pro ইমেইল করতে পারেন।')}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5 bg-bg-light p-8 rounded-2xl border border-border-color">
+              {error && <p role="alert" className="text-red-700 text-sm">{isBn ? "বার্তা পাঠানো নিশ্চিত হয়নি। সরাসরি ইমেইল করুন।" : error}</p>}
               <input type="hidden" name="pathway" value={selectedPathway} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
