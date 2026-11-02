@@ -463,7 +463,7 @@ export default function RoadmapPage() {
               {b(isBn, 'Submit Feedback', 'মতামত দিন')}
             </a>
             <Link
-              href="/research/research/national-strategy"
+              href="/research/national-strategy"
               className="inline-flex items-center gap-2 text-primary-blue font-semibold hover:underline text-sm"
             >
               {b(isBn, '12-Pillar Strategy Paper →', '১২ স্তম্ভ কৌশলপত্র →')}
