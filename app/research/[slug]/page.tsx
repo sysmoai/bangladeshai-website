@@ -152,11 +152,11 @@ export default function ResearchPostPage({ params }: { params: { slug: string } 
 
   const scholarlyArticleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ScholarlyArticle',
+    '@type': 'CreativeWork',
     headline: data.title,
     description: data.excerpt,
-    datePublished: data.date,
-    dateModified: data.date,
+    dateCreated: data.date,
+    creativeWorkStatus: 'Working draft: not peer reviewed or verified as journal published',
     author: {
       '@type': 'Person',
       name: 'Emon Hossain',
