@@ -6,5 +6,3 @@
 /insights/reality-check-2026 /reality-check/ 301
 /insights /blog/ 301
 /reports/ai-readiness-2024 /research/ai-readiness/ 301
-/en/* /:splat 302
-/bn/* /:splat 302
