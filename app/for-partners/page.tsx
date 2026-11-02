@@ -4,35 +4,35 @@ import { ChevronRight, CheckCircle, BookOpen, Database, MessageSquare, Graduatio
 
 export const metadata: Metadata = {
   title: 'For Development Partners — BangladeshAI.org',
-  description: 'Rigorous AI policy research and strategic advisory for organizations working on Bangladesh digital future. Partnership opportunities for UNDP, World Bank, ADB, FCDO, and academic institutions.',
+  description: 'Independent AI research and education initiative open to exploratory dialogue with prospective development and academic stakeholders. No existing partnerships implied.',
 }
 
 const WHAT_WE_OFFER = [
   {
     icon: BookOpen,
     title: 'Research Partnership',
-    desc: 'Co-authorship on AI policy papers with full citation rights. Joint research published under Creative Commons CC BY 4.0.',
+    desc: 'Proposed joint research, subject to a future agreement, evidence review, clear attribution and publication permissions.',
     color: 'text-primary-blue',
     bg: 'bg-blue-50',
   },
   {
     icon: Database,
     title: 'Data Access',
-    desc: 'Early access to BangladeshAI.org datasets and the full 92-requirement AI readiness assessment with domain-level breakdowns.',
+    desc: 'Potential access to datasets after they are documented, quality-checked, and approved for public release. No completed dataset is promised.',
     color: 'text-bd-green',
     bg: 'bg-green-50',
   },
   {
     icon: MessageSquare,
     title: 'Policy Advisory',
-    desc: 'Background briefings for country teams and programme design. Expert input on AI governance, digital rights, and ICT policy.',
+    desc: 'Exploratory policy discussions and public-interest research briefings. No existing formal advisory role is claimed.',
     color: 'text-purple-600',
     bg: 'bg-purple-50',
   },
   {
     icon: GraduationCap,
     title: 'Capacity Building',
-    desc: 'AI literacy training materials in English and Bangla. Curriculum design for government officials, civil society, and communities.',
+    desc: 'Proposed Bangla and English AI literacy resources; scope and delivery would be agreed before any engagement.',
     color: 'text-amber-600',
     bg: 'bg-amber-50',
   },
@@ -47,8 +47,9 @@ const EVIDENCE_GAPS = [
 ]
 
 const PARTNERS = [
-  'UNDP', 'World Bank', 'ADB', 'FCDO', 'USAID', 'GIZ', 'KOICA',
-  'International NGOs', 'Academic Institutions', 'Bilateral Agencies', 'Philanthropic Foundations',
+  'Development Organizations', 'Universities and Research Institutes',
+  'Civil Society Organizations', 'Public-Interest Researchers',
+  'Education Initiatives', 'Philanthropic Foundations',
 ]
 
 export default function ForPartnersPage() {
@@ -73,7 +74,7 @@ export default function ForPartnersPage() {
             For Development Partners
           </h1>
           <p className="text-xl text-blue-200 max-w-2xl mx-auto leading-relaxed">
-            Rigorous AI policy research and strategic advisory for organizations working on Bangladesh&rsquo;s digital future.
+            An independent AI research and education initiative inviting dialogue on Bangladesh&rsquo;s digital future.
           </p>
         </div>
       </section>
@@ -81,9 +82,9 @@ export default function ForPartnersPage() {
       {/* Who we work with */}
       <section className="bg-bg-surface py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-text-primary mb-3 text-center">Who We Work With</h2>
+          <h2 className="text-2xl font-bold text-text-primary mb-3 text-center">Who We Hope to Engage</h2>
           <p className="text-text-secondary text-center mb-10 max-w-2xl mx-auto">
-            BangladeshAI.org partners with international organizations that share our commitment to evidence-based AI governance for Bangladesh.
+            The following are categories of prospective stakeholders, not existing partners, funders or endorsers.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {PARTNERS.map((partner) => (
@@ -103,7 +104,7 @@ export default function ForPartnersPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-text-primary mb-3 text-center">What We Offer</h2>
           <p className="text-text-secondary text-center mb-10 max-w-2xl mx-auto">
-            Four partnership tracks designed for different organizational needs and programme types.
+            Four possible collaboration areas. No engagement, funding or formal partnership is implied until independently verified.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {WHAT_WE_OFFER.map((item) => {
@@ -130,15 +131,15 @@ export default function ForPartnersPage() {
             <div className="space-y-4 text-blue-100 text-sm leading-relaxed">
               <div className="flex items-start gap-3">
                 <CheckCircle size={18} className="text-bd-green flex-shrink-0 mt-0.5" />
-                <p>All partnerships include an <strong className="text-white">editorial independence clause</strong>. Partners receive final reports — not drafts for approval.</p>
+                <p>Any future formal partnership would require an <strong className="text-white">editorial independence clause</strong> and a written agreement protecting research integrity.</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle size={18} className="text-bd-green flex-shrink-0 mt-0.5" />
-                <p>Partners <strong className="text-white">cannot influence or suppress research findings</strong>. Our methodology and conclusions remain entirely our own.</p>
+                <p>Future partners would <strong className="text-white">not be permitted to suppress or rewrite research findings</strong>. Methodological transparency would be required.</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle size={18} className="text-bd-green flex-shrink-0 mt-0.5" />
-                <p>Our independence is what makes our research valuable. <strong className="text-white">Partners endorse our independence — they do not override it.</strong></p>
+                <p>Our independence is what makes our research valuable. <strong className="text-white">Prospective partners would need to respect editorial independence. No current institutional endorsement is claimed.</strong></p>
               </div>
             </div>
           </div>
@@ -150,7 +151,7 @@ export default function ForPartnersPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-text-primary mb-3 text-center">Evidence Gaps We Want to Fill</h2>
           <p className="text-text-secondary text-center mb-10 max-w-2xl mx-auto">
-            These are the five critical evidence gaps where partnership funding would have the highest impact on Bangladesh AI policy.
+            These are proposed primary-research priorities; their feasibility and funding are not yet confirmed.
           </p>
           <div className="space-y-3">
             {EVIDENCE_GAPS.map((gap, i) => (
@@ -168,9 +169,9 @@ export default function ForPartnersPage() {
       {/* CTA */}
       <section className="bg-primary-navy py-16 px-4">
         <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-2xl font-bold mb-4">Ready to Partner?</h2>
+          <h2 className="text-2xl font-bold mb-4">Interested in a Conversation?</h2>
           <p className="text-blue-200 mb-8">
-            Send us a partnership enquiry or download our research overview to share with your team.
+            Contact us about a possible future collaboration; research materials should be assessed for evidence and publication status.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             <Link
