@@ -29,6 +29,8 @@ jobs:
         run: pnpm build
       - name: Inspect deployable output (fails until static export is implemented)
         run: node scripts/verify-static-output.mjs out
+      - name: Audit exported routes and internal links
+        run: node scripts/audit-static-links.mjs out
       - name: Attach validated static website for staging
         uses: actions/upload-artifact@v4
         with:
