@@ -106,7 +106,7 @@ export default function EmonHossainPage() {
             </p>
             <p>
               {b(
-                'His research focuses on three areas: national AI readiness assessment, the economic impact of AI on Bangladesh\'s workforce, and the development of AI governance frameworks appropriate for lower-middle-income countries. He has assessed Bangladesh against 92 international AI readiness requirements across 15 domains, identifying 67 critical gaps in the current ecosystem.',
+                'His research focuses on three areas: national AI readiness assessment, the economic impact of AI on Bangladesh\'s workforce, and the development of AI governance frameworks appropriate for lower-middle-income countries. He is developing an assessment framework across 15 domains and 92 indicators; gap estimates are provisional pending reproducible evidence review.',
                 'তার গবেষণা তিনটি ক্ষেত্রে মনোযোগ দেয়: জাতীয় AI প্রস্তুতি মূল্যায়ন, বাংলাদেশের কর্মশক্তিতে AI-এর অর্থনৈতিক প্রভাব এবং নিম্ন-মধ্যম আয়ের দেশগুলির জন্য উপযুক্ত AI গভর্ন্যান্স কাঠামোর বিকাশ।'
               )}
             </p>
@@ -122,8 +122,8 @@ export default function EmonHossainPage() {
           <blockquote className="border-l-4 border-bd-green pl-6 py-4 my-10 bg-bg-light rounded-r-xl">
             <p className="text-lg font-semibold text-text-primary italic leading-relaxed mb-3">
               {b(
-                '"Bangladesh\'s population is not our problem — it is our greatest untapped advantage. One skilled person, empowered by AI, can do the work of one thousand. We are not behind because we lack talent. We are behind because we lack policy. BangladeshAI.org exists to close that gap."',
-                '"বাংলাদেশের জনসংখ্যা আমাদের সমস্যা নয় — এটি আমাদের সবচেয়ে বড় অব্যবহৃত সুবিধা। AI দ্বারা ক্ষমতায়িত একজন দক্ষ মানুষ এক হাজার জনের কাজ করতে পারে। আমরা পিছিয়ে নেই কারণ আমাদের প্রতিভার অভাব। আমরা পিছিয়ে আছি কারণ আমাদের নীতির অভাব।"'
+                '"Bangladesh\'s population is not our problem — it is our greatest untapped advantage. With appropriate skills and safeguards, AI can greatly extend what one person is able to achieve. We are not behind because we lack talent. We are behind because we lack policy. BangladeshAI.org exists to close that gap."',
+                '"বাংলাদেশের জনসংখ্যা আমাদের সমস্যা নয় — এটি আমাদের সবচেয়ে বড় অব্যবহৃত সুবিধা। দক্ষতা ও নিরাপত্তা নিশ্চিত হলে AI একজন মানুষের কাজের সক্ষমতা অনেক বাড়াতে পারে। আমরা পিছিয়ে নেই কারণ আমাদের প্রতিভার অভাব। আমরা পিছিয়ে আছি কারণ আমাদের নীতির অভাব।"'
               )}
             </p>
             <cite className={`text-sm text-text-secondary not-italic font-medium ${font}`}>
@@ -131,13 +131,13 @@ export default function EmonHossainPage() {
             </cite>
           </blockquote>
 
-          {/* Verified Research Initiatives */}
-          <h2 className={`text-xl font-bold text-text-primary mb-4 ${font}`}>{b('Verified Research Initiatives', 'যাচাইকৃত গবেষণা উদ্যোগ')}</h2>
+          {/* Research Projects & Working Drafts */}
+          <h2 className={`text-xl font-bold text-text-primary mb-4 ${font}`}>{b('Research Projects & Working Drafts', 'গবেষণা প্রকল্প ও খসড়া')}</h2>
           <div className="space-y-4 mb-10">
             <div className="bg-bg-light rounded-xl p-5 border border-border-color">
               <h3 className={`font-bold text-text-primary mb-1 text-sm ${font}`}>{b('Bangladesh AI Readiness Assessment 2026', 'বাংলাদেশ AI প্রস্তুতি মূল্যায়ন ২০২৬')}</h3>
               <p className={`text-text-secondary text-sm leading-relaxed ${font}`}>
-                {b('The first comprehensive 92-requirement AI readiness framework for Bangladesh, covering 15 domains and identifying 67 critical gaps. Published March 2026.', 'বাংলাদেশের জন্য প্রথম ব্যাপক ৯২-প্রয়োজনীয়তার AI প্রস্তুতি কাঠামো, ১৫টি ডোমেইন কভার করে এবং ৬৭টি গুরুতর ঘাটতি চিহ্নিত করে। মার্চ ২০২৬-এ প্রকাশিত।')}
+                {b('An internal working assessment using a 92-item framework across 15 domains. The estimated gap count, supporting data and any formal publication status remain under verification.', '১৫টি ক্ষেত্রে ৯২টি সূচক ব্যবহার করে তৈরি অভ্যন্তরীণ গবেষণা খসড়া। ঘাটতির সংখ্যা, উৎস ও আনুষ্ঠানিক প্রকাশনার অবস্থা যাচাই চলছে।')}
               </p>
             </div>
             <div className="bg-bg-light rounded-xl p-5 border border-border-color">
@@ -149,7 +149,7 @@ export default function EmonHossainPage() {
             <div className="bg-bg-light rounded-xl p-5 border border-border-color">
               <h3 className={`font-bold text-text-primary mb-1 text-sm ${font}`}>BangladeshAI.org</h3>
               <p className={`text-text-secondary text-sm leading-relaxed ${font}`}>
-                {b("Bangladesh's first independent, bilingual AI policy research platform. Launched March 2026. 20+ pages of original content in English and Bangla.", 'বাংলাদেশের প্রথম স্বাধীন, দ্বিভাষিক AI নীতি গবেষণা প্ল্যাটফর্ম। মার্চ ২০২৬-এ চালু হয়েছে। ইংরেজি ও বাংলায় ২০+ পাতার মৌলিক বিষয়বস্তু।')}
+                {b("An independent research and education website in development. Formal publication status, availability and language coverage vary by resource.", 'স্বাধীন গবেষণা ও শিক্ষা ওয়েবসাইট; উপকরণভেদে প্রকাশনার অবস্থা, প্রমাণ ও ভাষার পরিসর আলাদা।')}
               </p>
             </div>
           </div>

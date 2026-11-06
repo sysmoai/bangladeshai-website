@@ -7,8 +7,8 @@ import { useLanguage } from '@/lib/language-context'
 const pillars = [
   {
     icon: Shield,
-    en: { title: 'Independence Above All', desc: 'BangladeshAI.org accepts no government funding, no commercial sponsorship, and no political affiliation. Our only obligation is to the truth — and to Bangladesh\'s 170 million people. Independence is not a policy; it is the foundation on which every analysis rests.' },
-    bn: { title: 'সর্বোপরি স্বাধীনতা', desc: 'BangladeshAI.org কোনো সরকারি অর্থায়ন, বাণিজ্যিক স্পনসরশিপ এবং রাজনৈতিক সংযোগ গ্রহণ করে না। আমাদের একমাত্র দায়বদ্ধতা সত্যের প্রতি — এবং বাংলাদেশের ১৭ কোটি মানুষের প্রতি।' },
+    en: { title: 'Independence Above All', desc: 'BangladeshAI.org is an independent public-interest research initiative, not a government body. We claim no official endorsement. Any financial support or institutional affiliation should be disclosed and verified before public claims are made.' },
+    bn: { title: 'সর্বোপরি স্বাধীনতা', desc: 'BangladeshAI.org একটি স্বাধীন জনস্বার্থমূলক গবেষণা উদ্যোগ, সরকারি প্রতিষ্ঠান নয়। কোনো সরকারি অনুমোদন দাবি করা হচ্ছে না; সহায়তা বা সংশ্লিষ্টতা থাকলে যাচাই করে প্রকাশ করতে হবে।' },
   },
   {
     icon: Search,
@@ -33,18 +33,18 @@ const pillars = [
 ]
 
 const notList = [
-  { en: 'Not funded by any government — Bangladeshi or foreign', bn: 'কোনো সরকার দ্বারা অর্থায়িত নয় — বাংলাদেশি বা বিদেশি' },
+  { en: 'No government endorsement or formal partnership is claimed', bn: 'সরকারি অনুমোদন বা আনুষ্ঠানিক অংশীদারত্ব দাবি করা হয় না' },
   { en: 'Not a commercial product or vendor', bn: 'বাণিজ্যিক পণ্য বা বিক্রেতা নয়' },
   { en: 'Not affiliated with any political party', bn: 'কোনো রাজনৈতিক দলের সাথে অনুমোদিত নয়' },
   { en: 'Not a think tank with a predetermined agenda', bn: 'পূর্বনির্ধারিত এজেন্ডা সহ থিঙ্ক ট্যাঙ্ক নয়' },
-  { en: 'Not funded by AI companies with products to sell', bn: 'বিক্রির পণ্য আছে এমন AI কোম্পানি দ্বারা অর্থায়িত নয়' },
+  { en: 'No AI company endorsement is claimed', bn: 'কোনো AI কোম্পানির অনুমোদন দাবি করা হয় না' },
 ]
 
 const isList = [
   { en: 'An independent research platform', bn: 'একটি স্বাধীন গবেষণা প্ল্যাটফর্ম' },
   { en: 'Evidence-based and non-partisan', bn: 'প্রমাণ-ভিত্তিক এবং নিরপেক্ষ' },
   { en: 'Research-first: analysis before advocacy', bn: 'গবেষণা-প্রথম: পক্ষসমর্থনের আগে বিশ্লেষণ' },
-  { en: 'Bilingual: English and Bangla natively', bn: 'দ্বিভাষিক: ইংরেজি এবং বাংলা স্বাভাবিকভাবে' },
+  { en: 'Working toward accessible English and Bangla coverage', bn: 'বাংলা ও ইংরেজিতে সহজলভ্য কনটেন্ট বাড়ানোর কাজ চলছে' },
   { en: 'Free and publicly available', bn: 'বিনামূল্যে এবং সর্বজনীনভাবে উপলব্ধ' },
 ]
 

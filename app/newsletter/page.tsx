@@ -39,28 +39,30 @@ export default function NewsletterPage() {
   const [name, setName] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
+  const signupEnabled = Boolean(NEWSLETTER_FORM_ID?.trim())
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitting(true)
-
-    if (NEWSLETTER_FORM_ID) {
-      try {
-        const res = await fetch(`https://formspree.io/f/${NEWSLETTER_FORM_ID}`, {
-          method: 'POST',
-          body: JSON.stringify({ email, name, type: 'newsletter' }),
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        })
-        if (res.ok) {
-          setSubmitted(true)
-        }
-      } catch {
-        setSubmitted(true)
-      }
-    } else {
-      setSubmitted(true)
+    if (!signupEnabled) {
+      setError('Newsletter enrollment is not currently available.')
+      return
     }
-    setSubmitting(false)
+    setSubmitting(true)
+    setError('')
+    try {
+      const response = await fetch(`https://formspree.io/f/${NEWSLETTER_FORM_ID}`, {
+        method: 'POST',
+        body: JSON.stringify({ email, name, type: 'newsletter' }),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      })
+      if (!response.ok) throw new Error('Submission failed')
+      setSubmitted(true)
+    } catch {
+      setError('Submission failed. No subscription was confirmed.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -85,8 +87,8 @@ export default function NewsletterPage() {
           </h1>
           <p className={`text-xl text-blue-200 max-w-2xl mx-auto leading-relaxed ${font}`}>
             {b(
-              'The independent weekly newsletter on AI policy, governance, and technology in Bangladesh. Read by government officials, researchers, and concerned citizens.',
-              'বাংলাদেশে AI নীতি, গভর্ন্যান্স এবং প্রযুক্তি বিষয়ক স্বাধীন সাপ্তাহিক নিউজলেটার। সরকারি কর্মকর্তা, গবেষক এবং সচেতন নাগরিকদের দ্বারা পঠিত।'
+              'A planned public-interest AI policy and technology briefing for Bangladesh. No regular publication or institutional readership is currently claimed.',
+              'বাংলাদেশের জন্য পরিকল্পিত AI নীতি ও প্রযুক্তি ব্রিফিং। নিয়মিত প্রকাশনা বা প্রাতিষ্ঠানিক পাঠকসংখ্যার দাবি করা হচ্ছে না।'
             )}
           </p>
         </div>
@@ -96,10 +98,10 @@ export default function NewsletterPage() {
       <section className="bg-bg-surface py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className={`text-2xl font-bold text-text-primary mb-3 text-center ${font}`}>
-            {b('What You Get Each Week', 'প্রতি সপ্তাহে আপনি কী পান')}
+            {b('Planned Editorial Topics', 'পরিকল্পিত বিষয়বস্তু')}
           </h2>
           <p className={`text-text-secondary text-center mb-10 text-sm ${font}`}>
-            {b('Sent every Sunday morning. Takes 8 minutes to read. Bilingual — English and Bangla in every issue.', 'প্রতি রবিবার সকালে পাঠানো হয়। পড়তে ৮ মিনিট লাগে। দ্বিভাষিক — প্রতিটি সংখ্যায় ইংরেজি এবং বাংলা।')}
+            {b('The following subjects are planned. No delivery schedule is guaranteed.', 'নিচের বিষয়গুলো পরিকল্পিত। নির্দিষ্ট সময়ে ব্রিফিং পাঠানোর প্রতিশ্রুতি দেওয়া হচ্ছে না।')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {whatYouGet.map((item, i) => {
@@ -123,25 +125,38 @@ export default function NewsletterPage() {
       <section className="bg-bg-light py-16 px-4">
         <div className="max-w-md mx-auto">
           <h2 className={`text-2xl font-bold text-text-primary mb-2 text-center ${font}`}>
-            {b('Subscribe Free', 'বিনামূল্যে সাবস্ক্রাইব করুন')}
+            {b('Newsletter Enrollment', 'নিউজলেটার নিবন্ধন')}
           </h2>
           <p className={`text-text-secondary text-center mb-4 text-sm ${font}`}>
-            {b('No spam. Unsubscribe any time. Your email stays in Bangladesh.', 'কোনো স্প্যাম নেই। যেকোনো সময় আনসাবস্ক্রাইব করুন। আপনার ইমেইল বাংলাদেশে থাকে।')}
+            {b('Enrollment is unavailable until a verified mailing provider and privacy notice are available.', 'যাচাইকৃত মেইলিং সেবা ও গোপনীয়তা নীতি না থাকা পর্যন্ত নিবন্ধন বন্ধ।')}
           </p>
           <p className={`text-text-secondary text-center mb-8 text-xs italic ${font}`}>
-            {b('Join the first readers — issue #1 coming this Sunday.', 'প্রথম পাঠকদের সাথে যোগ দিন — ১ম সংখ্যা এই রবিবার আসছে।')}
+            {b('Issue #1 date has not been confirmed.', 'প্রথম সংখ্যা প্রকাশের তারিখ এখনো নিশ্চিত নয়।')}
           </p>
 
-          {submitted ? (
+          {!signupEnabled ? (
+            <div role="status" className="bg-bg-surface border border-border-color rounded-2xl p-8 text-center">
+              <h3 className={`text-lg font-bold text-text-primary mb-3 ${font}`}>
+                {b('Enrollment not yet open', 'নিবন্ধন এখনো চালু হয়নি')}
+              </h3>
+              <p className={`text-sm text-text-secondary leading-relaxed mb-4 ${font}`}>
+                {b('No email addresses are collected here until a verified signup service is configured.', 'যাচাইকৃত নিবন্ধন সেবা চালু না হওয়া পর্যন্ত এখানে ইমেইল সংগ্রহ করা হচ্ছে না।')}
+              </p>
+              <a href="/contact/" className="text-primary-blue font-semibold underline">
+                {b('Contact options', 'যোগাযোগের উপায়')}
+              </a>
+            </div>
+          ) : submitted ? (
             <div className="bg-bd-green/10 border border-bd-green/30 rounded-2xl p-8 text-center">
               <div className="text-4xl mb-4">✓</div>
-              <h3 className={`text-lg font-bold text-bd-green mb-2 ${font}`}>{b('You\'re subscribed!', 'আপনি সাবস্ক্রাইব করেছেন!')}</h3>
+              <h3 className={`text-lg font-bold text-bd-green mb-2 ${font}`}>{b('Request received', 'অনুরোধ গ্রহণ করা হয়েছে')}</h3>
               <p className={`text-text-secondary text-sm ${font}`}>
-                {b('Your first issue of Bangladesh AI Briefing arrives next Sunday.', 'বাংলাদেশ AI ব্রিফিং-এর আপনার প্রথম সংখ্যা পরের রবিবার আসবে।')}
+                {b('The form provider accepted your request. No delivery date is guaranteed.', 'ফর্ম সেবাদাতা অনুরোধ গ্রহণ করেছে। প্রকাশের সময় নিশ্চিত নয়।')}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-bg-surface rounded-2xl p-8 border border-border-color shadow-sm space-y-4">
+              {error && <p role="alert" className="text-sm text-red-700">{isBn ? "অনুরোধ পাঠানো যায়নি। সাবস্ক্রিপশন নিশ্চিত হয়নি।" : error}</p>}
               <div>
                 <label className={`block text-sm font-semibold text-text-primary mb-1.5 ${font}`}>{b('Your Name', 'আপনার নাম')}</label>
                 <input
@@ -172,7 +187,7 @@ export default function NewsletterPage() {
                 {submitting ? b('Subscribing…', 'সাবস্ক্রাইব হচ্ছে…') : b('Subscribe to Bangladesh AI Briefing', 'বাংলাদেশ AI ব্রিফিং সাবস্ক্রাইব করুন')}
               </button>
               <p className={`text-xs text-text-secondary text-center ${font}`}>
-                {b('Free forever. No credit card. Unsubscribe in one click.', 'চিরতরে বিনামূল্যে। কোনো ক্রেডিট কার্ড নেই। এক ক্লিকে আনসাবস্ক্রাইব করুন।')}
+                {b('No payment is requested. Your information is handled by the configured form provider.', 'কোনো অর্থপ্রদান লাগবে না। ফর্ম সেবাদাতার গোপনীয়তা নীতি প্রযোজ্য।')}
               </p>
             </form>
           )}

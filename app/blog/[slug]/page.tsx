@@ -88,14 +88,15 @@ const fallbackPosts: Record<string, { title: string; category: string; date: str
   },
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getPostBySlug('blog', params.slug, 'en')
-  const fb = fallbackPosts[params.slug]
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = getPostBySlug('blog', slug, 'en')
+  const fb = fallbackPosts[slug]
   const data = post || fb
 
   if (!data) return { title: 'Article Not Found — BangladeshAI.org' }
 
-  const ogUrl = `${siteUrl}/api/og?title=${encodeURIComponent(data.title)}&category=${encodeURIComponent(data.category)}&readTime=${encodeURIComponent(data.readTime)}`
+  const ogUrl = `${siteUrl}/opengraph-image`
 
   return {
     title: `${data.title} — BangladeshAI.org`,
@@ -115,7 +116,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: data.excerpt,
       images: [ogUrl],
     },
-    alternates: { canonical: `${siteUrl}/blog/${params.slug}` },
+    alternates: { canonical: `${siteUrl}/blog/${slug}/` },
   }
 }
 
@@ -126,10 +127,11 @@ export function generateStaticParams() {
   return allSlugs.map((slug) => ({ slug }))
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug('blog', params.slug, 'en')
-  const fb = fallbackPosts[params.slug]
-  const data = post || (fb ? { ...fb, slug: params.slug, author: 'Emon Hossain', content: fallbackContent } : null)
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getPostBySlug('blog', slug, 'en')
+  const fb = fallbackPosts[slug]
+  const data = post || (fb ? { ...fb, slug: slug, author: 'Emon Hossain', content: fallbackContent } : null)
 
   if (!data) notFound()
 
@@ -150,7 +152,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       name: 'BangladeshAI.org',
       url: siteUrl,
     },
-    url: `${siteUrl}/blog/${params.slug}`,
+    url: `${siteUrl}/blog/${slug}/`,
     articleSection: data.category,
     inLanguage: 'en-US',
   }
@@ -161,7 +163,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
       { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
-      { '@type': 'ListItem', position: 3, name: data.title, item: `${siteUrl}/blog/${params.slug}` },
+      { '@type': 'ListItem', position: 3, name: data.title, item: `${siteUrl}/blog/${slug}/` },
     ],
   }
 

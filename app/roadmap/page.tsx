@@ -450,7 +450,7 @@ export default function RoadmapPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/national-strategy"
+              href="/research/national-strategy"
               className="inline-flex items-center gap-2 bg-primary-navy text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-navy/90 transition-colors"
             >
               {b(isBn, 'Read National Strategy', 'জাতীয় কৌশল পড়ুন')}

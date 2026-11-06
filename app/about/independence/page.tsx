@@ -5,21 +5,18 @@ import { ChevronRight, Shield, XCircle, CheckCircle } from 'lucide-react'
 import { useLanguage } from '@/lib/language-context'
 
 const noList = [
-  { en: 'No government funding from any country — Bangladeshi, foreign bilateral, or multilateral', bn: 'কোনো দেশের সরকারি অর্থায়ন নেই — বাংলাদেশি, বিদেশি দ্বিপাক্ষিক বা বহুপাক্ষিক' },
-  { en: 'No commercial product revenue — we sell nothing', bn: 'কোনো বাণিজ্যিক পণ্য রাজস্ব নেই — আমরা কিছু বিক্রি করি না' },
-  { en: 'No advertising or sponsored content', bn: 'কোনো বিজ্ঞাপন বা স্পনসরড বিষয়বস্তু নেই' },
-  { en: 'No political party or political figure affiliation', bn: 'কোনো রাজনৈতিক দল বা রাজনৈতিক ব্যক্তিত্বের সংযোগ নেই' },
-  { en: 'No vendor relationships with AI companies whose products we review', bn: 'আমরা যে AI কোম্পানির পণ্য পর্যালোচনা করি তাদের সাথে কোনো বিক্রেতা সম্পর্ক নেই' },
-  { en: 'No consulting retainers from organizations with policy interests in our research', bn: 'আমাদের গবেষণায় নীতিগত স্বার্থ আছে এমন প্রতিষ্ঠানের কাছ থেকে কোনো পরামর্শ চুক্তি নেই' },
+  { en: 'No government endorsement or official institutional status is claimed', bn: 'সরকারি অনুমোদন বা কোনো আনুষ্ঠানিক প্রাতিষ্ঠানিক মর্যাদা দাবি করা হচ্ছে না' },
+  { en: 'No existing international donor partnership is claimed without evidence', bn: 'প্রমাণ ছাড়া আন্তর্জাতিক দাতা সংস্থার অংশীদারত্ব দাবি করা হচ্ছে না' },
+  { en: 'No journal publication, peer review or DOI is implied by a website research draft', bn: 'ওয়েবসাইটের গবেষণা খসড়াকে জার্নাল প্রকাশনা, পিয়ার রিভিউ বা DOI-এর প্রমাণ বলা হচ্ছে না' },
+  { en: 'No measured impact is claimed from projections or hypothetical analyses', bn: 'সম্ভাব্য হিসাবকে বাস্তবে পরিমাপ করা ফলাফল হিসেবে দাবি করা হচ্ছে না' },
 ]
 
 const yesList = [
-  { en: 'Funded through personal founder resources and small open donations', bn: 'ব্যক্তিগত প্রতিষ্ঠাতার সম্পদ এবং ছোট খোলা অনুদানের মাধ্যমে অর্থায়ন করা' },
-  { en: 'All research is free and publicly available without registration', bn: 'সমস্ত গবেষণা নিবন্ধন ছাড়াই বিনামূল্যে এবং সর্বজনীনভাবে উপলব্ধ' },
-  { en: 'All data sources are cited and publicly verifiable', bn: 'সমস্ত ডেটা উৎস উদ্ধৃত এবং সর্বজনীনভাবে যাচাইযোগ্য' },
-  { en: 'Corrections and updates are published publicly when errors are identified', bn: 'ত্রুটি চিহ্নিত হলে সংশোধন এবং আপডেট সর্বজনীনভাবে প্রকাশিত হয়' },
-  { en: 'Research methodology is fully documented and open to challenge', bn: 'গবেষণা পদ্ধতি সম্পূর্ণভাবে নথিভুক্ত এবং চ্যালেঞ্জের জন্য উন্মুক্ত' },
-  { en: 'Founder\'s conflict-of-interest disclosures are updated annually', bn: 'প্রতিষ্ঠাতার স্বার্থ-সংঘাত প্রকাশ বার্ষিকভাবে আপডেট করা হয়' },
+  { en: 'Public-interest research with citations and evidence review in progress', bn: 'উৎস-তথ্যসহ জনস্বার্থমূলক গবেষণা ও প্রমাণ যাচাইয়ের কাজ চলছে' },
+  { en: 'Current website resources are readable without creating an account', bn: 'বর্তমান ওয়েবসাইটের উপকরণ অ্যাকাউন্ট ছাড়াই পড়া যায়' },
+  { en: 'Working papers are labeled as drafts until publication evidence is established', bn: 'প্রকাশনার প্রমাণ নিশ্চিত না হওয়া পর্যন্ত গবেষণাকে খসড়া হিসেবে দেখানো হয়' },
+  { en: 'Funding, affiliations and conflicts of interest should be disclosed when verified', bn: 'অর্থায়ন, সংশ্লিষ্টতা ও স্বার্থ-সংঘাত যাচাই করে প্রকাশ করার নীতি' },
+  { en: 'Corrections are encouraged and documented as part of editorial review', bn: 'সম্পাদকীয় যাচাইয়ে ভুল সংশোধন ও নথিভুক্তিকে উৎসাহ দেওয়া হয়' },
 ]
 
 const principles = [
@@ -36,11 +33,11 @@ const principles = [
   {
     en: {
       title: 'The Government Distance Rule',
-      desc: 'We engage with government officials to share research and receive feedback. We do not receive funding from, or enter consulting relationships with, any government ministry or agency in a way that could create actual or perceived conflicts of interest with our research conclusions.',
+      desc: 'Future dialogue with government officials should be transparent and does not imply official endorsement. Any funding or advisory arrangement would require conflict-of-interest review and documented safeguards.',
     },
     bn: {
       title: 'সরকারি দূরত্বের নিয়ম',
-      desc: 'আমরা গবেষণা ভাগ করে নেওয়া এবং মতামত পাওয়ার জন্য সরকারি কর্মকর্তাদের সাথে যুক্ত হই। আমরা কোনো সরকারি মন্ত্রণালয় বা সংস্থার কাছ থেকে অর্থায়ন বা পরামর্শ সম্পর্ক গ্রহণ করি না।',
+      desc: 'ভবিষ্যতে সরকারি কর্মকর্তাদের সঙ্গে আলোচনা হলে তা স্বচ্ছভাবে জানানো উচিত; এটিকে সরকারি অনুমোদন বলা যাবে না। অর্থায়ন বা পরামর্শ চুক্তির ক্ষেত্রে স্বার্থ-সংঘাত পরীক্ষা করতে হবে।',
     },
   },
   {

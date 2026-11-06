@@ -29,7 +29,10 @@ export default function ResearchPage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold text-text-primary mb-4">Research Hub</h1>
-      <p className="text-lg text-text-secondary mb-12">Independent AI policy research for Bangladesh. 10 papers. All open-access.</p>
+      <p className="text-lg text-text-secondary mb-4">Explore 10 research briefs and working drafts. Website access does not imply peer review, journal publication, DOI registration, or endorsement.</p>
+      <aside role="note" className="rounded-lg border border-amber-300 bg-amber-50 text-amber-950 p-4 text-sm leading-relaxed mb-10">
+        <strong>Research evidence notice:</strong> These materials are working research and policy analysis. Their datasets, citations and publication statuses are being verified. Any projections are proposals, not measured outcomes; no government or institutional affiliation is implied.
+      </aside>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {papers.map((paper) => (
           <Link
@@ -44,7 +47,7 @@ export default function ResearchPage() {
             <p className="text-sm text-text-secondary mb-4 leading-relaxed">{paper.desc}</p>
             <div className="flex justify-between items-center pt-3 border-t border-border-color">
               <span className="text-xs text-text-secondary">{paper.readTime}</span>
-              <span className="text-sm text-primary-blue font-semibold group-hover:underline">Read Research →</span>
+              <span className="text-sm text-primary-blue font-semibold group-hover:underline">Read Draft →</span>
             </div>
           </Link>
         ))}
